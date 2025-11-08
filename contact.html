@@ -1,47 +1,47 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>문의 / 상담예약 | 전국모바일</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"><link href="assets/css/styles.css" rel="stylesheet"><meta name="reservations-csv-url" content=""><!-- Google Sheets CSV 공개 주소를 넣으면 실시간 모드로 동작합니다. --></head><body>
-<nav class="navbar navbar-expand-lg bg-body shadow-sm sticky-top"><div class="container"><a class="navbar-brand fw-bold" href="/">전국모바일</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="토글 내비게이션"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="nav"><ul class="navbar-nav ms-auto"><li class="nav-item"><a class="nav-link" href="/">홈</a></li><li class="nav-item"><a class="nav-link" href="/services.html">서비스</a></li><li class="nav-item"><a class="nav-link" href="/information.html">이용안내</a></li><li class="nav-item"><a class="nav-link" href="/about.html">회사소개</a></li><li class="nav-item"><a class="nav-link active" href="/contact.html">문의/예약</a></li></ul></div></div></nav>
-<header class="py-5 bg-primary text-white"><div class="container"><h1 class="h2 fw-bold">문의 / 상담예약</h1><p class="text-white-50 mb-0">간단한 정보를 남겨주시면 빠르게 연락드리겠습니다.</p></div></header>
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>문의 / ?�담?�약 | ?�국모바??/title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"><link href="assets/css/styles.css" rel="stylesheet"><meta name="reservations-csv-url" content=""><!-- Google Sheets CSV 공개 주소�??�으�??�시�?모드�??�작?�니?? --></head><body>
+<nav class="navbar navbar-expand-lg bg-body shadow-sm sticky-top"><div class="container"><a class="navbar-brand fw-bold" href="">?�국모바??/a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="?��? ?�비게이??><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="nav"><ul class="navbar-nav ms-auto"><li class="nav-item"><a class="nav-link" href="">??/a></li><li class="nav-item"><a class="nav-link" href="services.html">?�비??/a></li><li class="nav-item"><a class="nav-link" href="information.html">?�용?�내</a></li><li class="nav-item"><a class="nav-link" href="about.html">?�사?�개</a></li><li class="nav-item"><a class="nav-link active" href="contact.html">문의/?�약</a></li></ul></div></div></nav>
+<header class="py-5 bg-primary text-white"><div class="container"><h1 class="h2 fw-bold">문의 / ?�담?�약</h1><p class="text-white-50 mb-0">간단???�보�??�겨주시�?빠르�??�락?�리겠습?�다.</p></div></header>
 <main class="py-5"><div class="container"><div class="row g-5">
 <div class="col-lg-7">
 <form class="needs-validation" novalidate id="contactForm" method="POST" action="https://script.google.com/macros/s/AKfycbwyoFNrN7g75G6flUzmQjLeydJHLqlw4bsicYdslrhPhrVvr_68C59ymhyTGxfKtJV_DA/exec">
-  <div class="alert alert-info small" role="alert">아래 추가 항목은 조건 상담을 위한 선택 정보입니다. 민감정보(주민번호 등)는 절대 입력하지 마세요.</div>
-  <div class="mb-3"><label class="form-label" for="name">이름</label><input class="form-control" id="name" name="이름" required><div class="invalid-feedback">이름을 입력해주세요.</div></div>
-  <div class="mb-3"><label class="form-label" for="phone">연락처</label><input class="form-control" id="phone" name="연락처" type="tel" pattern="^[0-9\-]{9,13}$" required><div class="form-text">숫자와 '-'만 입력 (예: 010-1234-5678)</div><div class="invalid-feedback">올바른 연락처를 입력하세요.</div></div>
-  <div class="mb-3"><label class="form-label" for="type">문의 유형</label><select class="form-select" id="type" name="문의유형" required><option value="" disabled selected>선택하세요</option><option>비대면 개통</option><option>매장 방문</option><option>단말 매입</option><option>일반 상담</option></select><div class="invalid-feedback">문의 유형을 선택하세요.</div></div>
-  <div class="mb-3"><label class="form-label" for="carrier">통신사</label><select class="form-select" id="carrier" name="통신사"><option value="" selected>선택(선택사항)</option><option>SKT</option><option>KT</option><option>LGU+</option><option>알뜰 / MVNO</option></select></div>
-  <div class="mb-3"><label class="form-label" for="recentActive">최근 개통일</label><input class="form-control" id="recentActive" name="최근개통일" type="date" max="9999-12-31"><div class="form-text">최근 회선/기기 개통일 (선택)</div></div>
-  <div class="mb-3"><label class="form-label" for="arrears">미납/연체 여부</label><select class="form-select" id="arrears" name="미납연체"><option value="" selected>선택(선택사항)</option><option>없음</option><option>소액 미납</option><option>연체 있음</option></select></div>
-  <div class="mb-3"><label class="form-label" for="region">지역</label><input class="form-control" id="region" name="지역" placeholder="예: 서울 강남 / 부산 해운대 등"></div>
-  <div class="mb-3"><label class="form-label" for="desired">희망 진행 방식</label><select class="form-select" id="desired" name="희망진행방식"><option value="" selected>선택(선택사항)</option><option>비대면 개통</option><option>매장 방문</option><option>택배 접수</option></select></div>
-  <div class="mb-3"><label class="form-label" for="message">상세 내용</label><textarea class="form-control" id="message" name="상세내용" rows="5" placeholder="예: 아이폰 15 기변 조건 문의" required></textarea><div class="invalid-feedback">내용을 입력해주세요.</div></div>
-  <div class="mb-3 form-check"><input class="form-check-input" type="checkbox" id="agree" required><label class="form-check-label" for="agree">개인정보 수집 및 이용에 동의합니다.</label><div class="invalid-feedback">동의가 필요합니다.</div></div>
+  <div class="alert alert-info small" role="alert">?�래 추�? ??��?� 조건 ?�담???�한 ?�택 ?�보?�니?? 민감?�보(주�?번호 ?????��? ?�력?��? 마세??</div>
+  <div class="mb-3"><label class="form-label" for="name">?�름</label><input class="form-control" id="name" name="?�름" required><div class="invalid-feedback">?�름???�력?�주?�요.</div></div>
+  <div class="mb-3"><label class="form-label" for="phone">?�락�?/label><input class="form-control" id="phone" name="?�락�? type="tel" pattern="^[0-9\-]{9,13}$" required><div class="form-text">?�자?� '-'�??�력 (?? 010-1234-5678)</div><div class="invalid-feedback">?�바�??�락처�? ?�력?�세??</div></div>
+  <div class="mb-3"><label class="form-label" for="type">문의 ?�형</label><select class="form-select" id="type" name="문의?�형" required><option value="" disabled selected>?�택?�세??/option><option>비�?�?개통</option><option>매장 방문</option><option>?�말 매입</option><option>?�반 ?�담</option></select><div class="invalid-feedback">문의 ?�형???�택?�세??</div></div>
+  <div class="mb-3"><label class="form-label" for="carrier">?�신??/label><select class="form-select" id="carrier" name="?�신??><option value="" selected>?�택(?�택?�항)</option><option>SKT</option><option>KT</option><option>LGU+</option><option>?�뜰 / MVNO</option></select></div>
+  <div class="mb-3"><label class="form-label" for="recentActive">최근 개통??/label><input class="form-control" id="recentActive" name="최근개통?? type="date" max="9999-12-31"><div class="form-text">최근 ?�선/기기 개통??(?�택)</div></div>
+  <div class="mb-3"><label class="form-label" for="arrears">미납/?�체 ?��?</label><select class="form-select" id="arrears" name="미납?�체"><option value="" selected>?�택(?�택?�항)</option><option>?�음</option><option>?�액 미납</option><option>?�체 ?�음</option></select></div>
+  <div class="mb-3"><label class="form-label" for="region">지??/label><input class="form-control" id="region" name="지?? placeholder="?? ?�울 강남 / 부???�운?� ??></div>
+  <div class="mb-3"><label class="form-label" for="desired">?�망 진행 방식</label><select class="form-select" id="desired" name="?�망진행방식"><option value="" selected>?�택(?�택?�항)</option><option>비�?�?개통</option><option>매장 방문</option><option>?�배 ?�수</option></select></div>
+  <div class="mb-3"><label class="form-label" for="message">?�세 ?�용</label><textarea class="form-control" id="message" name="?�세?�용" rows="5" placeholder="?? ?�이??15 기�? 조건 문의" required></textarea><div class="invalid-feedback">?�용???�력?�주?�요.</div></div>
+  <div class="mb-3 form-check"><input class="form-check-input" type="checkbox" id="agree" required><label class="form-check-label" for="agree">개인?�보 ?�집 �??�용???�의?�니??</label><div class="invalid-feedback">?�의가 ?�요?�니??</div></div>
   <div class="text-center">
-    <button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-send me-2"></i>상담 신청하기</button>
+    <button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-send me-2"></i>?�담 ?�청?�기</button>
   </div>
   <div id="formResult" class="mt-3 small"></div>
 </form>
-<!-- Google Form 자동 제출용 숨김 iframe -->
+<!-- Google Form ?�동 ?�출???��? iframe -->
 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { handleFormSuccess(); }"></iframe>
-<!-- 이메일 제출용 숨김 폼 (FormSubmit) -->
+<!-- ?�메???�출???��? ??(FormSubmit) -->
 <form id="hiddenEmailForm" action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST" target="_blank" class="d-none">
-  <input type="hidden" name="_subject" value="전국모바일 상담 예약" />
+  <input type="hidden" name="_subject" value="?�국모바???�담 ?�약" />
   <input type="hidden" name="_captcha" value="false" />
   <input type="hidden" name="_template" value="table" />
-  <input type="hidden" name="이름" id="email_name" />
-  <input type="hidden" name="연락처" id="email_phone" />
-  <input type="hidden" name="유형" id="email_type" />
-  <input type="hidden" name="내용" id="email_message" />
-  <input type="hidden" name="제출시각" id="email_time" />
-  <!-- 필요 시 아래로 성공 후 이동할 주소
+  <input type="hidden" name="?�름" id="email_name" />
+  <input type="hidden" name="?�락�? id="email_phone" />
+  <input type="hidden" name="?�형" id="email_type" />
+  <input type="hidden" name="?�용" id="email_message" />
+  <input type="hidden" name="?�출?�각" id="email_time" />
+  <!-- ?�요 ???�래�??�공 ???�동??주소
   <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html" /> -->
-  <!-- 스팸 방지 허니팟 -->
+  <!-- ?�팸 방�? ?�니??-->
   <input type="text" name="_honey" style="display:none" />
 </form>
 </div>
-<div class="col-lg-5"><div class="p-4 bg-body-tertiary border rounded-3 h-100"><h2 class="h5">직접 연락</h2><p class="small mb-1"><i class="bi bi-telephone me-1"></i>전화: <a href="tel:010-8290-9536">010-8290-9536</a></p><p class="small mb-1"><i class="bi bi-chat-dots me-1"></i>카카오톡: <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener">바로가기</a> <span class="badge text-bg-warning text-dark ms-1">ID: k090912k</span></p><p class="small mb-3"><i class="bi bi-envelope me-1"></i>이메일: info@example.com</p><hr><h3 class="h6 text-secondary">유의 사항</h3><ul class="small mb-0"><li>실제 예약 확정은 상담원 확인 후 진행됩니다.</li><li>민감 정보(계정 비밀번호 등)는 입력하지 마세요.</li><li>당일 급한 문의는 전화 이용을 권장합니다.</li></ul></div></div>
+<div class="col-lg-5"><div class="p-4 bg-body-tertiary border rounded-3 h-100"><h2 class="h5">직접 ?�락</h2><p class="small mb-1"><i class="bi bi-telephone me-1"></i>?�화: <a href="tel:010-8290-9536">010-8290-9536</a></p><p class="small mb-1"><i class="bi bi-chat-dots me-1"></i>카카?�톡: <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener">바로가�?/a> <span class="badge text-bg-warning text-dark ms-1">ID: k090912k</span></p><p class="small mb-3"><i class="bi bi-envelope me-1"></i>?�메?? info@example.com</p><hr><h3 class="h6 text-secondary">?�의 ?�항</h3><ul class="small mb-0"><li>?�제 ?�약 ?�정?� ?�담???�인 ??진행?�니??</li><li>민감 ?�보(계정 비�?번호 ?????�력?��? 마세??</li><li>?�일 급한 문의???�화 ?�용??권장?�니??</li></ul></div></div>
 </div></div></main>
-<footer class="py-4 bg-dark text-light"><div class="container small d-flex justify-content-between flex-wrap gap-3"><span>© 2025 전국모바일</span><a class="link-light text-decoration-none" href="#top" id="backToTop">맨 위로</a></div></footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="assets/js/main.js"></script><script>/* 상담 예약 운영 강화 + 확장 필드 저장 + 예약 리스트 렌더링 */
+<footer class="py-4 bg-dark text-light"><div class="container small d-flex justify-content-between flex-wrap gap-3"><span>© 2025 ?�국모바??/span><a class="link-light text-decoration-none" href="#top" id="backToTop">�??�로</a></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="assets/js/main.js"></script><script>/* ?�담 ?�약 ?�영 강화 + ?�장 ?�드 ?�??+ ?�약 리스???�더�?*/
 (() => {
   const form = document.getElementById('contactForm');
   const result = document.getElementById('formResult');
@@ -51,19 +51,19 @@
   const reservationsContainerId = 'reservationsTableContainer';
   if (!form) return;
 
-  // 안전한 값 접근 헬퍼
+  // ?�전??�??�근 ?�퍼
   const fv = (sel) => (form.querySelector(sel)?.value || '').trim();
 
-  // 허니팟(봇 탐지) 숨김 필드 추가
+  // ?�니??�??��?) ?��? ?�드 추�?
   const honeypot = document.createElement('input');
   honeypot.type = 'text'; honeypot.name = 'website'; honeypot.autocomplete = 'off';
   honeypot.style.position = 'absolute'; honeypot.style.left = '-9999px'; honeypot.tabIndex = -1;
   form.appendChild(honeypot);
 
-  // 최근 제출 로컬 저장 표시 영역
+  // 최근 ?�출 로컬 ?�???�시 ?�역
   const recentBox = document.createElement('div');
   recentBox.className = 'mt-4 small';
-  recentBox.innerHTML = '<strong>최근 제출(로컬 저장):</strong><div id="recentSubmissions" class="mt-2 d-flex flex-column gap-1"></div>';
+  recentBox.innerHTML = '<strong>최근 ?�출(로컬 ?�??:</strong><div id="recentSubmissions" class="mt-2 d-flex flex-column gap-1"></div>';
   form.parentElement?.appendChild(recentBox);
 
   function renderRecent(){
@@ -75,27 +75,27 @@
   renderRecent();
 
   form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // 기본 제출 막기
+    e.preventDefault(); // 기본 ?�출 막기
     
-    // 유효성 검사
+    // ?�효??검??
     if (!form.checkValidity()) {
       form.classList.add('was-validated');
-      result.innerHTML = '<span class="text-danger">입력값을 확인해주세요.</span>';
+      result.innerHTML = '<span class="text-danger">?�력값을 ?�인?�주?�요.</span>';
       return;
     }
-    if (honeypot.value) { // 봇 의심
-      result.innerHTML = '<span class="text-warning">제출이 차단되었습니다 (스팸 의심).</span>';
+    if (honeypot.value) { // �??�심
+      result.innerHTML = '<span class="text-warning">?�출??차단?�었?�니??(?�팸 ?�심).</span>';
       return;
     }
 
-    // 제출 중 메시지 표시
-    result.innerHTML = '<span class="text-info"><i class="bi bi-hourglass-split"></i> 상담 신청을 전송하는 중...</span>';
+    // ?�출 �?메시지 ?�시
+    result.innerHTML = '<span class="text-info"><i class="bi bi-hourglass-split"></i> ?�담 ?�청???�송?�는 �?..</span>';
 
     try {
-      // FormData로 폼 데이터 수집
+      // FormData�????�이???�집
       const formData = new FormData(form);
       
-      // Google Apps Script로 전송
+      // Google Apps Script�??�송
       const response = await fetch(form.action, {
         method: 'POST',
         body: formData
@@ -104,10 +104,10 @@
       const data = await response.json();
 
       if (data.result === 'success') {
-        // 성공 메시지 표시
-        result.innerHTML = '<div class="alert alert-success"><i class="bi bi-check-circle-fill me-2"></i><strong>상담 신청이 완료되었습니다!</strong><br>빠른 시일 내에 연락드리겠습니다.</div>';
+        // ?�공 메시지 ?�시
+        result.innerHTML = '<div class="alert alert-success"><i class="bi bi-check-circle-fill me-2"></i><strong>?�담 ?�청???�료?�었?�니??</strong><br>빠른 ?�일 ?�에 ?�락?�리겠습?�다.</div>';
         
-        // 로컬 저장 (최근 5건 유지)
+        // 로컬 ?�??(최근 5�??��?)
         const localData = {
           name: fv('#name'),
           phone: fv('#phone'),
@@ -121,31 +121,31 @@
         localStorage.setItem('recentReservations', JSON.stringify(arr.slice(0,5)));
         renderRecent();
         
-        // 폼 초기화
+        // ??초기??
         form.reset();
         form.classList.remove('was-validated');
       } else {
-        result.innerHTML = '<div class="alert alert-warning"><i class="bi bi-exclamation-triangle-fill me-2"></i>제출 중 오류가 발생했습니다. 다시 시도해주세요.</div>';
+        result.innerHTML = '<div class="alert alert-warning"><i class="bi bi-exclamation-triangle-fill me-2"></i>?�출 �??�류가 발생?�습?�다. ?�시 ?�도?�주?�요.</div>';
       }
     } catch (error) {
-      console.error('제출 오류:', error);
-      result.innerHTML = '<div class="alert alert-danger"><i class="bi bi-x-circle-fill me-2"></i>네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.</div>';
+      console.error('?�출 ?�류:', error);
+      result.innerHTML = '<div class="alert alert-danger"><i class="bi bi-x-circle-fill me-2"></i>?�트?�크 ?�류가 발생?�습?�다. ?�시 ???�시 ?�도?�주?�요.</div>';
     }
   });
 
-  // 이메일로 접수 (FormSubmit 제출)
+  // ?�메?�로 ?�수 (FormSubmit ?�출)
   emailBtn?.addEventListener('click', (e) => {
     e.preventDefault();
     if (!form.checkValidity()) {
       form.classList.add('was-validated');
-      result.innerHTML = '<span class="text-danger">입력값을 확인해주세요.</span>';
+      result.innerHTML = '<span class="text-danger">?�력값을 ?�인?�주?�요.</span>';
       return;
     }
     if (!emailForm) return;
 
     const action = emailForm.getAttribute('action') || '';
     if (action.includes('YOUR_EMAIL')) {
-      result.innerHTML = '<span class="text-warning">관리자 설정 필요: contact.html 내 숨김 폼의 수신 이메일을 실제 주소로 바꿔주세요.</span>';
+      result.innerHTML = '<span class="text-warning">관리자 ?�정 ?�요: contact.html ???��? ?�의 ?�신 ?�메?�을 ?�제 주소�?바꿔주세??</span>';
       return;
     }
 
@@ -157,19 +157,19 @@
     document.getElementById('email_time').value = submittedAt;
 
     emailForm.submit();
-    result.innerHTML = '<span class="text-success">이메일 제출 창이 새 탭으로 열렸습니다. 완료 메시지를 확인해주세요.</span>';
+    result.innerHTML = '<span class="text-success">?�메???�출 창이 ????���??�렸?�니?? ?�료 메시지�??�인?�주?�요.</span>';
     form.reset();
     form.classList.remove('was-validated');
   });
 })();
-// --- 예약 리스트 렌더링 로직 ---
+// --- ?�약 리스???�더�?로직 ---
 async function fetchBaseReservations(){
   try {
-    // 실시간 Google Sheets CSV가 설정되었다면 우선 사용
+    // ?�시�?Google Sheets CSV가 ?�정?�었?�면 ?�선 ?�용
     const csvUrl = document.querySelector('meta[name="reservations-csv-url"]')?.content?.trim();
     if(csvUrl){
       const badge = document.getElementById('reservationModeBadge');
-      if(badge) badge.textContent = '(실시간 · Sheets)';
+      if(badge) badge.textContent = '(?�시�?· Sheets)';
       const resCsv = await fetch(csvUrl, { cache: 'no-store' });
       if(resCsv.ok){
         const text = await resCsv.text();
@@ -177,7 +177,7 @@ async function fetchBaseReservations(){
         if(parsed.length) return parsed;
       }
     }
-    // 기본 로컬 데모 JSON
+    // 기본 로컬 ?�모 JSON
     const res = await fetch('/assets/data/reservations.json', { cache: 'no-store' });
     if(!res.ok) return [];
     const data = await res.json();
@@ -185,7 +185,7 @@ async function fetchBaseReservations(){
   } catch(e){ return []; }
 }
 function parseCsvReservations(csvText){
-  // 헤더 가정: region,datetime,name,phone,method,status
+  // ?�더 가?? region,datetime,name,phone,method,status
   const lines = csvText.split(/\r?\n/).filter(l=>l.trim().length>0);
   if(lines.length < 2) return [];
   const header = lines[0].split(',').map(h=>h.trim().toLowerCase());
@@ -239,37 +239,37 @@ async function renderReservations(){
   const {page, pages, slice} = paginate(merged, currentPage, perPage);
   const tbody = wrap.querySelector('tbody');
   tbody.innerHTML = slice.map(r => `<tr><td class="text-nowrap">${r.region||'-'}</td><td>${r.datetime}</td><td>${r.name}</td><td>${r.phone}</td><td>${r.method}</td><td><span class="badge bg-primary">${r.status}</span></td></tr>`).join('');
-  // 페이지 셀렉트 재구성
+  // ?�이지 ?�?�트 ?�구??
   if(pageSelect){
     pageSelect.innerHTML = Array.from({length: pages}, (_,i)=>`<option value="${i+1}" ${i+1===page?'selected':''}>${i+1}/${pages}</option>`).join('');
   }
-  // 총 개수 표시
+  // �?개수 ?�시
   const totalEl = document.getElementById('reservationTotal');
   if(totalEl){ totalEl.textContent = merged.length.toString(); }
 }
 document.addEventListener('DOMContentLoaded', () => {
-  // 예약 테이블 UI 삽입
+  // ?�약 ?�이�?UI ?�입
   const target = document.querySelector('#contactForm')?.parentElement;
   if(target && !document.getElementById('reservationsTableContainer')){
     const box = document.createElement('div');
     box.className = 'mt-5';
     box.innerHTML = `
-  <h2 class="h6 mb-3">최근 접수/진행 현황 <small id="reservationModeBadge" class="text-secondary">(데모)</small></h2>
+  <h2 class="h6 mb-3">최근 ?�수/진행 ?�황 <small id="reservationModeBadge" class="text-secondary">(?�모)</small></h2>
       <div class="d-flex flex-wrap gap-2 mb-2 align-items-center">
-        <input id="reservationSearch" class="form-control form-control-sm" style="max-width:200px" placeholder="검색 (이름/지역/방식)">
+        <input id="reservationSearch" class="form-control form-control-sm" style="max-width:200px" placeholder="검??(?�름/지??방식)">
         <select id="reservationPage" class="form-select form-select-sm" style="width:auto"></select>
-        <span class="small text-secondary">총 <span id="reservationTotal">0</span>건</span>
-        <button id="reservationRefresh" class="btn btn-sm btn-outline-secondary">새로고침</button>
+        <span class="small text-secondary">�?<span id="reservationTotal">0</span>�?/span>
+        <button id="reservationRefresh" class="btn btn-sm btn-outline-secondary">?�로고침</button>
       </div>
       <div class="table-responsive">
         <table class="table table-sm table-hover align-middle mb-0">
           <thead class="table-light">
-            <tr><th>지역</th><th>시간</th><th>이름</th><th>연락처</th><th>방식</th><th>상태</th></tr>
+            <tr><th>지??/th><th>?�간</th><th>?�름</th><th>?�락�?/th><th>방식</th><th>?�태</th></tr>
           </thead>
           <tbody></tbody>
         </table>
       </div>
-      <div class="form-text mt-2">* 실제 데이터가 아닌 예시 + 브라우저 저장 기반 데모입니다.</div>
+      <div class="form-text mt-2">* ?�제 ?�이?��? ?�닌 ?�시 + 브라?��? ?�??기반 ?�모?�니??</div>
     `;
     box.id = 'reservationsTableContainer';
     target.appendChild(box);
@@ -284,9 +284,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 <!-- Floating Kakao chat shortcut -->
-<div class="floating-chat" aria-label="카카오톡 상담 바로가기">
+<div class="floating-chat" aria-label="카카?�톡 ?�담 바로가�?>
   <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener">
-    <i class="bi bi-chat-dots-fill"></i><span>카톡 상담</span>
+    <i class="bi bi-chat-dots-fill"></i><span>카톡 ?�담</span>
   </a>
 </div>
 </body></html>

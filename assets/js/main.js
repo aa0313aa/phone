@@ -97,8 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="mt-3 d-flex justify-content-between align-items-center">
               <div></div>
               <div class="d-flex flex-column gap-2 align-items-end">
-                <a class="btn btn-sm btn-outline-primary" href="/contact.html">문의</a>
-                <a class="btn btn-sm btn-primary" href="/contact.html">즉시 매입 신청</a>
+                <a class="btn btn-sm btn-outline-primary" href="contact.html">문의</a>
+                <a class="btn btn-sm btn-primary" href="contact.html">즉시 매입 신청</a>
               </div>
             </div>
           </div>
