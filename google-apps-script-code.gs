@@ -48,6 +48,9 @@ var KEY_MAP = {
 function onFormSubmit(e) {
   try {
     var dataRaw = parseFormResponse(e);
+    if (!dataRaw || Object.keys(dataRaw).length === 0) {
+      Logger.log('onFormSubmit 호출됨, 그러나 e.response가 없거나 응답 항목이 비어 있습니다. 트리거가 "From form → On form submit"인지 확인하세요.');
+    }
     var data = normalizeData(dataRaw);
     var masked = Object.assign({}, data, { 연락처: maskPhone(data.연락처) });
 
@@ -67,13 +70,27 @@ function onFormSubmit(e) {
 // Google Form 응답 파싱
 function parseFormResponse(e){
   var out = {};
-  if (!e || !e.response) return out;
-  var responses = e.response.getItemResponses();
-  responses.forEach(function(item){
-    var title = item.getItem().getTitle();
-    var answer = item.getResponse();
-    out[title] = (answer == null ? '' : String(answer));
-  });
+  if (!e) return out;
+  // 1) Form submit event (preferred)
+  if (e.response && typeof e.response.getItemResponses === 'function'){
+    var responses = e.response.getItemResponses();
+    responses.forEach(function(item){
+      var title = item.getItem().getTitle();
+      var answer = item.getResponse();
+      out[title] = (answer == null ? '' : String(answer));
+    });
+    return out;
+  }
+  // 2) Spreadsheet on form submit event fallback (e.namedValues)
+  if (e.namedValues){
+    // namedValues: { "질문 제목": ["답변"] }
+    for (var key in e.namedValues){
+      if (!Object.prototype.hasOwnProperty.call(e.namedValues, key)) continue;
+      var val = e.namedValues[key];
+      out[key] = Array.isArray(val) ? String(val[0] || '') : String(val || '');
+    }
+    return out;
+  }
   return out;
 }
 
@@ -204,4 +221,31 @@ function testDiscordNotification(){
   var msg = buildDiscordEmbed(Object.assign({}, p, { 연락처: maskPhone(p.연락처) }));
   notifyDiscord(msg);
   Logger.log('테스트 메시지 전송 요청 완료');
+}
+
+// 디버그: Webhook 속성 확인
+function debugCheckWebhookProperty(){
+  var url = PropertiesService.getScriptProperties().getProperty(PROP_WEBHOOK_URL);
+  Logger.log('DISCORD_WEBHOOK_URL: ' + (url ? '[SET]' : '[NOT SET]'));
+}
+
+// 디버그: 최소 payload 전송
+function debugSendPlain(){
+  var url = PropertiesService.getScriptProperties().getProperty(PROP_WEBHOOK_URL);
+  if (!url){
+    Logger.log('Webhook 미설정');
+    return;
+  }
+  var payload = { content: '디버그 메시지: 간단 테스트 ' + new Date().toISOString() };
+  try{
+    var res = UrlFetchApp.fetch(url, {
+      method: 'post',
+      contentType: 'application/json',
+      payload: JSON.stringify(payload),
+      muteHttpExceptions: true
+    });
+    Logger.log('debugSendPlain 응답: ' + res.getResponseCode() + ' ' + res.getContentText());
+  }catch(err){
+    Logger.log('debugSendPlain 실패: ' + err);
+  }
 }
