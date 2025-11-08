@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>전국모바일 | 홈</title>
+  <meta name="description" content="스마트폰 판매 · 매입 · 개통 상담. 안전하고 투명한 진행을 약속드립니다.">
+  <meta property="og:title" content="전국모바일">
+  <meta property="og:description" content="스마트폰 판매 · 매입 · 개통 상담">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/">
+  <!-- Kakao SDK 설정: 아래 메타 내용을 실제 앱키/채널ID로 교체하세요 -->
+  <meta name="kakao-app-key" content="YOUR_KAKAO_JAVASCRIPT_KEY">
+  <meta name="kakao-channel-id" content="_YOUR_CHANNEL_PUBLIC_ID">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <!-- Bootstrap 5 & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="assets/css/styles.css" rel="stylesheet">
+  <script src="https://developers.kakao.com/sdk/js/kakao.min.js" defer></script>
+</head>
+<body>
+  <!-- Topbar -->
+  <div class="topbar small text-bg-dark py-1">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div class="d-flex gap-3 align-items-center">
+        <span><i class="bi bi-telephone"></i> 상담: <a class="link-light text-decoration-none" href="tel:010-8290-9536">010-8290-9536</a></span>
+        <span class="d-flex align-items-center gap-2">
+          <i class="bi bi-chat-dots"></i>
+          <span class="d-none d-lg-inline">카카오톡</span>
+          <a class="link-warning text-decoration-none" href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener">바로가기</a>
+          <span id="kakao-add-channel-button-top"></span>
+          <span class="badge text-bg-warning text-dark">ID: k090912k</span>
+        </span>
+        <span class="d-none d-md-inline"><i class="bi bi-clock"></i> 영업시간: 10:00 ~ 20:00</span>
+      </div>
+      <div class="d-none d-md-flex gap-3">
+        <a class="link-light text-decoration-none" href="/information.html">이용안내</a>
+        <a class="link-light text-decoration-none" href="/contact.html">상담예약</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-body shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/">
+        <img src="assets/img/favicon.svg" alt="" width="28" height="28" class="me-2">전국모바일
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="토글 내비게이션">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">홈</a></li>
+          <li class="nav-item"><a class="nav-link" href="/services.html">서비스</a></li>
+          <li class="nav-item"><a class="nav-link" href="/information.html">이용안내</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about.html">회사소개</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact.html">문의/예약</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero position-relative overflow-hidden">
+    <div class="container py-5">
+      <div class="row align-items-center gy-4 py-lg-5">
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold lh-sm">최고의 선택, 완벽한 연결</h1>
+          <p class="lead text-secondary">스마트폰 개통/매입/상담을 더 쉽고 안전하게. 고객의 입장에서 생각하는 <strong>전국모바일</strong>.</p>
+          <div class="d-flex gap-3 flex-wrap">
+            <a href="tel:010-8290-9536" class="btn btn-primary btn-lg"><i class="bi bi-telephone-outbound me-2"></i>전화 상담</a>
+            <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener" class="btn btn-outline-primary btn-lg">
+              <i class="bi bi-chat-dots-fill me-2"></i>카톡 상담
+            </a>
+            <button type="button" class="btn btn-outline-secondary btn-lg" data-copy-text="k090912k" title="카카오 ID 복사">
+              <i class="bi bi-clipboard me-2"></i>ID 복사
+            </button>
+          </div>
+        </div>
+        <div class="col-lg-6 text-center">
+          <div class="device-mockup mx-auto"></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-wave"></div>
+  </section>
+
+  <!-- 예약 현황 샘플 -->
+  <section class="py-5" id="booking">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end mb-3">
+        <h2 class="h3 m-0">예약 현황</h2>
+        <a href="/contact.html" class="btn btn-sm btn-outline-secondary">상담 예약하기</a>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">지역</th>
+              <th scope="col">예약일</th>
+              <th scope="col">유형</th>
+              <th scope="col">진행상태</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>수원</td>
+              <td>2025-11-07</td>
+              <td>비대면 개통</td>
+              <td><span class="badge text-bg-success">진행완료</span></td>
+            </tr>
+            <tr>
+              <td>부산</td>
+              <td>2025-11-06</td>
+              <td>매장 방문</td>
+              <td><span class="badge text-bg-info">접수완료</span></td>
+            </tr>
+            <tr>
+              <td>광주</td>
+              <td>2025-11-05</td>
+              <td>비대면 개통</td>
+              <td><span class="badge text-bg-secondary">상담중</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-secondary small">표시는 예시 데이터입니다. 실제 예약은 문의/예약 페이지를 이용해주세요.</p>
+    </div>
+  </section>
+
+  <!-- 이용후기(샘플 캐러셀) -->
+  <section class="py-5 bg-body-tertiary" id="reviews">
+    <div class="container">
+      <h2 class="h3 mb-4">이용후기</h2>
+      <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <blockquote class="blockquote text-center">
+              <p class="mb-1">친절하고 빠르게 진행해주셨어요. 다음에도 이용할게요!</p>
+              <footer class="blockquote-footer">고객 A</footer>
+            </blockquote>
+          </div>
+          <div class="carousel-item">
+            <blockquote class="blockquote text-center">
+              <p class="mb-1">비대면이라 편했고, 안내가 명확했습니다.</p>
+              <footer class="blockquote-footer">고객 B</footer>
+            </blockquote>
+          </div>
+          <div class="carousel-item">
+            <blockquote class="blockquote text-center">
+              <p class="mb-1">가격과 조건을 투명하게 알려주셔서 신뢰가 갔습니다.</p>
+              <footer class="blockquote-footer">고객 C</footer>
+            </blockquote>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">이전</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">다음</span>
+        </button>
+      </div>
+    </div>
+  </section>
+  
+    <!-- 추천 기기 -->
+    <section class="py-5" id="products">
+      <div class="container">
+        <h2 class="h3 mb-1">추천 기기</h2>
+        <p class="text-secondary">온라인/오프라인 재고보유, 신규가능/미납 연체가능</p>
+        <div class="row g-4" id="productsList"></div>
+      </div>
+    </section>
+
+  <!-- 실시간 매입가(샘플 카드) -->
+  <section class="py-5" id="prices">
+    <div class="container">
+      <h2 class="h3 mb-4">실시간 매입가</h2>
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card h-100">
+            <img src="img/iphone 17pro.png" alt="아이폰 17 PRO" class="card-img-top" loading="lazy">
+            <div class="card-body">
+              <h3 class="h5">아이폰 17 PRO</h3>
+              <p class="text-secondary small">온라인/오프라인 재고보유, 신규가능/미납 연체가능</p>
+              <p class="mb-0 fw-bold">최고가 매입</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card h-100">
+            <img src="img/iphone 17pro.png" alt="아이폰 17 PRO MAX" class="card-img-top" loading="lazy">
+            <div class="card-body">
+              <h3 class="h5">아이폰 17 PRO MAX</h3>
+              <p class="text-secondary small">온라인/오프라인 재고보유, 신규가능/미납 연체가능</p>
+              <p class="mb-0 fw-bold">최고가 매입</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card h-100">
+            <img src="img/iphone 16promax.png" alt="아이폰 16 PRO MAX" class="card-img-top" loading="lazy">
+            <div class="card-body">
+              <h3 class="h5">아이폰 16 PRO MAX</h3>
+              <p class="text-secondary small">온라인/오프라인 재고보유, 신규가능/미납 연체가능</p>
+              <p class="mb-0 fw-bold">최고가 매입</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card h-100">
+            <img src="img/zFold7.png" alt="갤럭시 Z폴드7" class="card-img-top" loading="lazy">
+            <div class="card-body">
+              <h3 class="h5">갤럭시 Z폴드7</h3>
+              <p class="text-secondary small">온라인/오프라인 재고보유, 신규가능/미납 연체가능</p>
+              <p class="mb-0 fw-bold">최고가 매입</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="text-secondary small mt-3">표시는 예시이며 실제 가격은 시세/상태/통신사 조건에 따라 다릅니다.</p>
+    </div>
+  </section>
+
+  <!-- 주의사항 -->
+  <section class="py-5 bg-body-tertiary" id="caution">
+    <div class="container">
+      <h2 class="h3 mb-4">주의사항</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="h-100 p-4 bg-white border rounded-3">
+            <div class="d-flex align-items-center mb-2"><span class="badge rounded-pill text-bg-primary me-2">01</span><strong>유심 매매는 불법</strong></div>
+            <p class="mb-0 text-secondary small">기기 매매는 합법이지만 유심칩 거래는 전기통신사업법에 의해 불법입니다.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="h-100 p-4 bg-white border rounded-3">
+            <div class="d-flex align-items-center mb-2"><span class="badge rounded-pill text-bg-primary me-2">02</span><strong>당일 지급 확인</strong></div>
+            <p class="mb-0 text-secondary small">매입 시 대금을 지연하거나 미지급하는 업체는 피하세요. 신뢰할 수 있는 업체와 진행하세요.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="h-100 p-4 bg-white border rounded-3">
+            <div class="d-flex align-items-center mb-2"><span class="badge rounded-pill text-bg-primary me-2">03</span><strong>출장비 차감 주의</strong></div>
+            <p class="mb-0 text-secondary small">출장 매입 시 과도한 출장비 차감 등 불리한 조건을 주의하세요. 가능하면 방문/비대면을 권장합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-5 text-center text-white bg-primary">
+    <div class="container">
+      <h2 class="h3 fw-bold mb-3">지금 상담하고 최적의 조건을 확인하세요</h2>
+      <p class="mb-4 text-white-50">비대면/방문 모두 가능 · 투명한 안내 · 신속한 진행</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a class="btn btn-light btn-lg" href="tel:010-8290-9536"><i class="bi bi-telephone me-2"></i>전화 걸기</a>
+  <a class="btn btn-outline-light btn-lg" href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener"><i class="bi bi-chat-dots-fill me-2"></i>카톡 상담</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 bg-dark text-light">
+    <div class="container">
+      <div class="row gy-3 align-items-center">
+        <div class="col-md-6">
+          <div class="fw-bold">전국모바일</div>
+          <div class="small text-white-50">TEL: <a class="link-light text-decoration-none" href="tel:010-8290-9536">010-8290-9536</a> · 이메일: info@example.com</div>
+          <div class="small text-white-50">© 2025 전국모바일. All rights reserved.</div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-md-end gap-3 small">
+          <a class="link-light text-decoration-none" href="/information.html">개인정보처리방침</a>
+          <a class="link-light text-decoration-none" href="#top" id="backToTop">맨 위로</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- Floating Kakao chat shortcut -->
+  <div class="floating-chat" aria-label="카카오톡 상담 바로가기">
+    <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener">
+      <i class="bi bi-chat-dots-fill"></i><span>카톡 상담</span>
+    </a>
+  </div>
+</body>
+</html>
