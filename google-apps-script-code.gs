@@ -1,5 +1,22 @@
-// ⚙️ 설정: Discord Webhook URL (이미 설정됨)
-const KAKAO_WEBHOOK_URL = "https://discord.com/api/webhooks/1436730569718239232/lT8cYH6l7nr8YP_OOu14uM_JcA1DnPK5Uo-13hGcAFDxZHKFuqD0ZFYgoY2iTY8hP7g2";
+/**
+ * 설정 가이드(복붙용 요약)
+ * 1) 스크립트 속성 등록: 프로젝트 속성 → 스크립트 속성 →
+ *    - 키: DISCORD_WEBHOOK_URL
+ *    - 값: 디스코드 Webhook 전체 URL
+ * 2) 트리거: Google Form 연결 상태에서 onFormSubmit 트리거 자동 실행
+ *    - 필요 시 Triggers(시계 아이콘)에서 "양식 제출 시 → onFormSubmit" 확인
+ * 3) 테스트:
+ *    - testDiscordNotification() 실행 → 디스코드 채널에 테스트 임베드가 도착하면 OK
+ * 4) 필드 매핑:
+ *    - 폼 항목 제목이 약간 달라도 정상 매핑되도록 KEY_MAP에 후보가 등록되어 있음
+ *      (이름/연락처/문의유형/통신사/최근개통일/미납연체/지역/희망진행방식/상세내용)
+ * 5) 주의:
+ *    - 하드코딩된 Webhook(URL) 사용 금지 → 반드시 DISCORD_WEBHOOK_URL 속성 사용
+ *    - 중복 방지: 최근 2분 내 동일 내용은 알림이 스킵됩니다
+ * 6) 시트 저장:
+ *    - Google Form 자체가 연결된 응답 시트에 자동 저장하므로 별도 append 코드 불필요
+ *    - 추가 컬럼(예: 처리상태)을 자동 생성/관리하려면 추후 확장 함수 addStatusColumn() 등 추가 가능
+ */
 
 /**
  * Google Forms onFormSubmit → Discord Webhook 업그레이드 버전
@@ -34,7 +51,6 @@ function onFormSubmit(e) {
     var data = normalizeData(dataRaw);
     var masked = Object.assign({}, data, { 연락처: maskPhone(data.연락처) });
 
-    // 중복 방지: 동일 내용이 최근 WINDOW_MS내 재도착하면 스킵
     if (isDuplicate(masked)) {
       Logger.log('중복 제출 감지: 알림 전송 생략');
       return;
@@ -42,11 +58,9 @@ function onFormSubmit(e) {
 
     var message = buildDiscordEmbed(masked);
     notifyDiscord(message);
-
-    // Google Form 연결시트에는 기본적으로 응답이 저장됩니다.
     Logger.log('알림 전송 완료');
   } catch (error) {
-    Logger.log('오류 발생: ' + error.toString());
+    Logger.log('오류 발생: ' + (error && error.stack ? error.stack : error));
   }
 }
 
@@ -84,7 +98,12 @@ function normalizeData(raw){
 
 function maskPhone(phone){
   if (!phone) return '';
-  return String(phone).replace(/(\d{3})\d{2,4}(\d{4})/, '$1-****-$2');
+  var raw = String(phone);
+  var digits = raw.replace(/\D/g, '');
+  var m = digits.match(/^(\d{3})(\d{2,4})(\d{4})$/);
+  if (m) return m[1] + '-****-' + m[3];
+  // fallback: 최소 부분만 가리기
+  return raw.replace(/(\d{3})\d+(\d{2})/, '$1****$2');
 }
 
 // 중복 감지: 최근 2분 이내 동일 페이로드면 중복 처리
@@ -165,7 +184,11 @@ function notifyDiscord(payload){
   };
   try {
     var res = UrlFetchApp.fetch(url, options);
-    Logger.log('Discord 응답: ' + res.getResponseCode());
+    var code = res.getResponseCode();
+    Logger.log('Discord 응답: ' + code);
+    if (code >= 400) {
+      Logger.log('본문: ' + res.getContentText());
+    }
     // 204(No Content) 또는 200 OK 등
   } catch (err) {
     Logger.log('Discord 전송 실패: ' + err);
