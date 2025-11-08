@@ -51,21 +51,21 @@
   </div>
   <div id="formResult" class="mt-3 small"></div>
 </form>
-<!-- Google Form ?�동 ?�출???��? iframe -->
+<!-- Google Form 자동 제출 처리용 iframe (레거시 호환) -->
 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { handleFormSuccess(); }"></iframe>
-<!-- ?�메???�출???��? ??(FormSubmit) -->
-<form id="hiddenEmailForm" action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST" target="_blank" class="d-none">
-  <input type="hidden" name="_subject" value="?�국모바???�담 ?�약" />
+<!-- 이메일로 예비 제출 (FormSubmit 백업 경로) -->
+<form id="hiddenEmailForm" action="https://formsubmit.co/k9535k@gmail.com" method="POST" target="_blank" class="d-none">
+  <input type="hidden" name="_subject" value="전국모바일 상담 예약" />
   <input type="hidden" name="_captcha" value="false" />
   <input type="hidden" name="_template" value="table" />
-  <input type="hidden" name="?�름" id="email_name" />
-  <input type="hidden" name="?�락�? id="email_phone" />
-  <input type="hidden" name="?�형" id="email_type" />
-  <input type="hidden" name="?�용" id="email_message" />
-  <input type="hidden" name="?�출?�각" id="email_time" />
-  <!-- ?�요 ???�래�??�공 ???�동??주소
+  <input type="hidden" name="이름" id="email_name" />
+  <input type="hidden" name="연락처" id="email_phone" />
+  <input type="hidden" name="유형" id="email_type" />
+  <input type="hidden" name="내용" id="email_message" />
+  <input type="hidden" name="제출시각" id="email_time" />
+  <!-- 필요 시, 제출 후 이동할 완료 페이지 주소
   <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html" /> -->
-  <!-- ?�팸 방�? ?�니??-->
+  <!-- 스팸 방지용 허니팟 -->
   <input type="text" name="_honey" style="display:none" />
 </form>
 </div>
@@ -91,7 +91,7 @@
     <a class="link-light text-decoration-none" href="#top" id="backToTop">맨위로</a>
   </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="assets/js/main.js"></script><script>/* ?�담 ?�약 ?�영 강화 + ?�장 ?�드 ?�??+ ?�약 리스???�더�?*/
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="assets/js/main.js"></script><script>/* 상담/예약 UX 강화 + 예비 이메일 경로 + 예약 리스트 데모 */
 (() => {
   const form = document.getElementById('contactForm');
   const result = document.getElementById('formResult');
@@ -101,19 +101,19 @@
   const reservationsContainerId = 'reservationsTableContainer';
   if (!form) return;
 
-  // ?�전??�??�근 ?�퍼
+  // 폼 값 헬퍼
   const fv = (sel) => (form.querySelector(sel)?.value || '').trim();
 
-  // ?�니??�??��?) ?��? ?�드 추�?
+  // 스팸 방지(허니팟) 필드 추가
   const honeypot = document.createElement('input');
   honeypot.type = 'text'; honeypot.name = 'website'; honeypot.autocomplete = 'off';
   honeypot.style.position = 'absolute'; honeypot.style.left = '-9999px'; honeypot.tabIndex = -1;
   form.appendChild(honeypot);
 
-  // 최근 ?�출 로컬 ?�???�시 ?�역
+  // 최근 제출 로컬 표시 영역
   const recentBox = document.createElement('div');
   recentBox.className = 'mt-4 small';
-  recentBox.innerHTML = '<strong>최근 ?�출(로컬 ?�??:</strong><div id="recentSubmissions" class="mt-2 d-flex flex-column gap-1"></div>';
+  recentBox.innerHTML = '<strong>최근 제출(로컬 저장):</strong><div id="recentSubmissions" class="mt-2 d-flex flex-column gap-1"></div>';
   form.parentElement?.appendChild(recentBox);
 
   function renderRecent(){
@@ -125,27 +125,27 @@
   renderRecent();
 
   form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // 기본 ?�출 막기
+  e.preventDefault(); // 기본 제출 막기
     
-    // ?�효??검??
+    // 유효성 검사
     if (!form.checkValidity()) {
       form.classList.add('was-validated');
-      result.innerHTML = '<span class="text-danger">?�력값을 ?�인?�주?�요.</span>';
+      result.innerHTML = '<span class="text-danger">입력값을 확인해주세요.</span>';
       return;
     }
-    if (honeypot.value) { // �??�심
-      result.innerHTML = '<span class="text-warning">?�출??차단?�었?�니??(?�팸 ?�심).</span>';
+    if (honeypot.value) { // 스팸 의심
+      result.innerHTML = '<span class="text-warning">제출이 차단되었습니다(스팸 의심).</span>';
       return;
     }
 
-    // ?�출 �?메시지 ?�시
-    result.innerHTML = '<span class="text-info"><i class="bi bi-hourglass-split"></i> ?�담 ?�청???�송?�는 �?..</span>';
+    // 제출 중 안내 메시지
+    result.innerHTML = '<span class="text-info"><i class="bi bi-hourglass-split"></i> 상담 요청을 전송중입니다…</span>';
 
     try {
-      // FormData�????�이???�집
+      // FormData로 입력값 수집
       const formData = new FormData(form);
       
-      // Google Apps Script�??�송
+      // Google Apps Script로 전송
       const response = await fetch(form.action, {
         method: 'POST',
         body: formData
@@ -154,10 +154,10 @@
       const data = await response.json();
 
       if (data.result === 'success') {
-        // ?�공 메시지 ?�시
-        result.innerHTML = '<div class="alert alert-success"><i class="bi bi-check-circle-fill me-2"></i><strong>?�담 ?�청???�료?�었?�니??</strong><br>빠른 ?�일 ?�에 ?�락?�리겠습?�다.</div>';
+        // 성공 메시지 표시
+        result.innerHTML = '<div class="alert alert-success"><i class="bi bi-check-circle-fill me-2"></i><strong>상담 요청이 접수되었습니다.</strong><br>빠른 시간 내에 연락드리겠습니다.</div>';
         
-        // 로컬 ?�??(최근 5�??��?)
+        // 로컬 저장(최근 5건)
         const localData = {
           name: fv('#name'),
           phone: fv('#phone'),
@@ -171,31 +171,31 @@
         localStorage.setItem('recentReservations', JSON.stringify(arr.slice(0,5)));
         renderRecent();
         
-        // ??초기??
+        // 폼 초기화
         form.reset();
         form.classList.remove('was-validated');
       } else {
-        result.innerHTML = '<div class="alert alert-warning"><i class="bi bi-exclamation-triangle-fill me-2"></i>?�출 �??�류가 발생?�습?�다. ?�시 ?�도?�주?�요.</div>';
+        result.innerHTML = '<div class="alert alert-warning"><i class="bi bi-exclamation-triangle-fill me-2"></i>제출 오류가 발생했습니다. 잠시 후 다시 시도해주세요.</div>';
       }
     } catch (error) {
-      console.error('?�출 ?�류:', error);
-      result.innerHTML = '<div class="alert alert-danger"><i class="bi bi-x-circle-fill me-2"></i>?�트?�크 ?�류가 발생?�습?�다. ?�시 ???�시 ?�도?�주?�요.</div>';
+      console.error('제출 오류:', error);
+      result.innerHTML = '<div class="alert alert-danger"><i class="bi bi-x-circle-fill me-2"></i>네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.</div>';
     }
   });
 
-  // ?�메?�로 ?�수 (FormSubmit ?�출)
+  // 이메일로 예비 전송 (FormSubmit 제출)
   emailBtn?.addEventListener('click', (e) => {
     e.preventDefault();
     if (!form.checkValidity()) {
       form.classList.add('was-validated');
-      result.innerHTML = '<span class="text-danger">?�력값을 ?�인?�주?�요.</span>';
+      result.innerHTML = '<span class="text-danger">입력값을 확인해주세요.</span>';
       return;
     }
     if (!emailForm) return;
 
     const action = emailForm.getAttribute('action') || '';
     if (action.includes('YOUR_EMAIL')) {
-      result.innerHTML = '<span class="text-warning">관리자 ?�정 ?�요: contact.html ???��? ?�의 ?�신 ?�메?�을 ?�제 주소�?바꿔주세??</span>';
+      result.innerHTML = '<span class="text-warning">관리자 설정 필요: contact.html 상단의 이메일 주소를 실제 주소로 바꿔주세요.</span>';
       return;
     }
 
@@ -207,19 +207,19 @@
     document.getElementById('email_time').value = submittedAt;
 
     emailForm.submit();
-    result.innerHTML = '<span class="text-success">?�메???�출 창이 ????���??�렸?�니?? ?�료 메시지�??�인?�주?�요.</span>';
+    result.innerHTML = '<span class="text-success">이메일 제출 창이 새 탭으로 열렸습니다. 완료 메시지를 확인해주세요.</span>';
     form.reset();
     form.classList.remove('was-validated');
   });
 })();
-// --- ?�약 리스???�더�?로직 ---
+// --- 예약 리스트 데모 로직 ---
 async function fetchBaseReservations(){
   try {
-    // ?�시�?Google Sheets CSV가 ?�정?�었?�면 ?�선 ?�용
+    // 만약 Google Sheets CSV가 지정되었다면 우선 사용
     const csvUrl = document.querySelector('meta[name="reservations-csv-url"]')?.content?.trim();
     if(csvUrl){
       const badge = document.getElementById('reservationModeBadge');
-      if(badge) badge.textContent = '(?�시�?· Sheets)';
+      if(badge) badge.textContent = '(실시간·Sheets)';
       const resCsv = await fetch(csvUrl, { cache: 'no-store' });
       if(resCsv.ok){
         const text = await resCsv.text();
@@ -227,7 +227,7 @@ async function fetchBaseReservations(){
         if(parsed.length) return parsed;
       }
     }
-    // 기본 로컬 ?�모 JSON
+    // 기본 로컬 데모 JSON
     const res = await fetch('/assets/data/reservations.json', { cache: 'no-store' });
     if(!res.ok) return [];
     const data = await res.json();
@@ -235,7 +235,7 @@ async function fetchBaseReservations(){
   } catch(e){ return []; }
 }
 function parseCsvReservations(csvText){
-  // ?�더 가?? region,datetime,name,phone,method,status
+  // 헤더 가정: region,datetime,name,phone,method,status
   const lines = csvText.split(/\r?\n/).filter(l=>l.trim().length>0);
   if(lines.length < 2) return [];
   const header = lines[0].split(',').map(h=>h.trim().toLowerCase());
@@ -289,37 +289,37 @@ async function renderReservations(){
   const {page, pages, slice} = paginate(merged, currentPage, perPage);
   const tbody = wrap.querySelector('tbody');
   tbody.innerHTML = slice.map(r => `<tr><td class="text-nowrap">${r.region||'-'}</td><td>${r.datetime}</td><td>${r.name}</td><td>${r.phone}</td><td>${r.method}</td><td><span class="badge bg-primary">${r.status}</span></td></tr>`).join('');
-  // ?�이지 ?�?�트 ?�구??
+  // 페이지 선택 UI 구성
   if(pageSelect){
     pageSelect.innerHTML = Array.from({length: pages}, (_,i)=>`<option value="${i+1}" ${i+1===page?'selected':''}>${i+1}/${pages}</option>`).join('');
   }
-  // �?개수 ?�시
+  // 총개수 표시
   const totalEl = document.getElementById('reservationTotal');
   if(totalEl){ totalEl.textContent = merged.length.toString(); }
 }
 document.addEventListener('DOMContentLoaded', () => {
-  // ?�약 ?�이�?UI ?�입
+  // 예약 리스트 UI 삽입
   const target = document.querySelector('#contactForm')?.parentElement;
   if(target && !document.getElementById('reservationsTableContainer')){
     const box = document.createElement('div');
     box.className = 'mt-5';
     box.innerHTML = `
-  <h2 class="h6 mb-3">최근 ?�수/진행 ?�황 <small id="reservationModeBadge" class="text-secondary">(?�모)</small></h2>
+  <h2 class="h6 mb-3">최근 접수/진행 현황 <small id="reservationModeBadge" class="text-secondary">(데모)</small></h2>
       <div class="d-flex flex-wrap gap-2 mb-2 align-items-center">
-        <input id="reservationSearch" class="form-control form-control-sm" style="max-width:200px" placeholder="검??(?�름/지??방식)">
+        <input id="reservationSearch" class="form-control form-control-sm" style="max-width:200px" placeholder="검색(이름/지역/방식)">
         <select id="reservationPage" class="form-select form-select-sm" style="width:auto"></select>
-        <span class="small text-secondary">�?<span id="reservationTotal">0</span>�?/span>
-        <button id="reservationRefresh" class="btn btn-sm btn-outline-secondary">?�로고침</button>
+        <span class="small text-secondary">총 <span id="reservationTotal">0</span>건</span>
+        <button id="reservationRefresh" class="btn btn-sm btn-outline-secondary">새로고침</button>
       </div>
       <div class="table-responsive">
         <table class="table table-sm table-hover align-middle mb-0">
           <thead class="table-light">
-            <tr><th>지??/th><th>?�간</th><th>?�름</th><th>?�락�?/th><th>방식</th><th>?�태</th></tr>
+            <tr><th>지역</th><th>시간</th><th>이름</th><th>연락처</th><th>방식</th><th>상태</th></tr>
           </thead>
           <tbody></tbody>
         </table>
       </div>
-      <div class="form-text mt-2">* ?�제 ?�이?��? ?�닌 ?�시 + 브라?��? ?�??기반 ?�모?�니??</div>
+      <div class="form-text mt-2">* 실제 데이터가 아닌 예시 + 브라우저 저장 기반 데모입니다</div>
     `;
     box.id = 'reservationsTableContainer';
     target.appendChild(box);
@@ -334,9 +334,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 <!-- Floating Kakao chat shortcut -->
-<div class="floating-chat" aria-label="카카?�톡 ?�담 바로가�?>
+<div class="floating-chat" aria-label="카카오톡 상담 바로가기">
   <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener">
-    <i class="bi bi-chat-dots-fill"></i><span>카톡 ?�담</span>
+    <i class="bi bi-chat-dots-fill"></i><span>카톡 상담</span>
   </a>
 </div>
 </body></html>
