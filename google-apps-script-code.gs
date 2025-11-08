@@ -45,6 +45,36 @@ var KEY_MAP = {
   '상세내용': ['상세 내용', '상세내용']
 };
 
+// 웹사이트(Web App) POST 제출 처리
+function doPost(e){
+  try{
+    var params = (e && e.parameter) ? e.parameter : {};
+    var raw = {};
+    for (var k in params){
+      if (!Object.prototype.hasOwnProperty.call(params, k)) continue;
+      raw[k] = String(params[k] == null ? '' : params[k]);
+    }
+    var data = normalizeData(raw);
+    var masked = Object.assign({}, data, { 연락처: maskPhone(data.연락처) });
+
+    if (isDuplicate(masked)){
+      Logger.log('중복 제출 감지(웹앱): 알림 전송 생략');
+      return ContentService.createTextOutput(JSON.stringify({ result: 'skip', reason: 'duplicate' }))
+                           .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    var message = buildDiscordEmbed(masked);
+    notifyDiscord(message);
+    Logger.log('웹앱 알림 전송 완료');
+    return ContentService.createTextOutput(JSON.stringify({ result: 'success' }))
+                         .setMimeType(ContentService.MimeType.JSON);
+  }catch(err){
+    Logger.log('doPost 오류: ' + (err && err.stack ? err.stack : err));
+    return ContentService.createTextOutput(JSON.stringify({ result: 'error', message: String(err) }))
+                         .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
 function onFormSubmit(e) {
   try {
     var dataRaw = parseFormResponse(e);
