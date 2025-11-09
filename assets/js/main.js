@@ -6,43 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // KakaoTalk Channel integration (optional)
-  try {
-    const appKey = document.querySelector('meta[name="kakao-app-key"]')?.content?.trim();
-    const channelId = document.querySelector('meta[name="kakao-channel-id"]')?.content?.trim();
-
-    if (appKey && window.Kakao && !window.Kakao.isInitialized()) {
-      window.Kakao.init(appKey);
-    }
-
-    if (channelId && window.Kakao?.Channel) {
-      const addBtnTop = document.querySelector('#kakao-add-channel-button-top');
-      if (addBtnTop) {
-        window.Kakao.Channel.createAddChannelButton({
-          container: '#kakao-add-channel-button-top',
-          channelPublicId: channelId,
-        });
-      }
-
-      const addBtn = document.querySelector('#kakao-add-channel-button');
-      if (addBtn) {
-        window.Kakao.Channel.createAddChannelButton({
-          container: '#kakao-add-channel-button',
-          channelPublicId: channelId,
-        });
-      }
-
-      const chatBtn = document.querySelector('#kakao-talk-channel-chat-button');
-      if (chatBtn) {
-        window.Kakao.Channel.createChatButton({
-          container: '#kakao-talk-channel-chat-button',
-          channelPublicId: channelId,
-        });
-      }
-    }
-  } catch (e) {
-    console.warn('Kakao SDK init skipped:', e);
-  }
+  // KakaoTalk Channel - SDK 사용하지 않음 (직접 링크 방식 사용)
+  // 카카오톡 채널은 http://pf.kakao.com/_gIKxnn/chat 링크로 직접 연결
 
   // Copy-to-clipboard for Kakao ID
   document.querySelectorAll('[data-copy-text]')?.forEach((el) => {
