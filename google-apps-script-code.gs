@@ -39,11 +39,38 @@ var KEY_MAP = {
   '문의유형': ['문의 유형', '문의유형'],
   '통신사': ['통신사'],
   '최근개통일': ['최근 개통일', '최근개통일'],
-  '미납연체': ['미납/연체 여부', '미납연체'],
+  '미납연체': ['미납/연체 여부', '미납연체', '미납/연체'],
   '지역': ['지역'],
-  '희망진행방식': ['희망 진행 방식', '희망진행방식'],
+  '희망진행방식': ['희망 진행 방식', '희망진행방식', '희망 방식'],
   '상세내용': ['상세 내용', '상세내용']
 };
+
+// 웹앱 URL 자체 테스트용 (원하면 Script Properties에 SELF_WEBAPP_URL로 저장 후 사용)
+function testWebAppPost(){
+  var selfUrl = PropertiesService.getScriptProperties().getProperty('SELF_WEBAPP_URL');
+  if(!selfUrl){
+    Logger.log('SELF_WEBAPP_URL 속성이 없습니다. 프로젝트 속성에 추가하거나 함수 내에 직접 URL을 넣으세요.');
+    return;
+  }
+  var payload = {
+    '이름': '웹앱테스트',
+    '연락처': '01022223333',
+    '문의유형': '비대면 개통',
+    '통신사': 'KT',
+    '최근개통일': '2025-11-09',
+    '미납연체': '없음',
+    '지역': '서울',
+    '희망진행방식': '비대면',
+    '상세내용': '웹앱 doPost 경로 테스트입니다.'
+  };
+  var resp = UrlFetchApp.fetch(selfUrl, {
+    method: 'post',
+    payload: payload,
+    muteHttpExceptions: true
+  });
+  Logger.log('testWebAppPost 응답코드: ' + resp.getResponseCode());
+  Logger.log('본문: ' + resp.getContentText());
+}
 
 // 웹사이트(Web App) POST 제출 처리
 function doPost(e){
