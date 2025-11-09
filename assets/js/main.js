@@ -74,10 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Render 추천 기기 (products)
   const productsData = [
-  { id: 'p1', model: '아이폰 17 PRO', subtitle: '온라인/오프라인 재고보유, 신규가능/미납 연체가능', img: 'img/iphone 17pro.png' },
-  { id: 'p2', model: '아이폰 17 PRO MAX', subtitle: '온라인/오프라인 재고보유, 신규가능/미납 연체가능', img: 'img/iphone 17pro.png' },
-  { id: 'p3', model: '아이폰 16 PRO MAX', subtitle: '온라인/오프라인 재고보유, 신규가능/미납 연체가능', img: 'img/iphone 16promax.png' },
-    { id: 'p4', model: '갤럭시 Z폴드7', subtitle: '온라인/오프라인 재고보유, 신규가능/미납 연체가능', img: 'img/zFold7.png' },
+  { id: 'p1', model: '아이폰 17 PRO', subtitle: '온라인/오프라인 재고보유, 신규가능/미납 연체가능', img: 'assets/img/iphone17pro.png' },
+  { id: 'p2', model: '아이폰 17 PRO MAX', subtitle: '온라인/오프라인 재고보유, 신규가능/미납 연체가능', img: 'assets/img/iphone17pro.png' },
+  { id: 'p3', model: '아이폰 16 PRO MAX', subtitle: '온라인/오프라인 재고보유, 신규가능/미납 연체가능', img: 'assets/img/iphone16promax.png' },
+    { id: 'p4', model: '갤럭시 Z폴드7', subtitle: '온라인/오프라인 재고보유, 신규가능/미납 연체가능', img: 'assets/img/zFold7.png' },
   ];
 
   const listEl = document.getElementById('productsList');
