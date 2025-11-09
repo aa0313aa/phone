@@ -154,58 +154,6 @@
     </div>
   </section>
 
-  <!-- 예약 현황 테이블 -->
-  <section class="py-5 bg-light" id="booking">
-    <div class="container">
-      <div class="p-4 bg-white border rounded-3 shadow-sm">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <h2 class="h4 mb-0 fw-bold text-primary">
-            <i class="bi bi-clock-history me-2"></i>실시간 예약 현황
-            <span class="badge bg-success ms-2 pulse-animation">LIVE</span>
-          </h2>
-          <div class="d-flex gap-2">
-            <button id="homeReservationRefresh" class="btn btn-sm btn-outline-primary">
-              <i class="bi bi-arrow-clockwise me-1"></i>새로고침
-            </button>
-            <a href="contact.html" class="btn btn-sm btn-primary">
-              <i class="bi bi-calendar-check me-1"></i>상담 예약하기
-            </a>
-          </div>
-        </div>
-        <div class="mb-3">
-          <span class="badge bg-warning text-dark">
-            <i class="bi bi-fire me-1"></i>대납개통·비대면개통 전문
-          </span>
-        </div>
-        <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0" style="font-size:0.9rem;">
-            <thead class="table-primary">
-              <tr>
-                <th class="text-center" style="width:50px"><i class="bi bi-hash"></i></th>
-                <th><i class="bi bi-geo-alt-fill me-1"></i>지역</th>
-                <th><i class="bi bi-clock-fill me-1"></i>접수시간</th>
-                <th><i class="bi bi-person-fill me-1"></i>고객명</th>
-                <th><i class="bi bi-telephone-fill me-1"></i>연락처</th>
-                <th><i class="bi bi-clipboard-check-fill me-1"></i>상태</th>
-              </tr>
-            </thead>
-            <tbody id="homeReservationsBody">
-              <!-- 동적으로 생성됨 -->
-            </tbody>
-          </table>
-        </div>
-        <div class="d-flex justify-content-between align-items-center mt-3">
-          <small class="text-muted">
-            <i class="bi bi-shield-check me-1"></i>개인정보는 자동으로 마스킹 처리됩니다
-          </small>
-          <a href="contact.html" class="btn btn-sm btn-link text-decoration-none">
-            전체 현황 보기 <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- 이용 후기(샘플 캐러셀) -->
   <section class="py-5 bg-body-tertiary" id="reviews">
     <div class="container">
@@ -299,6 +247,58 @@
         </div>
       </div>
   <p class="text-secondary small mt-3">표시는 예시이며 실제 가격은 시세/상태/통신사 조건에 따라 다릅니다.</p>
+    </div>
+  </section>
+
+  <!-- 예약 현황 테이블 -->
+  <section class="py-5 bg-light" id="booking">
+    <div class="container">
+      <div class="p-4 bg-white border rounded-3 shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="h4 mb-0 fw-bold text-primary">
+            <i class="bi bi-clock-history me-2"></i>실시간 예약 현황
+            <span class="badge bg-success ms-2 pulse-animation">LIVE</span>
+          </h2>
+          <div class="d-flex gap-2">
+            <button id="homeReservationRefresh" class="btn btn-sm btn-outline-primary">
+              <i class="bi bi-arrow-clockwise me-1"></i>새로고침
+            </button>
+            <a href="contact.html" class="btn btn-sm btn-primary">
+              <i class="bi bi-calendar-check me-1"></i>상담 예약하기
+            </a>
+          </div>
+        </div>
+        <div class="mb-3">
+          <span class="badge bg-warning text-dark">
+            <i class="bi bi-fire me-1"></i>대납개통·비대면개통 전문
+          </span>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0" style="font-size:0.9rem;">
+            <thead class="table-primary">
+              <tr>
+                <th class="text-center" style="width:50px"><i class="bi bi-hash"></i></th>
+                <th><i class="bi bi-geo-alt-fill me-1"></i>지역</th>
+                <th><i class="bi bi-clock-fill me-1"></i>접수시간</th>
+                <th><i class="bi bi-person-fill me-1"></i>고객명</th>
+                <th><i class="bi bi-telephone-fill me-1"></i>연락처</th>
+                <th><i class="bi bi-clipboard-check-fill me-1"></i>상태</th>
+              </tr>
+            </thead>
+            <tbody id="homeReservationsBody">
+              <!-- 동적으로 생성됨 -->
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <small class="text-muted">
+            <i class="bi bi-shield-check me-1"></i>개인정보는 자동으로 마스킹 처리됩니다
+          </small>
+          <a href="contact.html" class="btn btn-sm btn-link text-decoration-none">
+            전체 현황 보기 <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
