@@ -101,3 +101,41 @@ a { text-decoration: none; }
   .floating-chat span { display: none; }
   .topbar .badge { display: none; }
 }
+
+/* 실시간 예약 현황 애니메이션 */
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 예약 테이블 호버 효과 */
+#reservationsBody tr {
+  transition: all 0.3s ease;
+}
+#reservationsBody tr:hover {
+  background-color: var(--brand-bg) !important;
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(255, 122, 0, 0.1);
+}
+
+/* 테이블 헤더 그라데이션 */
+.table-primary {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%) !important;
+  color: white !important;
+}
+.table-primary th {
+  color: white !important;
+  font-weight: 600;
+  border: none !important;
+}
