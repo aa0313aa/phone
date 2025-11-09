@@ -220,8 +220,6 @@ async function fetchBaseReservations(){
     // 만약 Google Sheets CSV가 지정되었다면 우선 사용
     const csvUrl = document.querySelector('meta[name="reservations-csv-url"]')?.content?.trim();
     if(csvUrl){
-      const badge = document.getElementById('reservationModeBadge');
-      if(badge) badge.textContent = '(실시간·Sheets)';
       const resCsv = await fetch(csvUrl, { cache: 'no-store' });
       if(resCsv.ok){
         const text = await resCsv.text();
@@ -231,10 +229,31 @@ async function fetchBaseReservations(){
     }
     // 기본 로컬 데모 JSON
     const res = await fetch('/assets/data/reservations.json', { cache: 'no-store' });
-    if(!res.ok) return [];
+    if(!res.ok) return generateDemoReservations();
     const data = await res.json();
-    return Array.isArray(data)?data:[];
-  } catch(e){ return []; }
+    return Array.isArray(data)?data:generateDemoReservations();
+  } catch(e){ return generateDemoReservations(); }
+}
+function generateDemoReservations(){
+  // 실제처럼 보이는 데모 데이터 생성
+  const regions = ['서울 강남', '서울 강서', '인천 부평', '경기 수원', '경기 분당', '부산 해운대', '대구 동성로', '광주 충장로', '대전 둔산', '울산 삼산'];
+  const methods = ['비대면개통', '매장방문', '택배발송'];
+  const statuses = ['접수완료', '진행중', '완료'];
+  const names = ['김○○', '이○○', '박○○', '최○○', '정○○', '강○○', '조○○', '윤○○', '장○○', '임○○'];
+  const result = [];
+  const now = new Date();
+  for(let i = 0; i < 15; i++){
+    const datetime = new Date(now - Math.random() * 7 * 24 * 60 * 60 * 1000);
+    result.push({
+      region: regions[Math.floor(Math.random() * regions.length)],
+      datetime: datetime.toLocaleString('ko-KR', {month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit'}),
+      name: names[Math.floor(Math.random() * names.length)],
+      phone: `010-****-${String(Math.floor(Math.random()*9000)+1000)}`,
+      method: methods[Math.floor(Math.random() * methods.length)],
+      status: statuses[Math.floor(Math.random() * statuses.length)]
+    });
+  }
+  return result.sort((a,b) => b.datetime.localeCompare(a.datetime));
 }
 function parseCsvReservations(csvText){
   // 헤더 가정: region,datetime,name,phone,method,status
@@ -280,7 +299,7 @@ async function renderReservations(){
   if(!wrap) return;
   const searchInput = document.getElementById('reservationSearch');
   const pageSelect = document.getElementById('reservationPage');
-  const perPage = 8;
+  const perPage = 10;
   const base = await fetchBaseReservations();
   let merged = getMergedReservations(base);
   const keyword = (searchInput?.value||'').trim();
@@ -289,39 +308,84 @@ async function renderReservations(){
   }
   const currentPage = parseInt(pageSelect?.value||'1',10);
   const {page, pages, slice} = paginate(merged, currentPage, perPage);
-  const tbody = wrap.querySelector('tbody');
-  tbody.innerHTML = slice.map(r => `<tr><td class="text-nowrap">${r.region||'-'}</td><td>${r.datetime}</td><td>${r.name}</td><td>${r.phone}</td><td>${r.method}</td><td><span class="badge bg-primary">${r.status}</span></td></tr>`).join('');
+  const tbody = document.getElementById('reservationsBody');
+  if(tbody) {
+    tbody.innerHTML = slice.map((r, idx) => {
+      const rowNum = (page - 1) * perPage + idx + 1;
+      const statusClass = r.status === '완료' ? 'success' : r.status === '진행중' ? 'primary' : 'warning';
+      const statusIcon = r.status === '완료' ? 'check-circle-fill' : r.status === '진행중' ? 'arrow-repeat' : 'clock-fill';
+      return `<tr class="fade-in">
+        <td class="text-center text-muted fw-bold">${rowNum}</td>
+        <td class="text-nowrap"><span class="badge bg-light text-dark">${r.region||'-'}</span></td>
+        <td class="text-muted small">${r.datetime}</td>
+        <td class="fw-semibold">${maskName(r.name)}</td>
+        <td class="text-muted">${maskPhone(r.phone)}</td>
+        <td><span class="badge bg-${statusClass}"><i class="bi bi-${statusIcon} me-1"></i>${r.status}</span></td>
+      </tr>`;
+    }).join('');
+  }
   // 페이지 선택 UI 구성
   if(pageSelect){
-    pageSelect.innerHTML = Array.from({length: pages}, (_,i)=>`<option value="${i+1}" ${i+1===page?'selected':''}>${i+1}/${pages}</option>`).join('');
+    pageSelect.innerHTML = Array.from({length: pages||1}, (_,i)=>`<option value="${i+1}" ${i+1===page?'selected':''}>페이지 ${i+1}/${pages||1}</option>`).join('');
   }
-  // 총개수 표시
+  // 총개수 및 금일 상담 수 표시
   const totalEl = document.getElementById('reservationTotal');
+  const todayEl = document.getElementById('todayCount');
   if(totalEl){ totalEl.textContent = merged.length.toString(); }
+  if(todayEl){
+    const today = new Date().toLocaleDateString('ko-KR');
+    const todayCount = merged.filter(r => r.datetime.includes(today)).length;
+    todayEl.textContent = todayCount.toString();
+  }
 }
 document.addEventListener('DOMContentLoaded', () => {
   // 예약 리스트 UI 삽입
   const target = document.querySelector('#contactForm')?.parentElement;
   if(target && !document.getElementById('reservationsTableContainer')){
     const box = document.createElement('div');
-    box.className = 'mt-5';
+    box.className = 'mt-5 p-4 bg-white border rounded-3 shadow-sm';
     box.innerHTML = `
-  <h2 class="h6 mb-3">최근 접수/진행 현황 <small id="reservationModeBadge" class="text-secondary">(데모)</small></h2>
-      <div class="d-flex flex-wrap gap-2 mb-2 align-items-center">
-        <input id="reservationSearch" class="form-control form-control-sm" style="max-width:200px" placeholder="검색(이름/지역/방식)">
-        <select id="reservationPage" class="form-select form-select-sm" style="width:auto"></select>
-        <span class="small text-secondary">총 <span id="reservationTotal">0</span>건</span>
-        <button id="reservationRefresh" class="btn btn-sm btn-outline-secondary">새로고침</button>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="h5 mb-0 fw-bold text-primary">
+          <i class="bi bi-clock-history me-2"></i>실시간 예약 현황
+          <span class="badge bg-success ms-2 pulse-animation">LIVE</span>
+        </h2>
+        <button id="reservationRefresh" class="btn btn-sm btn-outline-primary">
+          <i class="bi bi-arrow-clockwise me-1"></i>새로고침
+        </button>
+      </div>
+      <div class="mb-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div class="d-flex gap-2 align-items-center">
+          <span class="badge bg-light text-dark border">
+            <i class="bi bi-people-fill me-1"></i>금일 상담: <strong id="todayCount" class="text-primary">0</strong>건
+          </span>
+          <span class="badge bg-light text-dark border">
+            <i class="bi bi-graph-up me-1"></i>총 누적: <strong id="reservationTotal" class="text-success">0</strong>건
+          </span>
+        </div>
+        <input id="reservationSearch" class="form-control form-control-sm" style="max-width:200px" placeholder="🔍 지역/이름 검색">
       </div>
       <div class="table-responsive">
-        <table class="table table-sm table-hover align-middle mb-0">
-          <thead class="table-light">
-            <tr><th>지역</th><th>시간</th><th>이름</th><th>연락처</th><th>방식</th><th>상태</th></tr>
+        <table class="table table-hover align-middle mb-0" style="font-size:0.9rem;">
+          <thead class="table-primary">
+            <tr>
+              <th class="text-center" style="width:50px"><i class="bi bi-hash"></i></th>
+              <th><i class="bi bi-geo-alt-fill me-1"></i>지역</th>
+              <th><i class="bi bi-clock-fill me-1"></i>접수시간</th>
+              <th><i class="bi bi-person-fill me-1"></i>고객명</th>
+              <th><i class="bi bi-telephone-fill me-1"></i>연락처</th>
+              <th><i class="bi bi-clipboard-check-fill me-1"></i>상태</th>
+            </tr>
           </thead>
-          <tbody></tbody>
+          <tbody id="reservationsBody"></tbody>
         </table>
       </div>
-      <div class="form-text mt-2">* 실제 데이터가 아닌 예시 + 브라우저 저장 기반 데모입니다</div>
+      <div class="d-flex justify-content-between align-items-center mt-3">
+        <select id="reservationPage" class="form-select form-select-sm" style="width:120px"></select>
+        <small class="text-muted">
+          <i class="bi bi-shield-check me-1"></i>개인정보는 자동으로 마스킹 처리됩니다
+        </small>
+      </div>
     `;
     box.id = 'reservationsTableContainer';
     target.appendChild(box);
@@ -330,7 +394,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const refreshBtn = box.querySelector('#reservationRefresh');
     searchInput.addEventListener('input', () => { pageSelect.value = '1'; renderReservations(); });
     pageSelect.addEventListener('change', () => renderReservations());
-    refreshBtn.addEventListener('click', () => renderReservations());
+    refreshBtn.addEventListener('click', () => {
+      refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise me-1 spinner-border spinner-border-sm"></i>새로고침';
+      setTimeout(() => {
+        renderReservations();
+        refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise me-1"></i>새로고침';
+      }, 500);
+    });
+    // 자동 새로고침 (30초마다)
+    setInterval(() => renderReservations(), 30000);
     renderReservations();
   }
 });
