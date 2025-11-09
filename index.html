@@ -302,12 +302,12 @@
           <table class="table table-hover align-middle mb-0" style="font-size:0.9rem;">
             <thead class="table-primary">
               <tr>
-                <th class="text-center" style="width:50px"><i class="bi bi-hash"></i></th>
-                <th><i class="bi bi-geo-alt-fill me-1"></i>지역</th>
-                <th><i class="bi bi-clock-fill me-1"></i>접수시간</th>
-                <th><i class="bi bi-person-fill me-1"></i>고객명</th>
-                <th><i class="bi bi-telephone-fill me-1"></i>연락처</th>
-                <th><i class="bi bi-clipboard-check-fill me-1"></i>상태</th>
+                <th class="text-center d-none d-md-table-cell" style="width:50px"><i class="bi bi-hash"></i></th>
+                <th><i class="bi bi-geo-alt-fill me-1"></i><span class="d-none d-sm-inline">지역</span></th>
+                <th class="d-none d-lg-table-cell"><i class="bi bi-clock-fill me-1"></i>접수시간</th>
+                <th><i class="bi bi-person-fill me-1"></i><span class="d-none d-sm-inline">고객명</span></th>
+                <th class="d-none d-md-table-cell"><i class="bi bi-telephone-fill me-1"></i>연락처</th>
+                <th><i class="bi bi-clipboard-check-fill me-1"></i><span class="d-none d-sm-inline">상태</span></th>
               </tr>
             </thead>
             <tbody id="homeReservationsBody">
@@ -584,11 +584,11 @@
         const statusClass = r.status === '완료' ? 'success' : r.status === '진행중' ? 'primary' : 'warning';
         const statusIcon = r.status === '완료' ? 'check-circle-fill' : r.status === '진행중' ? 'arrow-repeat' : 'clock-fill';
         return `<tr class="fade-in">
-          <td class="text-center text-muted fw-bold">${idx + 1}</td>
+          <td class="text-center text-muted fw-bold d-none d-md-table-cell">${idx + 1}</td>
           <td class="text-nowrap"><span class="badge bg-light text-dark">${r.region}</span></td>
-          <td class="text-muted small">${r.datetime}</td>
+          <td class="text-muted small d-none d-lg-table-cell">${r.datetime}</td>
           <td class="fw-semibold">${r.name}</td>
-          <td class="text-muted">${r.phone}</td>
+          <td class="text-muted d-none d-md-table-cell">${r.phone}</td>
           <td><span class="badge bg-${statusClass}"><i class="bi bi-${statusIcon} me-1"></i>${r.status}</span></td>
         </tr>`;
       }).join('');

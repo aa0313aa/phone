@@ -82,24 +82,47 @@ a { text-decoration: none; }
 
 /* 반응형 */
 @media (max-width: 575.98px) {
-  section { padding: 42px 0; }
-  .hero .display-5 { font-size: 2rem; }
-  .hero .lead { font-size: 1rem; }
-  .btn-lg { padding: 0.75rem 1.25rem; font-size: 1.1rem; min-height: 48px; }
+  section { padding: 2rem 0; }
+  .hero .display-5 { font-size: 1.75rem; line-height: 1.3; }
+  .hero .lead { font-size: 0.95rem; }
+  .btn-lg { padding: 0.75rem 1.25rem; font-size: 1rem; min-height: 48px; }
   .hero .btn-lg { width: 100%; margin-bottom: 0.75rem; }
   .floating-chat { bottom: 80px; right: 16px; }
   .floating-chat { padding: 12px 18px; font-size: 1.05rem; }
-  table.table { font-size: 0.9rem; }
-  .topbar { font-size: 0.85rem; }
+  
+  /* 테이블 모바일 최적화 */
+  table.table { font-size: 0.8rem; }
+  .table th, .table td { padding: 0.5rem 0.25rem; }
+  .table th i, .table td i { display: none; } /* 아이콘 숨기기 */
+  .badge { font-size: 0.7rem; padding: 0.25rem 0.5rem; }
+  
+  .topbar { font-size: 0.8rem; padding: 0.5rem 0 !important; }
+  .topbar .d-flex { flex-wrap: wrap; gap: 0.5rem !important; }
   .card { margin-bottom: 1rem; }
+  
   /* 모바일 네비게이션 개선 */
   .navbar-nav { padding: 1rem 0; }
   .nav-item { margin: 0.25rem 0; }
   .nav-link { padding: 0.75rem 1rem !important; font-size: 1.05rem; }
+  
+  /* 예약 현황 섹션 */
+  #booking .p-4 { padding: 1rem !important; }
+  #booking h2 { font-size: 1.1rem; }
+  #booking .d-flex { flex-direction: column; align-items: flex-start !important; gap: 0.75rem; }
+  #booking .btn-sm { font-size: 0.85rem; width: 100%; }
+  
+  /* 서비스 키워드 카드 */
+  #services-keywords .col-6 { padding: 0.25rem; }
+  #services-keywords .p-3 { padding: 0.75rem !important; }
+  #services-keywords .h6 { font-size: 0.85rem; }
+  #services-keywords i { font-size: 1.5rem !important; }
 }
 @media (max-width: 360px) { 
   .floating-chat span { display: none; }
   .topbar .badge { display: none; }
+  .hero .display-5 { font-size: 1.5rem; }
+  .btn-lg { font-size: 0.9rem; padding: 0.7rem 1rem; }
+  table.table { font-size: 0.75rem; }
 }
 
 /* 실시간 예약 현황 애니메이션 */
@@ -239,19 +262,55 @@ a { text-decoration: none; }
   50% { box-shadow: 0 5px 30px rgba(255,122,0,0.6); }
 }
 
-/* 모바일 반응형 */
+/* 모바일 반응형 - 프로모션 배너 */
 @media (max-width: 991.98px) {
   .banner-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    line-height: 1.2;
   }
   .banner-subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   .banner-card {
-    padding: 1.5rem;
+    padding: 1.5rem 1.25rem;
     text-align: center;
+  }
+  .banner-label {
+    font-size: 0.85rem;
+    padding: 0.4rem 1rem;
   }
   .banner-cta {
     margin-top: 1rem;
+  }
+  .banner-cta .btn-warning {
+    padding: 0.85rem 1.75rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .banner-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .banner-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  .banner-label {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.85rem;
+  }
+  .banner-card {
+    padding: 1.25rem 1rem;
+  }
+  .banner-cta .btn-warning {
+    width: 100%;
+    padding: 0.9rem 1.5rem;
+    font-size: 0.95rem;
+  }
+  .banner-cta p {
+    font-size: 0.85rem;
+    margin-top: 0.5rem !important;
   }
 }
