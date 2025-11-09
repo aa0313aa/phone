@@ -172,13 +172,7 @@
             </a>
           </div>
         </div>
-        <div class="mb-3 d-flex gap-2 align-items-center flex-wrap">
-          <span class="badge bg-light text-dark border">
-            <i class="bi bi-people-fill me-1"></i>금일 상담: <strong id="homeTodayCount" class="text-primary">0</strong>건
-          </span>
-          <span class="badge bg-light text-dark border">
-            <i class="bi bi-graph-up me-1"></i>총 누적: <strong id="homeReservationTotal" class="text-success">0</strong>건
-          </span>
+        <div class="mb-3">
           <span class="badge bg-warning text-dark">
             <i class="bi bi-fire me-1"></i>대납개통·비대면개통 전문
           </span>
@@ -573,18 +567,41 @@
           <td><span class="badge bg-${statusClass}"><i class="bi bi-${statusIcon} me-1"></i>${r.status}</span></td>
         </tr>`;
       }).join('');
-
-      // 총 누적 건수 (시뮬레이션)
-      const totalCount = Math.floor(Math.random() * 50) + 150;
-      if(totalEl) totalEl.textContent = totalCount;
-
-      // 금일 상담 건수
-      const today = new Date().toLocaleDateString('ko-KR');
-      const todayCount = data.filter(r => r.datetime.includes(today)).length + Math.floor(Math.random() * 5);
-      if(todayEl) todayEl.textContent = todayCount;
     }
 
-    // 페이지 로드 시 렌더링
+    // 방문자 추적 기능
+    function trackVisitor(){
+      const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+      const visitKey = 'dailyVisits';
+      const visits = JSON.parse(localStorage.getItem(visitKey) || '{}');
+      
+      // 오늘 날짜 카운트 증가
+      visits[today] = (visits[today] || 0) + 1;
+      
+      // 30일 이전 데이터는 삭제
+      const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+      Object.keys(visits).forEach(date => {
+        if(new Date(date) < thirtyDaysAgo) delete visits[date];
+      });
+      
+      localStorage.setItem(visitKey, JSON.stringify(visits));
+    }
+
+    // 방문자 통계 확인 함수 (콘솔에서 사용)
+    window.getVisitorStats = function(){
+      const visits = JSON.parse(localStorage.getItem('dailyVisits') || '{}');
+      const sorted = Object.entries(visits).sort((a,b) => b[0].localeCompare(a[0]));
+      console.log('=== 일별 방문자 통계 (최근 30일) ===');
+      sorted.forEach(([date, count]) => {
+        console.log(`${date}: ${count}명`);
+      });
+      const total = sorted.reduce((sum, [_, count]) => sum + count, 0);
+      console.log(`총 방문: ${total}명`);
+      return visits;
+    };
+
+    // 페이지 로드 시 방문 기록 및 렌더링
+    trackVisitor();
     if(document.readyState === 'loading'){
       document.addEventListener('DOMContentLoaded', renderHomeReservations);
     } else {

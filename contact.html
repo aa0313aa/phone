@@ -328,15 +328,6 @@ async function renderReservations(){
   if(pageSelect){
     pageSelect.innerHTML = Array.from({length: pages||1}, (_,i)=>`<option value="${i+1}" ${i+1===page?'selected':''}>페이지 ${i+1}/${pages||1}</option>`).join('');
   }
-  // 총개수 및 금일 상담 수 표시
-  const totalEl = document.getElementById('reservationTotal');
-  const todayEl = document.getElementById('todayCount');
-  if(totalEl){ totalEl.textContent = merged.length.toString(); }
-  if(todayEl){
-    const today = new Date().toLocaleDateString('ko-KR');
-    const todayCount = merged.filter(r => r.datetime.includes(today)).length;
-    todayEl.textContent = todayCount.toString();
-  }
 }
 document.addEventListener('DOMContentLoaded', () => {
   // 예약 리스트 UI 삽입
@@ -354,15 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <i class="bi bi-arrow-clockwise me-1"></i>새로고침
         </button>
       </div>
-      <div class="mb-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
-        <div class="d-flex gap-2 align-items-center">
-          <span class="badge bg-light text-dark border">
-            <i class="bi bi-people-fill me-1"></i>금일 상담: <strong id="todayCount" class="text-primary">0</strong>건
-          </span>
-          <span class="badge bg-light text-dark border">
-            <i class="bi bi-graph-up me-1"></i>총 누적: <strong id="reservationTotal" class="text-success">0</strong>건
-          </span>
-        </div>
+      <div class="mb-3 d-flex justify-content-end">
         <input id="reservationSearch" class="form-control form-control-sm" style="max-width:200px" placeholder="🔍 지역/이름 검색">
       </div>
       <div class="table-responsive">
@@ -405,6 +388,40 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => renderReservations(), 30000);
     renderReservations();
   }
+
+  // 방문자 추적 기능
+  function trackVisitor(){
+    const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+    const visitKey = 'dailyVisits';
+    const visits = JSON.parse(localStorage.getItem(visitKey) || '{}');
+    
+    // 오늘 날짜 카운트 증가
+    visits[today] = (visits[today] || 0) + 1;
+    
+    // 30일 이전 데이터는 삭제
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+    Object.keys(visits).forEach(date => {
+      if(new Date(date) < thirtyDaysAgo) delete visits[date];
+    });
+    
+    localStorage.setItem(visitKey, JSON.stringify(visits));
+  }
+
+  // 방문자 통계 확인 함수 (콘솔에서 사용)
+  window.getVisitorStats = function(){
+    const visits = JSON.parse(localStorage.getItem('dailyVisits') || '{}');
+    const sorted = Object.entries(visits).sort((a,b) => b[0].localeCompare(a[0]));
+    console.log('=== 일별 방문자 통계 (최근 30일) ===');
+    sorted.forEach(([date, count]) => {
+      console.log(`${date}: ${count}명`);
+    });
+    const total = sorted.reduce((sum, [_, count]) => sum + count, 0);
+    console.log(`총 방문: ${total}명`);
+    return visits;
+  };
+
+  // 페이지 로드 시 방문 기록
+  trackVisitor();
 });
 </script>
 <!-- Floating Kakao chat shortcut -->
