@@ -12,8 +12,9 @@ Allow: /contact.html
 Allow: /assets/
 
 # 사이트맵 위치 (여러 도메인)
-Sitemap: https://aa0313aa.github.io/phone/sitemap.xml
+Sitemap: https://폰테크.shop/sitemap.xml
 Sitemap: https://xn--o39an51b8th.shop/sitemap.xml
+Sitemap: https://aa0313aa.github.io/phone/sitemap.xml
 
 # 검색 엔진 크롤링 최적화
 Crawl-delay: 1
