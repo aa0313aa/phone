@@ -48,4 +48,12 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- 폰테크 가이드 (키워드 최적화) -->
+  <url>
+    <loc>https://폰테크.shop/phonetech-guide.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
