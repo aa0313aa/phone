@@ -44,7 +44,7 @@
 
 ### 3. Open Graph 정보 수정
 ```html
-<meta property="og:url" content="https://aa0313aa.github.io/phone/[실제파일명].html">
+<meta property="og:url" content="https://폰테크.shop/[실제파일명].html">
 <meta property="og:title" content="[실제 글 제목] - 전국모바일">
 <meta property="og:description" content="[글 요약 설명]">
 ```
@@ -60,7 +60,7 @@
   "datePublished": "2025-11-14",
   "mainEntityOfPage": {
     "@type": "WebPage", 
-    "@id": "https://aa0313aa.github.io/phone/[실제파일명].html"
+    "@id": "https://폰테크.shop/[실제파일명].html"
   }
 }
 </script>

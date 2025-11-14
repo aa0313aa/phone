@@ -36,7 +36,7 @@
 ### Step 1: Google Search Console 등록
 1. https://search.google.com/search-console 접속
 2. "속성 추가" 클릭
-3. URL 접두어 선택: `https://aa0313aa.github.io/phone/`
+3. URL 접두어 선택: `https://폰테크.shop/`
 4. 소유권 확인 방법 선택
 
 ### Step 2: 소유권 확인 (HTML 파일 방법 권장)
@@ -52,7 +52,7 @@
 
 ### Step 3: 사이트맵 제출
 1. Search Console → 왼쪽 메뉴 "Sitemaps" 클릭
-2. 사이트맵 URL 입력: `https://aa0313aa.github.io/phone/sitemap.xml`
+2. 사이트맵 URL 입력: `https://폰테크.shop/sitemap.xml`
 3. "제출" 클릭
 4. 상태가 "성공"으로 표시될 때까지 대기 (24시간 소요 가능)
 
@@ -60,11 +60,11 @@
 1. Search Console → "URL 검사" 도구
 2. 주요 페이지 URL 입력 후 검사
 3. "색인 생성 요청" 클릭 (각 페이지마다 수행)
-   - https://aa0313aa.github.io/phone/
-   - https://aa0313aa.github.io/phone/services.html
-   - https://aa0313aa.github.io/phone/contact.html
-   - https://aa0313aa.github.io/phone/information.html
-   - https://aa0313aa.github.io/phone/about.html
+   - https://폰테크.shop/
+   - https://폰테크.shop/services.html
+   - https://폰테크.shop/contact.html
+   - https://폰테크.shop/information.html
+   - https://폰테크.shop/about.html
 
 ---
 
@@ -73,7 +73,7 @@
 ### Step 1: 네이버 서치어드바이저 등록
 1. https://searchadvisor.naver.com/ 접속
 2. "사이트 등록" 클릭
-3. URL 입력: `https://aa0313aa.github.io/phone/`
+3. URL 입력: `https://폰테크.shop/`
 
 ### Step 2: 소유권 확인
 1. HTML 태그 방법 선택
@@ -85,7 +85,7 @@
 
 ### Step 3: 사이트맵 제출
 1. "요청" → "사이트맵 제출"
-2. URL 입력: `https://aa0313aa.github.io/phone/sitemap.xml`
+2. URL 입력: `https://폰테크.shop/sitemap.xml`
 3. 제출 완료
 
 ---
@@ -94,7 +94,7 @@
 
 ### Google PageSpeed Insights
 - URL: https://pagespeed.web.dev/
-- 테스트 URL: `https://aa0313aa.github.io/phone/`
+- 테스트 URL: `https://폰테크.shop/`
 - 목표: 모바일/데스크탑 모두 90점 이상
 
 ### Google Analytics (선택사항)
