@@ -61,5 +61,15 @@
       <dc:creator>전국모바일</dc:creator>
     </item>
     
+    <!-- 폰테크 가이드 페이지 -->
+    <item>
+      <title>폰테크비대면 당일현금지급 - 전국모바일</title>
+      <link>https://폰테크.shop/phonetech-guide.html</link>
+      <description>휴대폰내구제·휴대폰폰테크 전문! 폰테크비대면 당일현금지급. 미납요금대납·대납개통후기 실시간 확인</description>
+      <pubDate>Thu, 14 Nov 2025 00:00:00 +0900</pubDate>
+      <guid isPermaLink="true">https://폰테크.shop/phonetech-guide.html</guid>
+      <dc:creator>전국모바일</dc:creator>
+    </item>
+    
   </channel>
 </rss>
