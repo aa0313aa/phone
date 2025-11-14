@@ -1,0 +1,18 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'>
+  <defs>
+    <linearGradient id='g' x1='0' x2='1'>
+      <stop offset='0' stop-color='#1e3a8a'/>
+      <stop offset='1' stop-color='#06b6d4'/>
+    </linearGradient>
+  </defs>
+  <rect width='100%' height='100%' fill='url(#g)' rx='12' />
+  <g fill='#fff' font-family='Noto Sans, Arial, sans-serif'>
+    <text x='60' y='160' font-size='48' font-weight='700'>폰테크(내구제) 이해와 안전한 이용법</text>
+    <text x='60' y='240' font-size='24' fill-opacity='0.9'>전국모바일 블로그 · 2025년 11월 15일</text>
+  </g>
+  <g transform='translate(60,320)'>
+    <rect x='0' y='0' width='360' height='180' rx='8' fill='rgba(255,255,255,0.08)' />
+    <text x='20' y='40' fill='#fff' font-size='18'>안전 체크리스트 포함</text>
+    <text x='20' y='75' fill='#fff' font-size='14' fill-opacity='0.9'>명의 도용과 요금 문제 예방</text>
+  </g>
+</svg>
