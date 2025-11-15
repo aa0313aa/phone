@@ -15,6 +15,14 @@
 3) Google Search Console
 - 권장: "도메인 속성(Domain)"으로 소유권 확인 (DNS TXT 레코드 필요).
   - Search Console에서 도메인 속성 등록 → 제공되는 TXT 레코드를 도메인 DNS에 추가 → 검증
+  - 자세한 예시:
+    1. Search Console → '속성 추가' → '도메인' 선택 → `폰테크.shop` 입력.
+    2. 화면에서 제시하는 `DNS TXT` 레코드 값을 복사합니다. 예시: `google-site-verification=abcd1234example` (실제 값은 콘솔에서 확인).
+    3. 도메인 관리자(등록기관)의 DNS 설정에서 TXT 레코드를 추가합니다. (레코드 이름: `@` 또는 비워둠; 값: 위에서 복사한 전체 문자열)
+    4. DNS 전파(보통 수분~최대 48시간) 이후 Search Console에서 '확인'을 클릭합니다.
+    5. 확인되면 'Sitemaps'에 `https://폰테크.shop/sitemap.xml` 제출.
+
+  - 팁: DNS TXT 추가 후 `nslookup -type=txt 폰테크.shop`로 TXT 레코드가 보이는지 확인하세요.
 - 사이트 소유권이 확인되면: `Sitemaps` 메뉴에 `https://폰테크.shop/sitemap.xml` 제출
 - 중요: 제출 후 `URL 검사`에서 주요 페이지(홈, 블로그, 글)를 개별적으로 검사하고 `색인 요청`을 클릭하면 색인 속도를 높일 수 있습니다.
 
