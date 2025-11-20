@@ -76,7 +76,7 @@
           <h2 class="h4 fw-bold mb-4">📰 최신 글</h2>
           
           <!-- NEW: 블로그 포스트 (최신) -->
-          <article class="card mb-4">
+          <article class="card mb-4" data-tags="폰테크,내구제,안전가이드">
             <div class="card-body">
               <div class="row">
                 <div class="col-md-4">
@@ -107,7 +107,7 @@
           </article>
 
           <!-- 블로그 포스트 (신규) -->
-          <article class="card mb-4">
+          <article class="card mb-4" data-tags="폰테크,신규개통,안전가이드">
             <div class="card-body">
               <div class="row">
                 <div class="col-md-4">
@@ -138,7 +138,7 @@
           </article>
 
           <!-- 블로그 포스트 2 -->
-          <article class="card mb-4">
+          <article class="card mb-4" data-tags="폰테크,가이드,당일현금지급">
             <div class="card-body">
               <div class="row">
                 <div class="col-md-4">
@@ -169,7 +169,7 @@
           </article>
 
           <!-- 블로그 포스트 (2025-11-21 신규) -->
-          <article class="card mb-4">
+          <article class="card mb-4" data-tags="폰테크,소개,안내">
             <div class="card-body">
               <div class="row">
                 <div class="col-md-4">
@@ -232,19 +232,20 @@
             </div>
           </div>
 
-          <!-- 인기 태그 -->
+                <!-- 인기 태그 -->
           <div class="card mb-4">
             <div class="card-header bg-warning text-dark">
               <h3 class="card-title h6 mb-0"><i class="bi bi-hashtag me-2"></i>인기 태그</h3>
             </div>
             <div class="card-body">
               <div class="d-flex flex-wrap gap-1">
-                <span class="badge bg-primary">#폰테크</span>
-                <span class="badge bg-success">#비대면</span>
-                <span class="badge bg-info">#당일현금지급</span>
-                <span class="badge bg-warning text-dark">#휴대폰내구제</span>
-                <span class="badge bg-danger">#미납요금대납</span>
-                <span class="badge bg-dark">#안전거래</span>
+                		<a href="?tag=폰테크" class="badge bg-primary text-decoration-none tag-link" data-tag="폰테크">#폰테크</a>
+                		<a href="?tag=비대면" class="badge bg-success text-decoration-none tag-link" data-tag="비대면">#비대면</a>
+                		<a href="?tag=당일현금지급" class="badge bg-info text-decoration-none tag-link" data-tag="당일현금지급">#당일현금지급</a>
+                		<a href="?tag=휴대폰내구제" class="badge bg-warning text-dark text-decoration-none tag-link" data-tag="휴대폰내구제">#휴대폰내구제</a>
+                		<a href="?tag=미납요금대납" class="badge bg-danger text-decoration-none tag-link" data-tag="미납요금대납">#미납요금대납</a>
+                		<a href="?tag=안전거래" class="badge bg-dark text-decoration-none tag-link" data-tag="안전거래">#안전거래</a>
+                		<a href="blog.html" class="badge bg-light text-dark text-decoration-none" id="tag-clear">#모든글</a>
               </div>
             </div>
           </div>
@@ -340,5 +341,50 @@
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Tag filtering: read ?tag=... and show only matching posts. Clicking a tag link navigates with query param.
+(function(){
+  function getQueryParam(name){
+    const params = new URLSearchParams(window.location.search);
+    return params.get(name);
+  }
+
+  function normalizeTag(t){ return String(t||'').trim(); }
+
+  function filterByTag(tag){
+    const articles = document.querySelectorAll('article.card.mb-4');
+    if(!tag){
+      articles.forEach(a=> a.style.display='');
+      // remove active from tag links
+      document.querySelectorAll('.tag-link').forEach(el=> el.classList.remove('active'));
+      return;
+    }
+    const nt = normalizeTag(tag);
+    articles.forEach(a=>{
+      const tags = (a.getAttribute('data-tags')||'').split(',').map(s=>s.trim());
+      if(tags.includes(nt)) a.style.display=''; else a.style.display='none';
+    });
+    // highlight active tag
+    document.querySelectorAll('.tag-link').forEach(el=>{
+      if(el.dataset && normalizeTag(el.dataset.tag)===nt) el.classList.add('active'); else el.classList.remove('active');
+    });
+  }
+
+  // On load, apply tag filter if present
+  const qtag = getQueryParam('tag');
+  if(qtag){ filterByTag(qtag); }
+
+  // Make tag links update query param without page reload (optional) — we will navigate to ensure history works.
+  document.querySelectorAll('.tag-link').forEach(el=>{
+    el.addEventListener('click', function(e){
+      // allow normal navigation so server URL matches; leaving default anchor behavior
+    });
+  });
+
+  // Provide clear link behavior
+  const clear = document.getElementById('tag-clear');
+  if(clear){ clear.addEventListener('click', function(e){ window.location.href = 'blog.html'; }); }
+})();
+</script>
 </body>
 </html>
