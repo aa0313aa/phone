@@ -7,16 +7,4 @@
     <lastmod>2025-11-09</lastmod>
   </sitemap>
   
-  <!-- Punycode 도메인 사이트맵 -->
-  <sitemap>
-    <loc>https://xn--o39an51b8th.shop/sitemap-main.xml</loc>
-    <lastmod>2025-11-09</lastmod>
-  </sitemap>
-  
-  <!-- GitHub Pages 사이트맵 -->
-  <sitemap>
-    <loc>https://폰테크.shop/sitemap-main.xml</loc>
-    <lastmod>2025-11-09</lastmod>
-  </sitemap>
-  
 </sitemapindex>
