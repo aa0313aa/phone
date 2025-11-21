@@ -1,0 +1,10 @@
+{
+  "name": "phone-site",
+  "version": "1.0.0",
+  "description": "Static site for 전국모바일 (폰테크)",
+  "scripts": {
+    "start": "npx http-server -c-1 -p 8080"
+  },
+  "author": "전국모바일",
+  "license": "MIT"
+}
