@@ -23,16 +23,22 @@
   <meta name="twitter:title" content="폰테크 — 전국모바일에서 안전하게 진행하세요">
   <meta name="twitter:description" content="신용 상관없이 성인 누구나 가능 · 무방문·비대면 · 당일 현금지급. 전국모바일의 안전한 폰테크 소개와 주의사항 안내입니다.">
   <meta name="twitter:image" content="https://폰테크.shop/assets/img/blog/phonetech-og.png">
-
-  "description": "신용 상관없이 성인 누구나 가능 · 무방문·비대면 · 당일 현금지급. 전국모바일의 안전한 폰테크 소개와 주의사항 안내입니다.",
-  "image": "https://폰테크.shop/assets/img/blog/phonetech-og.png",
-  "author": {"@type": "Organization", "name": "전국모바일", "url": "https://폰테크.shop/"},
-  "publisher": {"@type": "Organization", "name": "전국모바일", "logo": {"@type": "ImageObject", "url":
-  "https://폰테크.shop/assets/img/favicon.svg"}},
-  "datePublished": "2025-11-21",
-  "dateModified": "2025-11-21"
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://폰테크.shop/blog-phonetech-20251121.html"},
+    "headline": "폰테크 — 전국모바일에서 안전하게 진행하세요",
+    "description": "신용 상관없이 성인 누구나 가능 · 무방문·비대면 · 당일 현금지급. 전국모바일의 안전한 폰테크 소개와 주의사항 안내입니다.",
+    "image": "https://폰테크.shop/assets/img/blog/phonetech-og.png",
+    "author": {"@type": "Organization", "name": "전국모바일", "url": "https://폰테크.shop/"},
+    "publisher": {"@type": "Organization", "name": "전국모바일", "logo": {"@type": "ImageObject", "url": "https://폰테크.shop/assets/img/favicon.svg"}},
+    "datePublished": "2025-11-21",
+    "dateModified": "2025-11-21"
   }
   </script>
+
+</head>
 
 <body>
   <nav class="navbar navbar-expand-lg bg-body shadow-sm sticky-top">
@@ -165,17 +171,24 @@
                 </div>
               </div>
             </article>
-            if (navigator.share) {
-            try { await navigator.share({ title, url }); } catch (e) { }
-            } else {
-            try { await navigator.clipboard.writeText(url); alert('링크가 복사되었습니다.'); } catch (e) { prompt('복사 실패, 수동으로
-            복사하세요:', url); }
-            }
-            });
-            document.getElementById('btn-copylink')?.addEventListener('click', async () => { try { await
-            navigator.clipboard.writeText(location.href); alert('링크가 복사되었습니다.'); } catch (e) { prompt('복사 실패, 수동으로
-            복사하세요:', location.href); } });
-            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+    // Web Share + clipboard fallback
+    document.getElementById('btn-webshare')?.addEventListener('click', async ()=>{
+      const url = location.href;
+      const title = document.title;
+      if(navigator.share){
+        try{ await navigator.share({ title, url }); }catch(e){}
+      } else {
+        try{ await navigator.clipboard.writeText(url); alert('링크가 복사되었습니다.'); }catch(e){ prompt('복사 실패, 수동으로 복사하세요:', url); }
+      }
+    });
+    document.getElementById('btn-copylink')?.addEventListener('click', async ()=>{ try{ await navigator.clipboard.writeText(location.href); alert('링크가 복사되었습니다.'); }catch(e){ prompt('복사 실패, 수동으로 복사하세요:', location.href); }});
+    </script>
 
 </body>
 
