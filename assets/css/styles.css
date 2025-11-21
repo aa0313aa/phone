@@ -32,7 +32,13 @@ a { text-decoration: none; }
 .nav-link:hover { color: var(--brand) !important; }
 
 /* Hero Section */
-.hero { background: linear-gradient(180deg, var(--brand-bg), #ffffff); position: relative; overflow: hidden; }
+.hero {
+  background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.6)), url('../img/hero-bg.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
 .hero h1 { color: var(--brand); }
 .hero p.lead { color: var(--text-muted); }
 .hero .btn-primary { background-color: var(--brand); border-color: var(--brand); }
