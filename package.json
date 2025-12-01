@@ -1,10 +1,16 @@
 {
   "name": "phone-site",
+  "type": "module",
   "version": "1.0.0",
   "description": "Static site for 전국모바일 (폰테크)",
   "scripts": {
-    "start": "npx http-server -c-1 -p 8080"
+    "start": "npx http-server -c-1 -p 8080",
+    "generate": "node auto-generator/generate.js"
   },
   "author": "전국모바일",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "openai": "^6.9.1"
+  }
 }

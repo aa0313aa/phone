@@ -1,0 +1,19 @@
+{
+  "lighthouseVersion": "12.8.2",
+  "requestedUrl": "https://xn--2p7b1pl7d.shop/blog-phonetech-20251121.html",
+  "mainDocumentUrl": "https://xn--2p7b1pl7d.shop/blog-phonetech-20251121.html",
+  "finalDisplayedUrl": "https://xn--2p7b1pl7d.shop/blog-phonetech-20251121.html",
+  "finalUrl": "https://xn--2p7b1pl7d.shop/blog-phonetech-20251121.html",
+  "fetchTime": "2025-11-21T20:46:09.280Z",
+  "gatherMode": "navigation",
+  "runWarnings": [],
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/142.0.0.0 Safari/537.36",
+  "environment": {
+    "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+    "hostUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/142.0.0.0 Safari/537.36",
+    "benchmarkIndex": 2477,
+    "credits": {
+      "axe-core": "4.11.0"
+    }
+  }
+}
