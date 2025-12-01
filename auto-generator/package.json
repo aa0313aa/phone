@@ -1,0 +1,16 @@
+{
+  "name": "auto-generator",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "generate": "node generate.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "fs-extra": "^11.3.2",
+    "marked": "^17.0.1",
+    "openai": "^4.104.0",
+    "sharp": "^0.33.5",
+    "slugify": "^1.6.6"
+  }
+}

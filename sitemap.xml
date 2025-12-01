@@ -1,89 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <!-- 홈페이지 (최고 우선순위) -->
-  <url>
-    <loc>https://폰테크.shop/</loc>
-    <lastmod>2025-11-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://폰테크.shop/assets/img/og-banner.png</image:loc>
-      <image:title>폰테크 당일지급 전국모바일 - 전국 어디서나 비대면 가능</image:title>
-      <image:caption>미납요금대납·대납개통·비대면개통·즉시매입 전문</image:caption>
-    </image:image>
-  </url>
-
-  <!-- 서비스 페이지 (핵심 키워드) -->
-  <url>
-    <loc>https://폰테크.shop/services.html</loc>
-    <lastmod>2025-11-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- 문의/예약 페이지 (전환 중요) -->
-  <url>
-    <loc>https://폰테크.shop/contact.html</loc>
-    <lastmod>2025-11-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- 이용안내 페이지 (E-E-A-T 신뢰도) -->
-  <url>
-    <loc>https://폰테크.shop/information.html</loc>
-    <lastmod>2025-11-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- 회사소개 (신뢰성·투명성) -->
-  <url>
-    <loc>https://폰테크.shop/about.html</loc>
-    <lastmod>2025-11-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- 폰테크 가이드 (키워드 최적화) -->
-  <url>
-    <loc>https://폰테크.shop/phonetech-guide.html</loc>
-    <lastmod>2025-11-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://폰테크.shop/blog.html</loc>
-    <lastmod>2025-11-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://폰테크.shop/blog-phonetech-20251115.html</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://폰테크.shop/blog-phonetech-safety-20251115.html</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://폰테크.shop/blog-phonetech-20251121.html</loc>
-    <lastmod>2025-11-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://폰테크.shop/phonetech-tips.html</loc>
-    <lastmod>2025-11-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://폰테크.shop/</loc><lastmod>2025-12-01</lastmod></url>
+  <url><loc>https://폰테크.shop/index.html</loc><lastmod>2025-12-01</lastmod></url>
+  <url><loc>https://폰테크.shop/services.html</loc><lastmod>2025-12-01</lastmod></url>
+  <url><loc>https://폰테크.shop/information.html</loc><lastmod>2025-12-01</lastmod></url>
+  <url><loc>https://폰테크.shop/about.html</loc><lastmod>2025-12-01</lastmod></url>
+  <url><loc>https://폰테크.shop/contact.html</loc><lastmod>2025-12-01</lastmod></url>
+  <url><loc>https://폰테크.shop/phonetech-guide.html</loc><lastmod>2025-12-01</lastmod></url>
+  <url><loc>https://폰테크.shop/phonetech-tips.html</loc><lastmod>2025-12-01</lastmod></url>
+  <url><loc>https://폰테크.shop/blog/index.html</loc><lastmod>2025-12-01</lastmod></url>
+  <url><loc>https://폰테크.shop/blog/2025-12-01---2.html</loc><lastmod>2025-12-01</lastmod></url>
+  <url><loc>https://폰테크.shop/blog/2025-12-01---1.html</loc><lastmod>2025-12-01</lastmod></url>
+  <url><loc>https://폰테크.shop/blog/2025-12-01-bucheon-phonetech-2.html</loc><lastmod>2025-12-01</lastmod></url>
+  <url><loc>https://폰테크.shop/blog/2025-12-01-거제-phonetech-1.html</loc><lastmod>2025-12-01</lastmod></url>
+  <url><loc>https://폰테크.shop/blog/blog-phonetech-20251121.html</loc><lastmod>2025-11-21</lastmod></url>
+  <url><loc>https://폰테크.shop/blog/blog-phonetech-safety-20251115.html</loc><lastmod>2025-11-15</lastmod></url>
+  <url><loc>https://폰테크.shop/blog/blog-phonetech-20251115.html</loc><lastmod>2025-11-15</lastmod></url>
 </urlset>

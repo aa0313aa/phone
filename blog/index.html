@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>폰테크 정보 블로그 - 전국모바일</title>
+<meta name="description" content="폰테크, 비대면개통, 미납요금대납 등 실제 상담 기반 정보 정리.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://폰테크.shop/blog/">
+<style>
+:root{
+  --bg:#f4f5f9;
+  --card:#ffffff;
+  --accent:#2563eb;
+  --accent-soft:#dbeafe;
+  --text:#111827;
+  --text-sub:#6b7280;
+  --radius:18px;
+  --shadow:0 8px 24px rgba(15,23,42,.08);
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR",sans-serif;
+  background:radial-gradient(circle at top, #e0f2fe 0, #f4f5f9 45%, #eef2ff 100%);
+}
+.wrap{
+  max-width:1120px;
+  margin:0 auto;
+  padding:28px 16px 40px;
+}
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:12px;
+  margin-bottom:18px;
+}
+.header h1{
+  font-size:1.9rem;
+  margin:0;
+}
+.header p{
+  margin:4px 0 0;
+  font-size:.9rem;
+  color:var(--text-sub);
+}
+.header a{
+  font-size:.8rem;
+  text-decoration:none;
+  color:var(--accent);
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;
+}
+.card-item{
+  margin:0;
+}
+.card-link{
+  display:block;
+  background:var(--card);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  text-decoration:none;
+  color:var(--text);
+  transition:transform .16s ease, box-shadow .16s ease;
+}
+.card-link:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 28px rgba(15,23,42,.18);
+}
+.thumb-wrap{
+  position:relative;
+  overflow:hidden;
+}
+.thumb-wrap::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom,rgba(15,23,42,.05),transparent 40%);
+  opacity:0;
+  transition:opacity .16s ease;
+}
+.card-link:hover .thumb-wrap::after{
+  opacity:.6;
+}
+.thumb-wrap img{
+  width:100%;
+  display:block;
+}
+.card-body{
+  padding:14px 16px 14px;
+}
+.meta-date{
+  display:inline-block;
+  font-size:.78rem;
+  padding:3px 9px;
+  border-radius:999px;
+  background:var(--accent-soft);
+  color:#1e40af;
+}
+.card-title{
+  margin:8px 0 6px;
+  font-size:1rem;
+  font-weight:600;
+  line-height:1.4;
+}
+.card-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:4px;
+}
+.tag-chip{
+  font-size:.74rem;
+  padding:3px 8px;
+  border-radius:999px;
+  background:#f3f4f6;
+  color:#4b5563;
+}
+@media(max-width:900px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:640px){
+  .grid{grid-template-columns:1fr;}
+  .wrap{padding:20px 12px 28px;}
+  .header{flex-direction:column;align-items:flex-start;}
+  .header h1{font-size:1.5rem;}
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="header">
+      <div>
+        <h1>폰테크 정보 블로그</h1>
+        <p>실제 상담 내용을 바탕으로 폰테크, 미납요금대납, 비대면 개통 정보를 정리합니다.</p>
+      </div>
+      <a href="/">← 전국모바일 메인으로</a>
+    </header>
+    <section class="grid">
+      
+      <article class="card-item">
+        <a href="/blog/2025-12-01---2.html" class="card-link">
+          <div class="thumb-wrap">
+            <img src="/assets/blog/2025-12-01---2-thumb.webp" alt="구미 Phone Tech — 구미 미납요금대납" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="meta-date">2025-12-01</span>
+            <h2 class="card-title">구미 Phone Tech — 구미 미납요금대납</h2>
+            <div class="card-tags"><span class="tag-chip">#미납요금대납</span><span class="tag-chip">#구미</span><span class="tag-chip">#폰테크</span></div>
+          </div>
+        </a>
+      </article>
+      <article class="card-item">
+        <a href="/blog/2025-12-01---1.html" class="card-link">
+          <div class="thumb-wrap">
+            <img src="/assets/blog/2025-12-01---1-thumb.webp" alt="구미 Phone Tech | 구미 폰테크 핸드폰 개통 대출 아님 진행 가이드" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="meta-date">2025-12-01</span>
+            <h2 class="card-title">구미 Phone Tech | 구미 폰테크 핸드폰 개통 대출 아님 진행 가이드</h2>
+            <div class="card-tags"><span class="tag-chip">#폰테크 핸드폰 개통 대출 아님</span><span class="tag-chip">#구미</span><span class="tag-chip">#폰테크</span></div>
+          </div>
+        </a>
+      </article>
+      <article class="card-item">
+        <a href="/blog/2025-12-01-bucheon-phonetech-2.html" class="card-link">
+          <div class="thumb-wrap">
+            <img src="/assets/blog/2025-12-01---2-thumb.webp" alt="의정부 성인폰개통 안전하게 진행하는 팁" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="meta-date">2025-12-01</span>
+            <h2 class="card-title">의정부 성인폰개통 안전하게 진행하는 팁</h2>
+            <div class="card-tags"><span class="tag-chip">#성인폰개통</span><span class="tag-chip">#의정부</span><span class="tag-chip">#폰테크</span></div>
+          </div>
+        </a>
+      </article>
+      <article class="card-item">
+        <a href="/blog/2025-12-01-거제-phonetech-1.html" class="card-link">
+          <div class="thumb-wrap">
+            <img src="/assets/blog/2025-12-01---1-thumb.webp" alt="남원 전국모바일 신규개통,기기변경" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="meta-date">2025-12-01</span>
+            <h2 class="card-title">남원 전국모바일 신규개통,기기변경</h2>
+            <div class="card-tags"><span class="tag-chip">#전국모바일</span><span class="tag-chip">#남원</span><span class="tag-chip">#폰테크</span></div>
+          </div>
+        </a>
+      </article>
+      <article class="card-item">
+        <a href="/blog/blog-phonetech-20251121.html" class="card-link">
+          <div class="thumb-wrap">
+            <img src="/assets/img/blog/1.webp" alt="폰테크 — 전국모바일에서 안전하게 진행하세요" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="meta-date">2025-11-21</span>
+            <h2 class="card-title">폰테크 — 전국모바일에서 안전하게 진행하세요</h2>
+            <div class="card-tags"><span class="tag-chip">#폰테크</span><span class="tag-chip">#폰테크비대면</span><span class="tag-chip">#전국모바일</span></div>
+          </div>
+        </a>
+      </article>
+      <article class="card-item">
+        <a href="/blog/blog-phonetech-safety-20251115.html" class="card-link">
+          <div class="thumb-wrap">
+            <img src="/assets/img/og-banner.png" alt="폰테크 신규 개통, 안전하게 진행하는 방법" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="meta-date">2025-11-15</span>
+            <h2 class="card-title">폰테크 신규 개통, 안전하게 진행하는 방법</h2>
+            <div class="card-tags"><span class="tag-chip">#폰테크</span><span class="tag-chip">#신규개통</span><span class="tag-chip">#유심관리</span></div>
+          </div>
+        </a>
+      </article>
+      <article class="card-item">
+        <a href="/blog/blog-phonetech-20251115.html" class="card-link">
+          <div class="thumb-wrap">
+            <img src="/assets/img/og-banner.png" alt="폰테크 비대면 — 신규 개통 안전하게 진행하는 방법" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="meta-date">2025-11-15</span>
+            <h2 class="card-title">폰테크 비대면 — 신규 개통 안전하게 진행하는 방법</h2>
+            <div class="card-tags"><span class="tag-chip">#폰테크</span><span class="tag-chip">#폰테크비대면</span><span class="tag-chip">#신규개통</span></div>
+          </div>
+        </a>
+      </article>
+    </section>
+  </div>
+</body>
+</html>
