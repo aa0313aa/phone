@@ -50,12 +50,12 @@ body{
   color:var(--accent);
 }
 .grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:20px;
+  column-count:3;
+  column-gap:18px;
 }
 .card-item{
-  margin:0;
+  break-inside:avoid;
+  margin-bottom:18px;
 }
 .card-link{
   display:block;
@@ -121,10 +121,10 @@ body{
   color:#4b5563;
 }
 @media(max-width:900px){
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .grid{column-count:2;}
 }
 @media(max-width:640px){
-  .grid{grid-template-columns:1fr;}
+  .grid{column-count:1;}
   .wrap{padding:20px 12px 28px;}
   .header{flex-direction:column;align-items:flex-start;}
   .header h1{font-size:1.5rem;}
@@ -142,6 +142,30 @@ body{
     </header>
     <section class="grid">
       
+      <article class="card-item">
+        <a href="/blog/2025-12-02---2.html" class="card-link">
+          <div class="thumb-wrap">
+            <img src="/assets/blog/2025-12-02---2-thumb.webp" alt="수원 폰테크 폰테크 대출아님 상담 정리" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="meta-date">2025-12-02</span>
+            <h2 class="card-title">수원 폰테크 폰테크 대출아님 상담 정리</h2>
+            <div class="card-tags"><span class="tag-chip">#폰테크 대출아님</span><span class="tag-chip">#수원</span><span class="tag-chip">#폰테크</span></div>
+          </div>
+        </a>
+      </article>
+      <article class="card-item">
+        <a href="/blog/2025-12-02---1.html" class="card-link">
+          <div class="thumb-wrap">
+            <img src="/assets/blog/2025-12-02---1-thumb.webp" alt="서귀포 폰테크 기기변경 한 번에 정리" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="meta-date">2025-12-02</span>
+            <h2 class="card-title">서귀포 폰테크 기기변경 한 번에 정리</h2>
+            <div class="card-tags"><span class="tag-chip">#기기변경</span><span class="tag-chip">#서귀포</span><span class="tag-chip">#폰테크</span></div>
+          </div>
+        </a>
+      </article>
       <article class="card-item">
         <a href="/blog/2025-12-01---2.html" class="card-link">
           <div class="thumb-wrap">

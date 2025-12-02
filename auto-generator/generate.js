@@ -732,15 +732,18 @@ async function generateSinglePost(index, postsMeta) {
   const midPng = imgs[1] || null;
 
   // 3) 썸네일 (hero 기준)
+  // 파일명이 덮어씌워지는 문제를 방지하기 위해 각 글에 고유 ID(타임스탬프)를 사용
+  const uid = `${dateStr}-${Date.now()}`;
+
   let thumbMeta = null;
   if (heroPng) {
     try {
       thumbMeta = await saveThumbnail(
         heroPng, // 로컬 PNG 기반으로 WebP/썸네일 생성
-        `${dateStr}-${slugify(region, { lower: true, strict: true })}-${slugify(
+        `${uid}-${slugify(region, { lower: true, strict: true })}-${slugify(
           keyword,
           { lower: true, strict: true }
-        )}-${index + 1}`
+        )}`
       );
     } catch (e) {
       console.warn("⚠ 썸네일 생성 실패:", e.message);
@@ -765,7 +768,7 @@ async function generateSinglePost(index, postsMeta) {
 
   const slugRegion = slugify(region, { lower: true, strict: true });
   const slugKeyword = slugify(keyword, { lower: true, strict: true });
-  const fileName = `${dateStr}-${slugRegion}-${slugKeyword}-${index + 1}.html`;
+  const fileName = `${uid}-${slugRegion}-${slugKeyword}.html`;
   const canonicalPath = `/blog/${fileName}`;
 
   const finalHTML = generateHTML({
