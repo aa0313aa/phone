@@ -28,15 +28,19 @@ jobs:
           LEONARDO_API_KEY: ${{ secrets.LEONARDO_API_KEY }}
         working-directory: auto-generator
         run: |
-          echo "OPENAI_API_KEY=$OPENAI_API_KEY" >> .env
-          echo "LEONARDO_API_KEY=$LEONARDO_API_KEY" >> .env
+          # Do NOT write secrets to the repository. The script reads from process.env directly.
           npm run generate
+
+      - name: Generate blog index
+        # tools/generate_blog_index.py updates `blog.html` and other index artifacts
+        run: |
+          python3 tools/generate_blog_index.py
 
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add blog sitemap.xml assets/blog index.html
+          git add blog blog.html blog/posts-meta.json sitemap.xml assets/blog index.html
           if git diff --cached --quiet; then
             echo "No changes."
             exit 0
