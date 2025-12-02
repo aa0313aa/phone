@@ -1,0 +1,29 @@
+# Dependabot configuration: updates and security fixes
+# - Enables Dependabot security updates and version updates
+# - Monitors npm in repo root and auto-generator, and python requirements in tools
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/" # root package.json (if present)
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
+    # Enable security updates (Dependabot will open PRs for security advisories)
+    allow:
+      - dependency-type: "direct"
+  - package-ecosystem: "npm"
+    directory: "/auto-generator"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
+  - package-ecosystem: "pip"
+    directory: "/tools"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
+
+# Optional: grouping example (commented out)
+#registries:
+#  npm-registry:
+#    type: "npm-registry"
+#    url: "https://registry.npmjs.org"
