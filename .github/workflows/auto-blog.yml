@@ -25,6 +25,7 @@ jobs:
       - name: Set env and generate posts
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_PROJECT: ${{ secrets.OPENAI_PROJECT }}
           LEONARDO_API_KEY: ${{ secrets.LEONARDO_API_KEY }}
         working-directory: auto-generator
         run: |

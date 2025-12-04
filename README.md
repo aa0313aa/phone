@@ -48,5 +48,17 @@ git push -u origin main
 - contact.html의 폼은 데모입니다. 실제 저장/전송은 서버 또는 Google Forms, Formspree 등의 서비스를 연결하여 구현하세요.
 - Kakao JavaScript SDK를 사용하는 경우, `index.html` 내 `meta[name="kakao-app-key"]`와 `meta[name="kakao-channel-id"]` 값을 실제 앱 정보로 교체하세요.
 
+## 자동 블로그 생성기 환경 변수
+`auto-generator/`의 Node 스크립트와 GitHub Actions 워크플로는 OpenAI 프로젝트 기반 API 키를 사용합니다. 로컬 `.env` 및 GitHub Secrets에 아래 변수를 설정하세요.
+
+```
+OPENAI_API_KEY=sk-svcacct-...
+OPENAI_PROJECT=proj_QMP1GWP6nuJAhmu0cBBN8IwE
+LEONARDO_API_KEY=... (이미지 생성에 사용한다면)
+```
+
+- OpenAI project 기반 키를 사용하면 외부 서버 호출 시 Project ID를 전달해야 합니다. 위 환경변수를 설정하면 SDK가 자동으로 처리합니다.
+- GitHub Actions에서도 `OPENAI_PROJECT` 시크릿을 추가해 두어야 워크플로(`.github/workflows/auto-blog.yml`)가 정상 동작합니다.
+
 ## 라이선스
 - 본 템플릿 소스는 MIT로 자유롭게 수정/배포 가능합니다. (단, 외부 CDN 라이브러리는 각 라이선스를 따릅니다.)

@@ -29,7 +29,10 @@ import { REGIONS } from "./regions.js";
 import { generateImages } from "../modules/image_gen.js";
 import { generateHTML } from "./template.js";
 
-const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+  project: process.env.OPENAI_PROJECT,
+});
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
