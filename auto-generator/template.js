@@ -3,6 +3,39 @@
 
 import slugify from "slugify";
 
+const SITE_URL = "https://폰테크.shop";
+
+function getTagSlug(tag, fallbackPrefix = "tag") {
+  const base = (tag ?? "").toString().trim();
+  if (!base) return "";
+  const normalized = slugify(base, { lower: true, strict: true });
+  if (normalized) return normalized;
+  const hashed = Buffer.from(base, "utf8").toString("hex").slice(0, 8) || "id";
+  return `${fallbackPrefix}-${hashed}`;
+}
+
+function buildFaqData(region, keyword) {
+  const safeRegion = region || "전국";
+  const safeKeyword = keyword || "폰테크";
+  return [
+    {
+      question: `${safeRegion}에서 ${safeKeyword} 진행하려면 어떤 조건이 필요한가요?`,
+      answer:
+        `${safeRegion} 기준으로 본인 명의 회선을 신규가입 또는 기기변경으로 개통할 수 있고 최근 3개월 통신요금이 연체되지 않았다면 상담이 가능합니다. 신분증, 기본 소득 확인 자료를 미리 준비하면 승인과 현금 정산이 훨씬 빨라집니다.`,
+    },
+    {
+      question: `${safeKeyword} 신청을 고민할 때 가장 주의해야 할 위험 요소는 무엇인가요?`,
+      answer:
+        `통신비 납부가 지연되면 연체 기록이 남고 위약금이 커질 수 있습니다. ${safeRegion} 지역에서도 ${safeKeyword} 후 통신사 약정과 회선 유지 의무가 남으니, 월 통신요금을 감당할 수 있는지 반드시 계산한 뒤 진행해야 합니다.`,
+    },
+    {
+      question: `미납요금이 있어도 ${safeRegion} ${safeKeyword} 상담이 가능한가요?`,
+      answer:
+        `미납 금액이 크지 않다면 우선 대납으로 정리 후 조건을 다시 맞춰 드립니다. 다만 장기 연체나 신용정보 등록 상태라면 사전 조정이 필요하므로 정확한 금액과 통신사 정보를 먼저 공유해 주세요.`,
+    },
+  ];
+}
+
 export function generateHTML({
   title,
   date,
@@ -17,9 +50,15 @@ export function generateHTML({
   tags = [],
   relatedPosts = [],
 }) {
+  const heroDisplay = heroImg || "/assets/img/og-banner.png";
+  const heroAlt = `${region} ${keyword} 폰테크 상담 이미지`;
+  const midAlt = `${region} ${keyword} 진행 참고 이미지`;
+  const bottomAlt = `${region} ${keyword} 현장 갤러리`;
+  const ogImage = thumbUrl?.startsWith("http") ? thumbUrl : `${SITE_URL}${thumbUrl}`;
+
   const tagChips = tags
     .map((t) => {
-      const slug = slugify(t, { lower: true, strict: true });
+      const slug = getTagSlug(t);
       if (!slug) {
         return `<span class="tag-chip">#${t}</span>`;
       }
@@ -39,6 +78,90 @@ export function generateHTML({
     })
     .join("");
 
+  const faqEntries = buildFaqData(region, keyword);
+  const faqHtml = faqEntries.length
+    ? `
+      <section class="post-faq">
+        <h3>자주 묻는 질문</h3>
+        <div class="faq-items">
+          ${faqEntries
+            .map(
+              (f) => `
+          <article class="faq-item">
+            <h4>${f.question}</h4>
+            <p>${f.answer}</p>
+          </article>`
+            )
+            .join("")}
+        </div>
+      </section>`
+    : "";
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: `${region} ${keyword} 폰테크 상담 - ${title}`,
+    datePublished: date,
+    dateModified: date,
+    author: {
+      "@type": "Organization",
+      name: "전국모바일",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "전국모바일",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/assets/img/favicon.svg`,
+      },
+    },
+    mainEntityOfPage: `${SITE_URL}${canonicalPath}`,
+    image: `${SITE_URL}${heroDisplay}`,
+    keywords: tags.join(", "),
+    articleSection: "폰테크 상담",
+    description: `${region} 지역에서 ${keyword} 진행을 고민할 때 알아야 할 폰테크 구조와 리스크 정보를 실제 상담 기준으로 정리했습니다.`,
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "전국모바일",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "블로그",
+        item: `${SITE_URL}/blog/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: `${region} ${keyword}`,
+        item: `${SITE_URL}${canonicalPath}`,
+      },
+    ],
+  };
+
+  const articleJson = JSON.stringify(articleSchema).replace(/</g, "\\u003c");
+  const breadcrumbJson = JSON.stringify(breadcrumbSchema).replace(/</g, "\\u003c");
+  const faqJson = faqEntries.length
+    ? JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqEntries.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      }).replace(/</g, "\\u003c")
+    : "";
+
   return `<!doctype html>
 <html lang="ko">
 <head>
@@ -53,11 +176,11 @@ export function generateHTML({
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://폰테크.shop${canonicalPath}">
 <meta property="og:site_name" content="전국모바일">
-<meta property="og:image" content="${thumbUrl}">
+<meta property="og:image" content="${ogImage}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${region} ${keyword} 폰테크 상담 - ${title}">
 <meta name="twitter:description" content="${region}에서 ${keyword} 진행 시 알아두면 좋은 폰테크 상담 안내입니다.">
-<meta name="twitter:image" content="${thumbUrl}">
+<meta name="twitter:image" content="${ogImage}">
 <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
 <link
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -293,6 +416,34 @@ a:hover{text-decoration:underline;}
   margin-bottom:4px;
 }
 
+/* FAQ 섹션 */
+.post-faq{
+  margin:24px 0;
+  padding:18px 20px;
+  border-radius:16px;
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+}
+.post-faq h3{
+  margin:0 0 12px;
+  font-size:1rem;
+}
+.faq-items{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.faq-item h4{
+  margin:0 0 4px;
+  font-size:.95rem;
+  color:#1e3a8a;
+}
+.faq-item p{
+  margin:0;
+  font-size:.9rem;
+  color:#374151;
+}
+
 /* 하단 갤러리 */
 .bottom-gallery{
   margin-top:24px;
@@ -325,6 +476,9 @@ a:hover{text-decoration:underline;}
   .post-title{font-size:1.25rem;}
 }
 </style>
+<script type="application/ld+json">${articleJson}</script>
+<script type="application/ld+json">${breadcrumbJson}</script>
+${faqJson ? `<script type="application/ld+json">${faqJson}</script>` : ""}
 </head>
 <body>
   <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
@@ -356,7 +510,7 @@ a:hover{text-decoration:underline;}
     <div class="layout">
       <!-- 메인 글 영역 -->
       <article class="article-card">
-        ${heroImg ? `<img src="${heroImg}" alt="${keyword} 상담 이미지" class="hero-img">` : ""}
+        ${heroDisplay ? `<img src="${heroDisplay}" alt="${heroAlt}" class="hero-img">` : ""}
 
         <div class="article-inner">
           <div class="post-meta">
@@ -377,13 +531,15 @@ a:hover{text-decoration:underline;}
             ${content}
 
             <div class="biz-card">
-              <img src="/assets/img/blog/명함.png" alt="전국모바일 명함 이미지">
+              <img src="/assets/img/blog/명함.png" alt="전국모바일 상담 명함">
             </div>
 
             ${midImg ? `
             <div class="mid-img">
-              <img src="${midImg}" alt="${keyword} 폰테크 상담">
+              <img src="${midImg}" alt="${midAlt}">
             </div>` : ""}
+
+            ${faqHtml}
 
             <div class="bottom-cta" style="margin-top:22px; padding:14px 14px 12px; border-radius:12px; background:#f9fafb; border:1px solid #e5e7eb; font-size:.9rem;">
               <p style="margin:0 0 8px; font-weight:600;">다음 단계가 고민되시면 이렇게 진행해 보세요.</p>
@@ -400,6 +556,12 @@ a:hover{text-decoration:underline;}
                 브라우저가 영상을 지원하지 않습니다.
               </video>
             </div>
+
+            ${bottomImg ? `
+            <div class="bottom-gallery">
+              <h3>현장 갤러리</h3>
+              <img src="${bottomImg}" alt="${bottomAlt}">
+            </div>` : ""}
           </div>
         </div>
       </article>

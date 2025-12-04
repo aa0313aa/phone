@@ -13,6 +13,7 @@ Allow: /assets/
 
 # 사이트맵 위치 (여러 도메인)
 Sitemap: https://폰테크.shop/sitemap.xml
+Sitemap: https://폰테크.shop/sitemap-index.xml
 
 # 검색 엔진 크롤링 최적화
 # Crawl-delay removed for better Googlebot compatibility

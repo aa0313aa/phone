@@ -46,6 +46,36 @@ const SITEMAP_XML = path.join(ROOT_DIR, "sitemap.xml");
 const POSTS_META_JSON = path.join(BLOG_DIR, "posts-meta.json");
 
 const BASE_URL = "https://폰테크.shop";
+const DEFAULT_IMAGE = "/assets/img/og-banner.png";
+const STATIC_ROUTES = [
+  { path: "/", changefreq: "daily", priority: "1.0" },
+  { path: "/index.html", changefreq: "daily", priority: "0.9" },
+  { path: "/services.html", changefreq: "weekly", priority: "0.9" },
+  { path: "/information.html", changefreq: "weekly", priority: "0.8" },
+  { path: "/about.html", changefreq: "monthly", priority: "0.6" },
+  { path: "/contact.html", changefreq: "daily", priority: "0.9" },
+  { path: "/phonetech-guide.html", changefreq: "weekly", priority: "0.8" },
+  { path: "/phonetech-tips.html", changefreq: "weekly", priority: "0.7" },
+  { path: "/blog/index.html", changefreq: "daily", priority: "0.7" },
+];
+
+function escapeXml(value = "") {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+function ensureAsciiSlug(value, fallbackPrefix) {
+  const base = (value ?? "").toString().trim();
+  if (!base) return fallbackPrefix;
+  const normalized = slugify(base, { lower: true, strict: true });
+  if (normalized) return normalized;
+  const hashed = Buffer.from(base, "utf8").toString("hex").slice(0, 8) || "id";
+  return `${fallbackPrefix}-${hashed}`;
+}
 
 // --------------------------------------------------
 // 유틸
@@ -142,7 +172,7 @@ function buildTagMap(posts) {
   for (const p of posts) {
     const tags = Array.isArray(p.tags) ? p.tags : [];
     for (const tag of tags) {
-      const slug = slugify(tag, { lower: true, strict: true });
+      const slug = ensureAsciiSlug(tag, "tag");
       if (!slug) continue;
       if (!map[slug]) map[slug] = { tag, posts: [] };
       map[slug].posts.push(p);
@@ -183,6 +213,27 @@ async function updateBlogIndex(posts) {
       </article>`;
     })
     .join("");
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "폰테크 정보 블로그",
+    description:
+      "전국모바일이 실제 상담을 정리한 폰테크 · 비대면개통 · 미납요금대납 정보 모음",
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: posts.slice(0, 12).map((p, idx) => ({
+        "@type": "ListItem",
+        position: idx + 1,
+        url: `${BASE_URL}${p.url}`,
+        name: p.title,
+        image: p.thumb ? `${BASE_URL}${p.thumb}` : `${BASE_URL}${DEFAULT_IMAGE}`,
+        datePublished: p.date,
+      })),
+    },
+  };
+
+  const schemaJson = JSON.stringify(schema).replace(/</g, "\\u003c");
 
   const html = `<!doctype html>
 <html lang="ko">
@@ -316,6 +367,7 @@ body{
   .header h1{font-size:1.5rem;}
 }
 </style>
+<script type="application/ld+json">${schemaJson}</script>
 </head>
 <body>
   <div class="wrap">
@@ -547,31 +599,43 @@ async function updateSitemap(posts) {
   const today = new Date().toISOString().split("T")[0];
   const tagMap = buildTagMap(posts);
 
-  const staticPaths = [
-    "/",
-    "/index.html",
-    "/services.html",
-    "/information.html",
-    "/about.html",
-    "/contact.html",
-    "/phonetech-guide.html",
-    "/phonetech-tips.html",
-    "/blog/index.html",
-  ];
-
   let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
-  xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+  xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n`;
 
-  for (const p of staticPaths) {
-    xml += `  <url><loc>${BASE_URL}${p}</loc><lastmod>${today}</lastmod></url>\n`;
+  for (const route of STATIC_ROUTES) {
+    xml += `  <url>\n`;
+    xml += `    <loc>${BASE_URL}${route.path}</loc>\n`;
+    xml += `    <lastmod>${today}</lastmod>\n`;
+    xml += `    <changefreq>${route.changefreq}</changefreq>\n`;
+    xml += `    <priority>${route.priority}</priority>\n`;
+    xml += `  </url>\n`;
   }
 
   for (const post of posts) {
-    xml += `  <url><loc>${BASE_URL}${post.url}</loc><lastmod>${post.date}</lastmod></url>\n`;
+    const loc = `${BASE_URL}${post.url}`;
+    const imgPath = post.hero || post.thumb || DEFAULT_IMAGE;
+    const imgLoc = `${BASE_URL}${imgPath}`;
+    xml += `  <url>\n`;
+    xml += `    <loc>${escapeXml(loc)}</loc>\n`;
+    xml += `    <lastmod>${post.date || today}</lastmod>\n`;
+    xml += `    <changefreq>weekly</changefreq>\n`;
+    xml += `    <priority>0.8</priority>\n`;
+    if (imgPath) {
+      xml += `    <image:image>\n`;
+      xml += `      <image:loc>${escapeXml(imgLoc)}</image:loc>\n`;
+      xml += `      <image:title>${escapeXml(post.title || "폰테크 상담 이미지")}</image:title>\n`;
+      xml += `    </image:image>\n`;
+    }
+    xml += `  </url>\n`;
   }
 
   for (const slug of Object.keys(tagMap)) {
-    xml += `  <url><loc>${BASE_URL}/tag/${slug}.html</loc><lastmod>${today}</lastmod></url>\n`;
+    xml += `  <url>\n`;
+    xml += `    <loc>${BASE_URL}/tag/${slug}.html</loc>\n`;
+    xml += `    <lastmod>${today}</lastmod>\n`;
+    xml += `    <changefreq>monthly</changefreq>\n`;
+    xml += `    <priority>0.4</priority>\n`;
+    xml += `  </url>\n`;
   }
 
   xml += `</urlset>`;
@@ -743,9 +807,9 @@ async function generateSinglePost(index, postsMeta) {
     try {
       thumbMeta = await saveThumbnail(
         heroPng, // 로컬 PNG 기반으로 WebP/썸네일 생성
-        `${uid}-${slugify(region, { lower: true, strict: true })}-${slugify(
+        `${uid}-${ensureAsciiSlug(region, "region")}-${ensureAsciiSlug(
           keyword,
-          { lower: true, strict: true }
+          "keyword"
         )}`
       );
     } catch (e) {
@@ -769,8 +833,8 @@ async function generateSinglePost(index, postsMeta) {
   );
   const related = getRelated(postsMeta, region, keyword, 6);
 
-  const slugRegion = slugify(region, { lower: true, strict: true });
-  const slugKeyword = slugify(keyword, { lower: true, strict: true });
+  const slugRegion = ensureAsciiSlug(region, "region");
+  const slugKeyword = ensureAsciiSlug(keyword, "keyword");
   const fileName = `${uid}-${slugRegion}-${slugKeyword}.html`;
   const canonicalPath = `/blog/${fileName}`;
 
@@ -805,6 +869,7 @@ async function generateSinglePost(index, postsMeta) {
     keyword,
     tags,
     thumb: thumbUrlRel,
+    hero: heroWebp || thumbUrlRel || DEFAULT_IMAGE,
   });
 }
 
