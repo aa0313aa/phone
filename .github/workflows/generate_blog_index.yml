@@ -1,17 +1,17 @@
 name: Generate Blog Index
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  workflow_dispatch: {}
+  workflow_run:
+    workflows: ["Auto Blog Posts"]
+    types:
+      - completed
 
 permissions:
   contents: write
 
 jobs:
   generate:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,16 +20,9 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - name: Debug: show environment
-        run: |
-          echo "----- python version -----"; python --version || true
-          echo "----- pip version -----"; pip --version || true
-          echo "----- workdir listing -----"; ls -la
-          echo "----- blog.html head -----"; head -n 40 blog.html || true
 
       - name: Install dependencies
         run: |
@@ -39,11 +32,6 @@ jobs:
       - name: Run blog index generator
         run: |
           python tools/generate_blog_index.py
-
-      - name: Debug: show git status
-        run: |
-          git status --porcelain
-          git --no-pager log -n 1 || true
 
       - name: Commit & push changes
         run: |
