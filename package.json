@@ -11,6 +11,6 @@
   "license": "MIT",
   "dependencies": {
     "node-fetch": "^3.3.2",
-    "openai": "^6.9.1"
+    "openai": "^6.10.0"
   }
 }
