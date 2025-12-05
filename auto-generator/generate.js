@@ -59,6 +59,13 @@ const STATIC_ROUTES = [
   { path: "/blog/index.html", changefreq: "daily", priority: "0.7" },
 ];
 
+const INLINE_DECOR_IMAGES = [
+  "/assets/img/blog/1.png",
+  "/assets/img/blog/2.png",
+  "/assets/img/blog/3.png",
+  "/assets/img/blog/4.png",
+];
+
 function escapeXml(value = "") {
   return value
     .replace(/&/g, "&amp;")
@@ -83,6 +90,11 @@ function ensureAsciiSlug(value, fallbackPrefix) {
 
 function pick(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function pickInlineDecorImage() {
+  if (!INLINE_DECOR_IMAGES.length) return null;
+  return pick(INLINE_DECOR_IMAGES);
 }
 
 // 제목 패턴: "지역명 + 폰테크(고정) + 키워드" 한글만 사용
@@ -559,6 +571,36 @@ ${bodyHtml}
 `;
 }
 
+function decorateContent(html, { region, keyword, inlineImage }) {
+  let output = html || "";
+
+  const bizCardBlock = `
+<div class="biz-card">
+  <img src="/assets/img/blog/명함.png" alt="전국모바일 상담 명함">
+</div>`;
+
+  const section4Key = "<h2>4.";
+  if (output.includes(section4Key) && !output.includes("class=\"biz-card\"")) {
+    output = output.replace(section4Key, `${bizCardBlock}\n${section4Key}`);
+  } else if (!output.includes("class=\"biz-card\"")) {
+    output = `${output}\n${bizCardBlock}`;
+  }
+
+  if (inlineImage) {
+    const inlineAlt = `${region} ${keyword} 진행 참고 이미지`;
+    const inlineBlock = `
+<div class="section-img">
+  <img src="${inlineImage}" alt="${inlineAlt}">
+</div>`;
+    const section5Key = "<h2>5.";
+    if (output.includes(section5Key)) {
+      output = output.replace(section5Key, `${inlineBlock}\n${section5Key}`);
+    }
+  }
+
+  return output;
+}
+
 // --------------------------------------------------
 // 관련 글 추출
 // --------------------------------------------------
@@ -789,7 +831,12 @@ async function generateSinglePost(index, postsMeta) {
   });
 
   const mdText = completion.output_text;
-  const contentHTML = convertToHTML(mdText);
+  const inlineDecorImg = pickInlineDecorImage();
+  const contentHTML = decorateContent(convertToHTML(mdText), {
+    region,
+    keyword,
+    inlineImage: inlineDecorImg,
+  });
 
   // 2) 이미지 2장 (OpenAI) - hero + middle
   console.log("📸 이미지 생성 중…");

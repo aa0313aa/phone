@@ -329,6 +329,15 @@ a:hover{text-decoration:underline;}
   border-radius:14px;
   box-shadow:0 10px 26px rgba(15,23,42,.22);
 }
+.section-img{
+  margin:20px 0 12px;
+  text-align:center;
+}
+.section-img img{
+  max-width:100%;
+  border-radius:14px;
+  box-shadow:0 10px 26px rgba(15,23,42,.18);
+}
 /* 명함/영상 공통 블록 */
 .biz-card{
   margin:20px 0;
@@ -356,18 +365,39 @@ a:hover{text-decoration:underline;}
   display:flex;
   flex-direction:column;
   gap:18px;
-  position:sticky;
-  top:90px;
 }
 .side-card{
   background:var(--card);
   border-radius:16px;
-  padding:14px 14px 16px;
+  padding:16px 18px;
   box-shadow:0 8px 22px rgba(15,23,42,.10);
+  border:1px solid rgba(15,23,42,.05);
+}
+.side-card--cta{
+  background:linear-gradient(145deg,#1d4ed8,#2563eb 55%,#38bdf8);
+  color:#f8fafc;
+  border:none;
+  box-shadow:0 18px 35px rgba(37,99,235,.35);
+  position:sticky;
+  top:110px;
+  z-index:15;
+  overflow:hidden;
+}
+.side-card--cta::after{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.25);
+  pointer-events:none;
 }
 .side-card h3{
   margin:0 0 10px;
   font-size:.95rem;
+}
+.side-card--cta h3{
+  font-size:1.05rem;
+  color:#fff;
 }
 .related-list{
   list-style:none;
@@ -408,12 +438,75 @@ a:hover{text-decoration:underline;}
   background:#e5e7eb;
 }
 .side-cta{
-  font-size:.85rem;
+  font-size:.9rem;
   color:var(--text-sub);
 }
 .side-cta strong{
   display:block;
   margin-bottom:4px;
+}
+.side-card--cta .side-cta{
+  color:rgba(255,255,255,.85);
+  position:relative;
+  z-index:1;
+}
+.side-card--cta .cta-sub{
+  margin:0 0 12px;
+  font-size:.9rem;
+}
+.side-card--cta .cta-sub .cta-note{
+  display:block;
+  margin-top:4px;
+  font-size:.78rem;
+  color:rgba(255,255,255,.7);
+}
+.side-card--cta .cta-panel{
+  background:rgba(15,23,42,.25);
+  border-radius:14px;
+  padding:12px 14px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.side-card--cta .cta-line{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:600;
+  font-size:1rem;
+}
+.side-card--cta .cta-line span{
+  display:inline-flex;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:rgba(255,255,255,.2);
+  align-items:center;
+  justify-content:center;
+  font-size:1rem;
+}
+.side-card--cta .cta-line a{
+  color:#fff;
+  text-decoration:none;
+}
+.side-card--cta .cta-btn{
+  margin-top:6px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  border-radius:999px;
+  padding:10px 14px;
+  background:#fbbf24;
+  color:#111827;
+  font-weight:600;
+  font-size:.9rem;
+  text-decoration:none;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.side-card--cta .cta-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 18px rgba(15,23,42,.25);
 }
 
 /* FAQ 섹션 */
@@ -468,6 +561,9 @@ a:hover{text-decoration:underline;}
     grid-template-columns:1fr;
   }
   .sidebar{
+    position:static;
+  }
+  .side-card--cta{
     position:static;
   }
 }
@@ -530,10 +626,6 @@ ${faqJson ? `<script type="application/ld+json">${faqJson}</script>` : ""}
             </div>
             ${content}
 
-            <div class="biz-card">
-              <img src="/assets/img/blog/명함.png" alt="전국모바일 상담 명함">
-            </div>
-
             ${midImg ? `
             <div class="mid-img">
               <img src="${midImg}" alt="${midAlt}">
@@ -582,12 +674,23 @@ ${faqJson ? `<script type="application/ld+json">${faqJson}</script>` : ""}
           </div>
         </section>
 
-        <section class="side-card">
+        <section class="side-card side-card--cta">
           <h3>상담 안내</h3>
           <div class="side-cta">
-            <strong>폰테크 / 신규가입,기기변경/ 비대면 개통</strong>
-            <p>조건 확인은 무료입니다. 부담 없이 연락 주세요.</p>
-            <p>📞 010-8290-9536<br>💬 카톡: k090912k</p>
+            <p class="cta-sub">폰테크 / 신규가입,기기변경 / 비대면 개통<span class="cta-note">조건 확인은 무료입니다. 부담 없이 연락 주세요.</span></p>
+            <div class="cta-panel">
+              <div class="cta-line">
+                <span>📞</span>
+                <a href="tel:010-8290-9536">010-8290-9536</a>
+              </div>
+              <div class="cta-line">
+                <span>💬</span>
+                <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener">카톡: k090912k</a>
+              </div>
+            </div>
+            <a class="cta-btn" href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener">
+              카톡 상담 열기 <i class="bi bi-arrow-up-right"></i>
+            </a>
           </div>
         </section>
       </aside>

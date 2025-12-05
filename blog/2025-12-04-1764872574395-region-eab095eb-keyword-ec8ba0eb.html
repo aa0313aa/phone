@@ -165,6 +165,15 @@ a:hover{text-decoration:underline;}
   border-radius:14px;
   box-shadow:0 10px 26px rgba(15,23,42,.22);
 }
+.section-img{
+  margin:20px 0 12px;
+  text-align:center;
+}
+.section-img img{
+  max-width:100%;
+  border-radius:14px;
+  box-shadow:0 10px 26px rgba(15,23,42,.18);
+}
 /* 명함/영상 공통 블록 */
 .biz-card{
   margin:20px 0;
@@ -192,18 +201,39 @@ a:hover{text-decoration:underline;}
   display:flex;
   flex-direction:column;
   gap:18px;
-  position:sticky;
-  top:90px;
 }
 .side-card{
   background:var(--card);
   border-radius:16px;
-  padding:14px 14px 16px;
+  padding:16px 18px;
   box-shadow:0 8px 22px rgba(15,23,42,.10);
+  border:1px solid rgba(15,23,42,.05);
+}
+.side-card--cta{
+  background:linear-gradient(145deg,#1d4ed8,#2563eb 55%,#38bdf8);
+  color:#f8fafc;
+  border:none;
+  box-shadow:0 18px 35px rgba(37,99,235,.35);
+  position:sticky;
+  top:110px;
+  z-index:15;
+  overflow:hidden;
+}
+.side-card--cta::after{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.25);
+  pointer-events:none;
 }
 .side-card h3{
   margin:0 0 10px;
   font-size:.95rem;
+}
+.side-card--cta h3{
+  font-size:1.05rem;
+  color:#fff;
 }
 .related-list{
   list-style:none;
@@ -244,12 +274,75 @@ a:hover{text-decoration:underline;}
   background:#e5e7eb;
 }
 .side-cta{
-  font-size:.85rem;
+  font-size:.9rem;
   color:var(--text-sub);
 }
 .side-cta strong{
   display:block;
   margin-bottom:4px;
+}
+.side-card--cta .side-cta{
+  color:rgba(255,255,255,.85);
+  position:relative;
+  z-index:1;
+}
+.side-card--cta .cta-sub{
+  margin:0 0 12px;
+  font-size:.9rem;
+}
+.side-card--cta .cta-sub .cta-note{
+  display:block;
+  margin-top:4px;
+  font-size:.78rem;
+  color:rgba(255,255,255,.7);
+}
+.side-card--cta .cta-panel{
+  background:rgba(15,23,42,.25);
+  border-radius:14px;
+  padding:12px 14px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.side-card--cta .cta-line{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:600;
+  font-size:1rem;
+}
+.side-card--cta .cta-line span{
+  display:inline-flex;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:rgba(255,255,255,.2);
+  align-items:center;
+  justify-content:center;
+  font-size:1rem;
+}
+.side-card--cta .cta-line a{
+  color:#fff;
+  text-decoration:none;
+}
+.side-card--cta .cta-btn{
+  margin-top:6px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  border-radius:999px;
+  padding:10px 14px;
+  background:#fbbf24;
+  color:#111827;
+  font-weight:600;
+  font-size:.9rem;
+  text-decoration:none;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.side-card--cta .cta-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 18px rgba(15,23,42,.25);
 }
 
 /* FAQ 섹션 */
@@ -304,6 +397,9 @@ a:hover{text-decoration:underline;}
     grid-template-columns:1fr;
   }
   .sidebar{
+    position:static;
+  }
+  .side-card--cta{
     position:static;
   }
 }
@@ -390,6 +486,9 @@ a:hover{text-decoration:underline;}
 </ol>
 <p>솔직히 말해서, 폰테크를 찾으시는 분들 대부분이 여유 있는 상황은 아닙니다. 그래서 <strong>신불자폰테크</strong>를 “마지막 수단”처럼 생각하시는 경우도 많고요. 그래서일수록 장점만 보지 마시고, 아래에서 설명드릴 리스크까지 꼭 같이 보셔야 합니다.</p>
 <hr>
+            <div class="biz-card" style="margin-bottom:18px;">
+              <img src="/assets/img/blog/명함.png" alt="전국모바일 상담 명함">
+            </div>
 <h2>4. 진행 구조 (상담부터 현금 지급까지)</h2>
 <h3>1) 간단 상담 및 조건 확인</h3>
 <p>먼저 전화나 톡으로 <strong>기본 조건</strong>을 확인합니다.  </p>
@@ -430,6 +529,9 @@ a:hover{text-decoration:underline;}
 </ul>
 <p>이때부터는 매달 나가는 통신비를 잘 관리해 주셔야 합니다. <strong>통신비 연체가 쌓이면 신용도에 영향을 주고, 강제 정지·강제 해지로 이어질 수 있다는 점</strong> 꼭 기억해 주세요.</p>
 <hr>
+<div class="section-img">
+  <img src="/assets/img/blog/blog-image-1764872574392-1.png" alt="강릉 신불자폰테크 진행 중 참고 이미지">
+</div>
 <h2>5. 장점과 단점, 꼭 알아야 할 리스크</h2>
 <h3>장점</h3>
 <ol>
@@ -472,13 +574,6 @@ a:hover{text-decoration:underline;}
 <p>장점만 보면 당일에 목돈이 생겨서 좋아 보이지만, <strong>연체 시 신용도 하락, 통신비 부담, 중도해지 위약금</strong> 같은 부분을 반드시 감안하셔야 합니다. 특히 신불자폰테크는 이미 사정이 좋지 않은 분들이 많기 때문에, 무리해서 여러 회선을 한 번에 진행하는 건 정말 말리고 싶습니다. 본인 상황과 수입을 냉정하게 보시고, “월 부담을 충분히 감당할 수 있을 때만, 최소 회선으로” 신중하게 고려해 주세요.</p>
 <p>궁금한 점이 있거나, 본인 상황에서 가능한지 정도만 확인해 보고 싶으시면 <strong>카톡 상담</strong>이나 전화로 편하게 문의 주세요. 상담은 무료이고, 안 맞겠다 싶으면 진행 안 하셔도 됩니다. 연락은 <strong>010-8290-9536</strong> 으로 주시면, 강릉 쪽이든 타 지역이든 최대한 솔직하게 조건부터 리스크까지 안내 도와드리겠습니다.</p>
 
-
-
-            <div class="biz-card">
-              <img src="/assets/img/blog/명함.png" alt="전국모바일 상담 명함">
-            </div>
-
-            
             <div class="mid-img">
               <img src="/assets/img/blog/blog-image-1764872574393-2.png" alt="강릉 신불자폰테크 진행 참고 이미지">
             </div>
@@ -576,12 +671,23 @@ a:hover{text-decoration:underline;}
           </div>
         </section>
 
-        <section class="side-card">
+        <section class="side-card side-card--cta">
           <h3>상담 안내</h3>
           <div class="side-cta">
-            <strong>폰테크 / 신규가입,기기변경/ 비대면 개통</strong>
-            <p>조건 확인은 무료입니다. 부담 없이 연락 주세요.</p>
-            <p>📞 010-8290-9536<br>💬 카톡: k090912k</p>
+            <p class="cta-sub">폰테크 / 신규가입,기기변경 / 비대면 개통<span class="cta-note">조건 확인은 무료입니다. 부담 없이 연락 주세요.</span></p>
+            <div class="cta-panel">
+              <div class="cta-line">
+                <span>📞</span>
+                <a href="tel:010-8290-9536">010-8290-9536</a>
+              </div>
+              <div class="cta-line">
+                <span>💬</span>
+                <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener">카톡: k090912k</a>
+              </div>
+            </div>
+            <a class="cta-btn" href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener">
+              카톡 상담 열기 <i class="bi bi-arrow-up-right"></i>
+            </a>
           </div>
         </section>
       </aside>
