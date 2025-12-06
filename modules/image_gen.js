@@ -2,10 +2,16 @@
 import OpenAI from "openai";
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
+
+// 이미지가 항상 프로젝트 루트의 assets/img/blog에 저장되도록 고정
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const ROOT_DIR = path.join(__dirname, "..");
 
 /* -----------------------------------------
    랜덤 스타일 리스트 (50종 이상)
@@ -155,7 +161,7 @@ export async function generateImages(keyword, region) {
       const buffer = Buffer.from(base64, "base64");
 
       const fileName = `blog-image-${Date.now()}-${idx + 1}.png`;
-      const outDir = path.join("assets", "img", "blog");
+      const outDir = path.join(ROOT_DIR, "assets", "img", "blog");
       const outPath = path.join(outDir, fileName);
 
       if (!fs.existsSync(outDir)) {

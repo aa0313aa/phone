@@ -127,8 +127,14 @@ async function saveThumbnail(localImgPath, slugBase) {
   try {
     buf = await fs.readFile(absPngPath);
   } catch (e) {
-    console.warn("⚠ 로컬 이미지 읽기 실패:", absPngPath, e.message);
-    return null;
+    console.warn("⚠ 로컬 이미지 읽기 실패, 기본 배너로 대체:", absPngPath, e.message);
+    const fallbackPath = path.join(ROOT_DIR, DEFAULT_IMAGE.replace(/^\//, ""));
+    try {
+      buf = await fs.readFile(fallbackPath);
+    } catch (fallbackErr) {
+      console.warn("⚠ 기본 배너 읽기 실패:", fallbackPath, fallbackErr.message);
+      return null;
+    }
   }
 
   const main = `${slugBase}.webp`;
