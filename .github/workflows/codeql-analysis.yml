@@ -25,7 +25,9 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: ['javascript', 'python']
+          languages:
+            - javascript
+            - python
           # If you wish to specify queries, add them here:
           # queries: security-and-quality
 
@@ -34,6 +36,3 @@ jobs:
 
       - name: Run CodeQL analysis
         uses: github/codeql-action/analyze@v3
-        with:
-          # upload database retention if needed
-          # output: sarif
