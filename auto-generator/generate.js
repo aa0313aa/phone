@@ -59,6 +59,56 @@ const STATIC_ROUTES = [
   { path: '/blog/index.html', changefreq: 'daily', priority: '0.7' },
 ];
 
+// --------------------------------------------------
+// 🎭 AI 인간화 (Humanizing) 설정
+// --------------------------------------------------
+
+// 1. 화자 스타일 (페르소나) 랜덤 선택
+const PERSONAS = [
+  {
+    name: '직설적인 사장님',
+    tone: "군더더기 없이 핵심만 짚음. '솔직히', '까놓고 말해서' 같은 표현 사용. 너무 공손하기보다 전문가적인 자신감 표출.",
+    ending: '긴 말 안 합니다. 필요하면 연락주세요.',
+  },
+  {
+    name: '꼼꼼한 김팀장',
+    tone: '매우 친절하고 상세함. 걱정 많은 고객을 안심시키는 부드러운 말투. ~요, ~죠 위주의 구어체.',
+    ending: '혹시라도 더 궁금한 점 있으시면 언제든 편하게 물어봐주세요.',
+  },
+  {
+    name: '동네 형/오빠',
+    tone: '블로그 이웃에게 말하듯 편안함. 가벼운 유머나 일상적인 잡담(날씨, 식사 등)을 섞음.',
+    ending: '오늘 하루도 고생 많으셨습니다! 화이팅입니다.',
+  },
+];
+
+// 2. 글 구조 (템플릿) 랜덤 선택 - 목차 순서를 뒤섞음
+const TEMPLATES = [
+  {
+    type: '후기 중심형',
+    instructions:
+      '도입부에서 오늘 겪은 황당하거나 기억에 남는 실제 상담 에피소드로 시작. 이론 설명은 뒤로 미루고, \'왜 이 손님이 돈이 급했는지\' 스토리텔링 위주로 전개.',
+  },
+  {
+    type: '팩트 체크형',
+    instructions:
+      '인터넷에 떠도는 폰테크 사기 수법이나 잘못된 정보를 먼저 지적하면서 시작. \'절대 이렇게 하지 마세요\'라고 강력하게 경고하며 신뢰도 확보.',
+  },
+  {
+    type: 'Q&A 해결형',
+    instructions: '오늘 가장 많이 받은 질문 3가지를 답변하는 형식으로 구성. 목차를 Q&A 형식으로 잡을 것.',
+  },
+];
+
+// 3. 인간적인 잡담 (Noise) 리스트
+const HUMAN_NOISE = [
+  '오늘따라 날씨가 엄청 춥네요/덥네요.',
+  '방금 점심 먹고 들어와서 글 씁니다. 식사는 하셨나요?',
+  '요즘 경기가 안 좋아서 그런지 문의가 정말 많습니다.',
+  '주말에도 상담하느라 목이 다 쉬었네요.',
+  '어제 새벽에 급하게 연락 오신 분이 기억에 남아서 적어봅니다.',
+];
+
 const INLINE_DECOR_IMAGES = [
   '/assets/img/blog/1.png',
   '/assets/img/blog/2.png',
@@ -783,173 +833,155 @@ async function pickStaticGalleryImage() {
 async function generateSinglePost(index, postsMeta) {
   const region = pick(REGIONS);
   const keyword = pick(KEYWORDS);
+
+  // 제목 다양화: 기존 randomTitle 활용
   const title = randomTitle(region, keyword);
   const dateStr = new Date().toISOString().split('T')[0];
 
-  console.log(`\n✍️ (${index + 1}/2) 글 생성: ${title}`);
+  console.log(`\n✍️ (${index + 1}/2) 글 생성 중... [${region} ${keyword}]`);
 
-  // 1) 글 내용 (gpt-5.1, Markdown)
-  const completion = await client.responses.create({
-    model: 'gpt-5.1',
-    input: `
-너는 "전국모바일"이라는 실제 폰테크 업체 운영자라고 가정하고,
-네이버 블로그 스타일로 "${title}" 주제를 설명하는 글을 써줘.
+  // 랜덤 톤/구조/잡담 선택
+  const persona = pick(PERSONAS);
+  const template = pick(TEMPLATES);
+  const noise = pick(HUMAN_NOISE);
 
-전반 톤/스타일:
-- 실제 사장이 상담 후 정리해서 올리는 네이버 블로그 글 느낌
-- "안녕하세요, 전국모바일입니다" 로 시작
-- 존댓말 위주, 중간중간 "솔직히 말해서", "이 부분은 진짜 중요해요" 같은 가벼운 표현 허용
-- 광고 문구보다는 실제 상담 기준으로 차분하게 설명
-- 같은 문장/표현을 반복하지 말고, 매 문단에 지역(${region}) 맥락을 1개 이상 녹여서 인간적으로 서술
-- 도입부는 아래 중 임의 선택: (1) 당일 상담 후기, (2) 한 명의 사례 스토리, (3) 체크리스트 안내, (4) 자주 묻는 질문 1~2개를 먼저 던지는 형태
-- "한 번에 정리" 같은 상투적 표현, 뻔한 결론 문구 금지. 매 섹션 문장 패턴을 다르게.
+  // 프롬프트 엔지니어링 강화
+  const systemPrompt = `
+당신은 "전국모바일"이라는 업체의 블로그 운영자입니다.
+반드시 아래 설정된 "페르소나"에 빙의하여 글을 작성하세요.
 
-필수 구성(꼭 이 순서/소제목 구조로 작성):
-## 4. 진행 구조 (상담부터 현금 지급까지)
-- 1) 간단 상담 및 조건 확인 (실제 질문 2~3개 예시 포함)
-- 2) 통신사/요금제/약정 조건 설명 (지역 ${region} 사례 한 줄 포함)
-- 3) 개통 진행 (실제 현장 느낌 한 줄)
-- 4) 기기/회선 사용권 이전
-- 5) 현금 지급
-- 각 단계마다 고객이 꼭 알아야 할 포인트를 1~3문단씩 설명
+[페르소나 설정]
+- 스타일: ${persona.name}
+- 말투: ${persona.tone}
+- 절대 "AI가 쓴 글"처럼 보이면 안 됨. 접속사(그리고, 그래서, 또한)를 과도하게 쓰지 말고, 구어체로 자연스럽게 끊어칠 것.
+- 문단 길이: 길었다가 짧았다가 불규칙하게 작성 (모든 문단이 3~4줄이면 기계 같음).
 
-## 5. 장점과 단점, 꼭 알아야 할 리스크
-- 장점 2~3가지
-- 단점/리스크 3~4가지 (연체, 신용도 하락, 통신비 부담, 중도해지 위약금 등)
-- ${region} 예시를 1회 이상 자연스럽게 섞어서 설명
-- 장점과 단점 문장 패턴이 겹치지 않도록 표현을 바꿀 것
+[글 작성 규칙]
+1. 형식: Markdown (소제목은 ## 사용)
+2. 지역: "${region}" (문맥에 맞게 3~4회 자연스럽게 언급, 억지스럽게 넣지 말 것)
+3. 키워드: "${keyword}" (본문 전체에 걸쳐 4~5회 분산 배치)
+4. 금지어: "소개합니다", "알아보겠습니다", "결론적으로", "종합해보면" (AI 티나는 상투적 표현 금지)
+5. 연락처: 010-8290-9536 / 카톡 상담 (글 중후반부에 1회 자연스럽게 노출)
+  `;
 
-## 6. 이런 분들은 진행을 말립니다
-- 진행을 말리는 케이스를 3~5가지로 정리
-- "이미 통신비 연체 중인 분", "고정 수입이 거의 없는 상태", "당장 크게 한 번만 받자" 같은 패턴 포함
-- 각 케이스마다 짧은 이유/근거를 붙여서 기계적으로 보이지 않게 작성
+  const userPrompt = `
+주제: "${title}"
+글의 구성 타입: ${template.type}
+작성 지침: ${template.instructions}
 
-## 7. 마무리 및 상담 안내
-- 오늘 내용 핵심을 2~3문단으로 다시 요약 (앞 문단과 다른 표현 사용)
-- 무리한 진행은 말리고, 조건이 맞을 때만 신중하게 보라는 메시지 포함
-- 마지막 문단에만 자연스럽게 상담 안내 멘트 추가
+[포함할 내용]
+1. 도입부: "${noise}" 라는 멘트를 변형해서 자연스럽게 시작할 것.
+2. 본문: 폰테크/가개통/비대면 진행 시 절차, 주의할 점(사기 예방), 장단점을 다루되, 
+   목차 번호(1, 2, 3...)를 매번 똑같이 쓰지 말고 상황에 맞춰 자유롭게 구성해.
+   (예: 어떤 글은 "주의사항"이 먼저, 어떤 글은 "진행방법"이 먼저)
+3. 마무리: ${persona.ending} 멘트 느낌으로 끝맺음.
 
-세부 조건:
-- 전체 분량: 대략 1200~2000자 정도 (너무 길게 쓰지 말 것)
-- 형식: 마크다운(Markdown) 사용, 위 소제목들은 H2(##) 로 그대로 사용
-- 지역 "${region}" 최소 3회 자연스럽게 등장
-- 키워드 "${keyword}" 최소 5회 자연스럽게 섞어서 사용
-- "폰테크" 구조 설명 + 장단점 + 리스크(연체, 신용도, 통신비 부담) 반드시 포함
-- 전화번호 "010-8290-9536" 정확히 1회 포함 (마지막 섹션 근처에서 자연스럽게)
-- "카카오톡" 또는 "카톡 상담" 문구 1회 포함 (마지막 섹션 근처에서 자연스럽게)
-- 이미지, 사진, 썸네일 언급은 절대 하지 말 것
-- "AI", "챗GPT", "언어모델" 같은 표현 금지
-- 제목(${title})을 그대로 본문에 반복하지 말고, 자연스럽게 풀어서 설명
-- 문장/단락을 복사-붙여넣기처럼 보이지 않게, 접속사와 어조를 섞어서 다양하게 작성
-`,
-  });
+위 지침을 바탕으로 네이버 블로그 포스팅 하나를 완성해줘.
+`;
 
-  const mdText = completion.output_text;
-  // 2) 이미지 생성 (Hero, Mid, Bottom - 총 3장)
-  const images = await generateImages(keyword, region);
-  const heroInfo = images[0]
-    ? await saveThumbnail(images[0], `post-${Date.now()}-hero`)
-    : null;
-  const midInfo = images[1]
-    ? await saveThumbnail(images[1], `post-${Date.now()}-mid`)
-    : null;
-  console.log(`📸 이미지 생성 완료: Hero, Mid 생성됨`);
+  try {
+    // 글 내용 생성 (gpt-4o)
+    const completion = await client.chat.completions.create({
+      model: 'gpt-4o',
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userPrompt },
+      ],
+      temperature: 0.8,
+      presence_penalty: 0.6,
+      frequency_penalty: 0.3,
+    });
 
-  // Markdown 본문 HTML 변환
-  const { html: bodyHtml, summary: postSummary } = convertToHTML(mdText);
-  // 4) HTML 본문 장식 - Section 5 위에 AI 이미지(midInfo) 사용
-  const decoratedHtml = decorateContent(bodyHtml, {
-    region,
-    keyword,
-    inlineImage: midInfo ? midInfo.full : null, // 2번째 AI 이미지를 "5. 장점" 위에 배치
-  });
-  const contentHTML = decoratedHtml;
-
-  // Bottom 이미지는 3번째 생성된 이미지가 있으면 사용, 없으면 기존 로직(갤러리) fallback
-  // 하지만 generateImages(n=3)으로 늘렸으므로 images[2]가 존재할 것임.
-  let bottomInfo = null;
-  if (images[2]) {
-    bottomInfo = await saveThumbnail(images[2], `post-${Date.now()}-bottom`);
-  }
-
-  // 3) 썸네일 (hero 기준)
-  // 파일명이 덮어씌워지는 문제를 방지하기 위해 각 글에 고유 ID(타임스탬프)를 사용
-  const uid = `${dateStr}-${Date.now()}`;
-
-  let thumbMeta = null;
-
-  if (heroInfo) {
-    try {
-      thumbMeta = await saveThumbnail(
-        heroInfo.full || images[0],
-        `${uid}-${ensureAsciiSlug(region, 'region')}-${ensureAsciiSlug(
-          keyword,
-          'keyword'
-        )}`
-      );
-    } catch (e) {
-      console.warn('⚠ 썸네일 생성 실패:', e.message);
+    const mdText = completion?.choices?.[0]?.message?.content?.trim();
+    if (!mdText) {
+      throw new Error('빈 응답 수신');
     }
+
+    // 이미지 생성 (Hero, Mid, Bottom)
+    const images = await generateImages(keyword, region);
+
+    const heroInfo = images[0]
+      ? await saveThumbnail(images[0], `post-${Date.now()}-hero`)
+      : null;
+    const midInfo = images[1]
+      ? await saveThumbnail(images[1], `post-${Date.now()}-mid`)
+      : null;
+    let bottomInfo = null;
+    if (images[2]) {
+      bottomInfo = await saveThumbnail(images[2], `post-${Date.now()}-bottom`);
+    }
+
+    // Markdown → HTML 변환 + 장식
+    const { html: bodyHtml, summary: postSummary } = convertToHTML(mdText);
+    const decoratedHtml = decorateContent(bodyHtml, {
+      region,
+      keyword,
+      inlineImage: midInfo ? midInfo.full : null,
+    });
+
+    const uid = `${dateStr}-${Date.now()}`;
+    const slugRegion = ensureAsciiSlug(region, 'region');
+    const slugKeyword = ensureAsciiSlug(keyword, 'keyword');
+    const fileName = `${uid}-${slugRegion}-${slugKeyword}.html`;
+    const canonicalPath = `/blog/${fileName}`;
+
+    // 썸네일 생성 (Hero 기준)
+    let thumbMeta = null;
+    if (heroInfo) {
+      try {
+        thumbMeta = await saveThumbnail(
+          heroInfo.full || images[0],
+          `${uid}-${slugRegion}-${slugKeyword}`
+        );
+      } catch (e) {
+        console.warn('⚠ 썸네일 생성 실패:', e.message);
+      }
+    }
+
+    const heroWebp = thumbMeta ? thumbMeta.full : heroInfo?.full || null;
+    const thumbUrlRel = thumbMeta?.thumb || heroInfo?.thumb || '/assets/img/og-banner.png';
+    const bottomImg = bottomInfo ? bottomInfo.full : await pickStaticGalleryImage();
+
+    // 태그 및 관련 글
+    const tags = Array.from(new Set([keyword, region, '폰테크', '박스폰', '가개통']));
+    const related = getRelated(postsMeta, region, keyword, 6);
+
+    const finalHTML = generateHTML({
+      title,
+      date: dateStr,
+      region,
+      keyword,
+      content: decoratedHtml,
+      heroImg: heroInfo ? heroInfo.full : null,
+      midImg: null,
+      bottomImg,
+      canonicalPath,
+      thumbUrl: thumbUrlRel,
+      tags,
+      relatedPosts: related,
+      faqData: [],
+      summary: postSummary,
+    });
+
+    await fs.ensureDir(BLOG_DIR);
+    await fs.writeFile(path.join(BLOG_DIR, fileName), finalHTML, 'utf8');
+
+    console.log(`✅ 글 생성 완료 → ${fileName} (컨셉: ${persona.name} / ${template.type})`);
+
+    postsMeta.unshift({
+      fileName,
+      url: canonicalPath,
+      title,
+      date: dateStr,
+      region,
+      keyword,
+      tags,
+      thumb: thumbUrlRel,
+      hero: heroWebp || thumbUrlRel || DEFAULT_IMAGE,
+    });
+  } catch (error) {
+    console.error('❌ 글 생성 중 에러 발생:', error);
   }
-
-  const heroWebp = thumbMeta ? thumbMeta.full : heroInfo?.full || null;
-  const midWebp = midInfo ? midInfo.full : null;
-
-  // 썸네일/OG 모두 도메인 없이 상대 경로만 사용
-  const thumbUrlRel = (thumbMeta && thumbMeta.thumb) || heroInfo?.thumb || '/assets/img/og-banner.png';
-
-  // 4) 하단 갤러리용 정적 이미지 1장
-  const bottomImg = await pickStaticGalleryImage();
-
-  // 5) 태그 / 관련 글
-  const tags = Array.from(
-    new Set([keyword, region, '폰테크', '비대면개통', '미납요금대납'])
-  );
-  const related = getRelated(postsMeta, region, keyword, 6);
-
-  const slugRegion = ensureAsciiSlug(region, 'region');
-  const slugKeyword = ensureAsciiSlug(keyword, 'keyword');
-  const fileName = `${uid}-${slugRegion}-${slugKeyword}.html`;
-  const canonicalPath = `/blog/${fileName}`;
-
-  // 5) HTML 조합 - Bottom에는 3번째 AI 이미지 사용
-  const faqData = [];
-
-  const finalHTML = generateHTML({
-    title,
-    date: dateStr,
-    region,
-    keyword,
-    content: contentHTML,
-    // 본문에서는 WebP만 사용 (SEO/용량 최적화)
-    heroImg: heroInfo.full,
-    midImg: null, // midImg는 decorateContent로 본문 중간에 넣었으므로 중복 제거
-    bottomImg: bottomInfo ? bottomInfo.full : bottomImg, // 3번째 AI 이미지가 없으면 정적 갤러리 사용
-    canonicalPath,
-    thumbUrl: thumbUrlRel,
-    tags,
-    relatedPosts: related,
-    faqData: faqData, // 동적 FAQ 전달
-    summary: postSummary, // 메타 설명을 위한 요약문 전달
-  });
-
-  await fs.ensureDir(BLOG_DIR);
-  await fs.writeFile(path.join(BLOG_DIR, fileName), finalHTML, 'utf8');
-
-  console.log(`✅ 글 생성 완료 → ${fileName}`);
-
-  // 메타 추가
-  postsMeta.unshift({
-    fileName,
-    url: canonicalPath,
-    title,
-    date: dateStr,
-    region,
-    keyword,
-    tags,
-    thumb: thumbUrlRel,
-    hero: heroWebp || thumbUrlRel || DEFAULT_IMAGE,
-  });
 }
 
 // --------------------------------------------------
