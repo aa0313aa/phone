@@ -642,18 +642,6 @@ ${bodyHtml}
 function decorateContent(html, { region, keyword, inlineImage }) {
   let output = html || '';
 
-  const bizCardBlock = `
-<div class="biz-card">
-  <img src="/assets/img/blog/명함.png" alt="전국모바일 상담 명함">
-</div>`;
-
-  const section4Key = '<h2>4.';
-  if (output.includes(section4Key) && !output.includes('class="biz-card"')) {
-    output = output.replace(section4Key, `${bizCardBlock}\n${section4Key}`);
-  } else if (!output.includes('class="biz-card"')) {
-    output = `${output}\n${bizCardBlock}`;
-  }
-
   if (inlineImage) {
     const inlineAlt = `${region} ${keyword} 진행 참고 이미지`;
     const inlineBlock = `
@@ -906,7 +894,7 @@ async function generateSinglePost(index, postsMeta) {
       throw new Error('빈 응답 수신');
     }
 
-    // 이미지 생성 (Hero, Mid, Bottom)
+    // 이미지 생성 (Hero, Mid)
     const images = await generateImages(keyword, region);
 
     const heroInfo = images[0]
@@ -915,10 +903,6 @@ async function generateSinglePost(index, postsMeta) {
     const midInfo = images[1]
       ? await saveThumbnail(images[1], `post-${Date.now()}-mid`)
       : null;
-    let bottomInfo = null;
-    if (images[2]) {
-      bottomInfo = await saveThumbnail(images[2], `post-${Date.now()}-bottom`);
-    }
 
     // Markdown → HTML 변환 + 장식
     const { html: bodyHtml, summary: postSummary } = convertToHTML(mdText);
@@ -949,7 +933,7 @@ async function generateSinglePost(index, postsMeta) {
 
     const heroWebp = thumbMeta ? thumbMeta.full : heroInfo?.full || null;
     const thumbUrlRel = thumbMeta?.thumb || heroInfo?.thumb || '/assets/img/og-banner.png';
-    const bottomImg = bottomInfo ? bottomInfo.full : await pickStaticGalleryImage();
+    const bottomImg = null; // 하단 갤러리/추가 이미지는 사용하지 않음
 
     // 태그 및 관련 글
     const tags = Array.from(new Set([keyword, region, '폰테크', '박스폰', '가개통']));
