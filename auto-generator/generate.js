@@ -840,18 +840,23 @@ async function generateSinglePost(index, postsMeta) {
   const mdText = completion.output_text;
   // 2) 이미지 생성 (Hero, Mid, Bottom - 총 3장)
   const images = await generateImages(keyword, region);
-  const heroInfo = await saveThumbnail(images[0], `post-${Date.now()}-hero`);
-  const midInfo = await saveThumbnail(images[1], `post-${Date.now()}-mid`);
+  const heroInfo = images[0]
+    ? await saveThumbnail(images[0], `post-${Date.now()}-hero`)
+    : null;
+  const midInfo = images[1]
+    ? await saveThumbnail(images[1], `post-${Date.now()}-mid`)
+    : null;
   console.log(`📸 이미지 생성 완료: Hero, Mid 생성됨`);
 
   // Markdown 본문 HTML 변환
-  const { html: bodyHtml, summary: postSummary } = convertToHTML(contentBody);
+  const { html: bodyHtml, summary: postSummary } = convertToHTML(mdText);
   // 4) HTML 본문 장식 - Section 5 위에 AI 이미지(midInfo) 사용
   const decoratedHtml = decorateContent(bodyHtml, {
     region,
     keyword,
     inlineImage: midInfo ? midInfo.full : null, // 2번째 AI 이미지를 "5. 장점" 위에 배치
   });
+  const contentHTML = decoratedHtml;
 
   // Bottom 이미지는 3번째 생성된 이미지가 있으면 사용, 없으면 기존 로직(갤러리) fallback
   // 하지만 generateImages(n=3)으로 늘렸으므로 images[2]가 존재할 것임.
@@ -864,10 +869,12 @@ async function generateSinglePost(index, postsMeta) {
   // 파일명이 덮어씌워지는 문제를 방지하기 위해 각 글에 고유 ID(타임스탬프)를 사용
   const uid = `${dateStr}-${Date.now()}`;
 
-  if (heroPng) {
+  let thumbMeta = null;
+
+  if (heroInfo) {
     try {
       thumbMeta = await saveThumbnail(
-        heroPng, // 로컬 PNG 기반으로 WebP/썸네일 생성
+        heroInfo.full || images[0],
         `${uid}-${ensureAsciiSlug(region, 'region')}-${ensureAsciiSlug(
           keyword,
           'keyword'
@@ -878,12 +885,11 @@ async function generateSinglePost(index, postsMeta) {
     }
   }
 
-  const heroWebp = thumbMeta ? thumbMeta.full : null;
-  // 두 번째 이미지는 PNG 그대로 본문 하단에 사용
-  const midWebp = midPng;
+  const heroWebp = thumbMeta ? thumbMeta.full : heroInfo?.full || null;
+  const midWebp = midInfo ? midInfo.full : null;
 
   // 썸네일/OG 모두 도메인 없이 상대 경로만 사용
-  const thumbUrlRel = thumbMeta ? thumbMeta.thumb : '/assets/img/og-banner.png';
+  const thumbUrlRel = (thumbMeta && thumbMeta.thumb) || heroInfo?.thumb || '/assets/img/og-banner.png';
 
   // 4) 하단 갤러리용 정적 이미지 1장
   const bottomImg = await pickStaticGalleryImage();
@@ -900,6 +906,8 @@ async function generateSinglePost(index, postsMeta) {
   const canonicalPath = `/blog/${fileName}`;
 
   // 5) HTML 조합 - Bottom에는 3번째 AI 이미지 사용
+  const faqData = [];
+
   const finalHTML = generateHTML({
     title,
     date: dateStr,
@@ -909,7 +917,7 @@ async function generateSinglePost(index, postsMeta) {
     // 본문에서는 WebP만 사용 (SEO/용량 최적화)
     heroImg: heroInfo.full,
     midImg: null, // midImg는 decorateContent로 본문 중간에 넣었으므로 중복 제거
-    bottomImg: bottomInfo ? bottomInfo.full : null, // 3번째 AI 이미지
+    bottomImg: bottomInfo ? bottomInfo.full : bottomImg, // 3번째 AI 이미지가 없으면 정적 갤러리 사용
     canonicalPath,
     thumbUrl: thumbUrlRel,
     tags,
