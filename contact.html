@@ -386,15 +386,28 @@
         function renderRecent() {
           const listEl = document.getElementById('recentSubmissions');
           if (!listEl) return;
+
           const items = JSON.parse(
             localStorage.getItem('recentReservations') || '[]'
           );
-          listEl.innerHTML = items
-            .map(
-              (i) =>
-                `<div class="border rounded p-2 bg-body-tertiary">${i.time} · ${i.name} / ${i.type}<br><span class="text-secondary">${i.phone}</span></div>`
-            )
-            .join('');
+
+          // 텍스트 노드로만 렌더링해 XSS를 방지
+          listEl.replaceChildren();
+          for (const i of items) {
+            const row = document.createElement('div');
+            row.className = 'border rounded p-2 bg-body-tertiary';
+
+            const line1 = document.createElement('div');
+            line1.textContent = `${i.time} · ${i.name} / ${i.type}`;
+
+            const line2 = document.createElement('span');
+            line2.className = 'text-secondary';
+            line2.textContent = i.phone;
+
+            row.appendChild(line1);
+            row.appendChild(line2);
+            listEl.appendChild(row);
+          }
         }
         renderRecent();
 
