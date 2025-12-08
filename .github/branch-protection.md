@@ -14,6 +14,7 @@ Branch protection recommendations for `main`
    - Use Organization-level "Push protection" if available to block pushes containing secrets
 
 Check list after enabling:
+
 - Code scanning (CodeQL) appears as a required status check on PRs
 - Dependabot PRs are created and assigned reviewers
 - Secret scanning alerts appear in Security → Secret scanning alerts

@@ -15,19 +15,19 @@
 // ✔ index.html 최신 글 3개 자동 반영
 // --------------------------------------------------
 
-import "dotenv/config";
-import fs from "fs-extra";
-import path from "path";
-import { fileURLToPath } from "url";
-import slugify from "slugify";
-import sharp from "sharp";
-import OpenAI from "openai";
-import { marked } from "marked";
+import 'dotenv/config';
+import fs from 'fs-extra';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import slugify from 'slugify';
+import sharp from 'sharp';
+import OpenAI from 'openai';
+import { marked } from 'marked';
 
-import { KEYWORDS } from "./keywords.js";
-import { REGIONS } from "./regions.js";
-import { generateImages } from "../modules/image_gen.js";
-import { generateHTML } from "./template.js";
+import { KEYWORDS } from './keywords.js';
+import { REGIONS } from './regions.js';
+import { generateImages } from '../modules/image_gen.js';
+import { generateHTML } from './template.js';
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -36,51 +36,51 @@ const client = new OpenAI({
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const ROOT_DIR = path.join(__dirname, "..");
-const BLOG_DIR = path.join(ROOT_DIR, "blog");
-const TAG_DIR = path.join(ROOT_DIR, "tag");
-const ASSET_BLOG_DIR = path.join(ROOT_DIR, "assets", "blog");
-const GALLERY_DIR = path.join(ROOT_DIR, "assets", "gallery");
-const INDEX_HTML = path.join(ROOT_DIR, "index.html");
-const SITEMAP_XML = path.join(ROOT_DIR, "sitemap.xml");
-const POSTS_META_JSON = path.join(BLOG_DIR, "posts-meta.json");
+const ROOT_DIR = path.join(__dirname, '..');
+const BLOG_DIR = path.join(ROOT_DIR, 'blog');
+const TAG_DIR = path.join(ROOT_DIR, 'tag');
+const ASSET_BLOG_DIR = path.join(ROOT_DIR, 'assets', 'blog');
+const GALLERY_DIR = path.join(ROOT_DIR, 'assets', 'gallery');
+const INDEX_HTML = path.join(ROOT_DIR, 'index.html');
+const SITEMAP_XML = path.join(ROOT_DIR, 'sitemap.xml');
+const POSTS_META_JSON = path.join(BLOG_DIR, 'posts-meta.json');
 
-const BASE_URL = "https://폰테크.shop";
-const DEFAULT_IMAGE = "/assets/img/og-banner.png";
+const BASE_URL = 'https://폰테크.shop';
+const DEFAULT_IMAGE = '/assets/img/og-banner.png';
 const STATIC_ROUTES = [
-  { path: "/", changefreq: "daily", priority: "1.0" },
-  { path: "/index.html", changefreq: "daily", priority: "0.9" },
-  { path: "/services.html", changefreq: "weekly", priority: "0.9" },
-  { path: "/information.html", changefreq: "weekly", priority: "0.8" },
-  { path: "/about.html", changefreq: "monthly", priority: "0.6" },
-  { path: "/contact.html", changefreq: "daily", priority: "0.9" },
-  { path: "/phonetech-guide.html", changefreq: "weekly", priority: "0.8" },
-  { path: "/phonetech-tips.html", changefreq: "weekly", priority: "0.7" },
-  { path: "/blog/index.html", changefreq: "daily", priority: "0.7" },
+  { path: '/', changefreq: 'daily', priority: '1.0' },
+  { path: '/index.html', changefreq: 'daily', priority: '0.9' },
+  { path: '/services.html', changefreq: 'weekly', priority: '0.9' },
+  { path: '/information.html', changefreq: 'weekly', priority: '0.8' },
+  { path: '/about.html', changefreq: 'monthly', priority: '0.6' },
+  { path: '/contact.html', changefreq: 'daily', priority: '0.9' },
+  { path: '/phonetech-guide.html', changefreq: 'weekly', priority: '0.8' },
+  { path: '/phonetech-tips.html', changefreq: 'weekly', priority: '0.7' },
+  { path: '/blog/index.html', changefreq: 'daily', priority: '0.7' },
 ];
 
 const INLINE_DECOR_IMAGES = [
-  "/assets/img/blog/1.png",
-  "/assets/img/blog/2.png",
-  "/assets/img/blog/3.png",
-  "/assets/img/blog/4.png",
+  '/assets/img/blog/1.png',
+  '/assets/img/blog/2.png',
+  '/assets/img/blog/3.png',
+  '/assets/img/blog/4.png',
 ];
 
-function escapeXml(value = "") {
+function escapeXml(value = '') {
   return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&apos;");
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
 }
 
 function ensureAsciiSlug(value, fallbackPrefix) {
-  const base = (value ?? "").toString().trim();
+  const base = (value ?? '').toString().trim();
   if (!base) return fallbackPrefix;
   const normalized = slugify(base, { lower: true, strict: true });
   if (normalized) return normalized;
-  const hashed = Buffer.from(base, "utf8").toString("hex").slice(0, 8) || "id";
+  const hashed = Buffer.from(base, 'utf8').toString('hex').slice(0, 8) || 'id';
   return `${fallbackPrefix}-${hashed}`;
 }
 
@@ -120,19 +120,23 @@ async function saveThumbnail(localImgPath, slugBase) {
   await fs.ensureDir(ASSET_BLOG_DIR);
 
   // heroImg는 "/assets/img/blog/xxx.png" 형태이므로, 루트 기준 실제 경로로 변환
-  const normalized = localImgPath.replace(/^\//, "");
+  const normalized = localImgPath.replace(/^\//, '');
   const absPngPath = path.join(ROOT_DIR, normalized);
 
   let buf;
   try {
     buf = await fs.readFile(absPngPath);
   } catch (e) {
-    console.warn("⚠ 로컬 이미지 읽기 실패, 기본 배너로 대체:", absPngPath, e.message);
-    const fallbackPath = path.join(ROOT_DIR, DEFAULT_IMAGE.replace(/^\//, ""));
+    console.warn(
+      '⚠ 로컬 이미지 읽기 실패, 기본 배너로 대체:',
+      absPngPath,
+      e.message
+    );
+    const fallbackPath = path.join(ROOT_DIR, DEFAULT_IMAGE.replace(/^\//, ''));
     try {
       buf = await fs.readFile(fallbackPath);
     } catch (fallbackErr) {
-      console.warn("⚠ 기본 배너 읽기 실패:", fallbackPath, fallbackErr.message);
+      console.warn('⚠ 기본 배너 읽기 실패:', fallbackPath, fallbackErr.message);
       return null;
     }
   }
@@ -145,7 +149,7 @@ async function saveThumbnail(localImgPath, slugBase) {
 
   await sharp(buf).webp({ quality: 90 }).toFile(mainPath);
   await sharp(buf)
-    .resize(480, 300, { fit: "cover" })
+    .resize(480, 300, { fit: 'cover' })
     .webp({ quality: 85 })
     .toFile(thumbPath);
 
@@ -175,7 +179,7 @@ async function savePostsMeta(meta) {
     if (p.fileName) map[p.fileName] = p;
   }
   const arr = Object.values(map).sort((a, b) =>
-    (b.date || "").localeCompare(a.date || "")
+    (b.date || '').localeCompare(a.date || '')
   );
   await fs.writeJson(POSTS_META_JSON, arr, { spaces: 2 });
   return arr;
@@ -190,7 +194,7 @@ function buildTagMap(posts) {
   for (const p of posts) {
     const tags = Array.isArray(p.tags) ? p.tags : [];
     for (const tag of tags) {
-      const slug = ensureAsciiSlug(tag, "tag");
+      const slug = ensureAsciiSlug(tag, 'tag');
       if (!slug) continue;
       if (!map[slug]) map[slug] = { tag, posts: [] };
       map[slug].posts.push(p);
@@ -211,10 +215,10 @@ async function updateBlogIndex(posts) {
       const tagHtml =
         p.tags && p.tags.length
           ? `<div class="card-tags">${p.tags
-              .slice(0, 3)
-              .map((t) => `<span class="tag-chip">#${t}</span>`)
-              .join("")}</div>`
-          : "";
+            .slice(0, 3)
+            .map((t) => `<span class="tag-chip">#${t}</span>`)
+            .join('')}</div>`
+          : '';
 
       return `
       <article class="card-item">
@@ -230,28 +234,30 @@ async function updateBlogIndex(posts) {
         </a>
       </article>`;
     })
-    .join("");
+    .join('');
 
   const schema = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: "폰테크 정보 블로그",
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: '폰테크 정보 블로그',
     description:
-      "전국모바일이 실제 상담을 정리한 폰테크 · 비대면개통 · 미납요금대납 정보 모음",
+      '전국모바일이 실제 상담을 정리한 폰테크 · 비대면개통 · 미납요금대납 정보 모음',
     mainEntity: {
-      "@type": "ItemList",
+      '@type': 'ItemList',
       itemListElement: posts.slice(0, 12).map((p, idx) => ({
-        "@type": "ListItem",
+        '@type': 'ListItem',
         position: idx + 1,
         url: `${BASE_URL}${p.url}`,
         name: p.title,
-        image: p.thumb ? `${BASE_URL}${p.thumb}` : `${BASE_URL}${DEFAULT_IMAGE}`,
+        image: p.thumb
+          ? `${BASE_URL}${p.thumb}`
+          : `${BASE_URL}${DEFAULT_IMAGE}`,
         datePublished: p.date,
       })),
     },
   };
 
-  const schemaJson = JSON.stringify(schema).replace(/</g, "\\u003c");
+  const schemaJson = JSON.stringify(schema).replace(/</g, '\\u003c');
 
   const html = `<!doctype html>
 <html lang="ko">
@@ -404,8 +410,8 @@ body{
 </html>`;
 
   await fs.ensureDir(BLOG_DIR);
-  await fs.writeFile(path.join(BLOG_DIR, "index.html"), html, "utf8");
-  console.log("📄 /blog/index.html 생성 완료");
+  await fs.writeFile(path.join(BLOG_DIR, 'index.html'), html, 'utf8');
+  console.log('📄 /blog/index.html 생성 완료');
 }
 
 // --------------------------------------------------
@@ -425,11 +431,11 @@ async function generateTagPages(posts) {
           p.tags && p.tags.length
             ? `<div class="card-tags">
                 ${p.tags
-                  .slice(0, 3)
-                  .map((t) => `<span class="tag-chip">#${t}</span>`)
-                  .join("")}
+              .slice(0, 3)
+              .map((t) => `<span class="tag-chip">#${t}</span>`)
+              .join('')}
                </div>`
-            : "";
+            : '';
 
         return `
         <article class="tag-card">
@@ -445,7 +451,7 @@ async function generateTagPages(posts) {
           </a>
         </article>`;
       })
-      .join("");
+      .join('');
 
     const html = `<!doctype html>
 <html lang="ko">
@@ -549,10 +555,10 @@ h2{
 </body>
 </html>`;
 
-    await fs.writeFile(path.join(TAG_DIR, `${slug}.html`), html, "utf8");
+    await fs.writeFile(path.join(TAG_DIR, `${slug}.html`), html, 'utf8');
   }
 
-  console.log("🏷 태그 페이지 생성 완료");
+  console.log('🏷 태그 페이지 생성 완료');
 }
 
 // --------------------------------------------------
@@ -560,35 +566,38 @@ h2{
 // --------------------------------------------------
 
 function extractSummary(text) {
-  const plain = text.replace(/\s+/g, " ").trim();
-  return plain.slice(0, 200) + (plain.length > 200 ? "..." : "");
+  const plain = text.replace(/\s+/g, ' ').trim();
+  return plain.slice(0, 200) + (plain.length > 200 ? '...' : '');
 }
 
 function convertToHTML(mdText) {
   const summary = extractSummary(mdText);
   const bodyHtml = marked(mdText);
 
-  return `
+  // HTML 내용에 요약상자를 포함
+  const fullHtml = `
 <div class="summary-box">
   <strong>이 글 한눈에 보기</strong>
   <p>${summary}</p>
 </div>
 ${bodyHtml}
 `;
+
+  return { html: fullHtml, summary };
 }
 
 function decorateContent(html, { region, keyword, inlineImage }) {
-  let output = html || "";
+  let output = html || '';
 
   const bizCardBlock = `
 <div class="biz-card">
   <img src="/assets/img/blog/명함.png" alt="전국모바일 상담 명함">
 </div>`;
 
-  const section4Key = "<h2>4.";
-  if (output.includes(section4Key) && !output.includes("class=\"biz-card\"")) {
+  const section4Key = '<h2>4.';
+  if (output.includes(section4Key) && !output.includes('class="biz-card"')) {
     output = output.replace(section4Key, `${bizCardBlock}\n${section4Key}`);
-  } else if (!output.includes("class=\"biz-card\"")) {
+  } else if (!output.includes('class="biz-card"')) {
     output = `${output}\n${bizCardBlock}`;
   }
 
@@ -598,7 +607,7 @@ function decorateContent(html, { region, keyword, inlineImage }) {
 <div class="section-img">
   <img src="${inlineImage}" alt="${inlineAlt}">
 </div>`;
-    const section5Key = "<h2>5.";
+    const section5Key = '<h2>5.';
     if (output.includes(section5Key)) {
       output = output.replace(section5Key, `${inlineBlock}\n${section5Key}`);
     }
@@ -619,12 +628,12 @@ function getRelated(posts, region, keyword, limit = 6) {
 
   const scored = posts.map((p) => {
     let score = 0;
-    const t = (p.title || "").toLowerCase();
+    const t = (p.title || '').toLowerCase();
     if (t.includes(rl)) score += 2;
     if (t.includes(kl)) score += 2;
     if (p.tags?.includes(region)) score += 1;
     if (p.tags?.includes(keyword)) score += 1;
-    if (p.tags?.includes("폰테크")) score += 0.5;
+    if (p.tags?.includes('폰테크')) score += 0.5;
     return { ...p, score };
   });
 
@@ -632,7 +641,7 @@ function getRelated(posts, region, keyword, limit = 6) {
     .filter((p) => p.score > 0)
     .sort((a, b) => {
       if (b.score !== a.score) return b.score - a.score;
-      return (b.date || "").localeCompare(a.date || "");
+      return (b.date || '').localeCompare(a.date || '');
     })
     .slice(0, limit);
 
@@ -644,7 +653,7 @@ function getRelated(posts, region, keyword, limit = 6) {
 // --------------------------------------------------
 
 async function updateSitemap(posts) {
-  const today = new Date().toISOString().split("T")[0];
+  const today = new Date().toISOString().split('T')[0];
   const tagMap = buildTagMap(posts);
 
   let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
@@ -671,7 +680,7 @@ async function updateSitemap(posts) {
     if (imgPath) {
       xml += `    <image:image>\n`;
       xml += `      <image:loc>${escapeXml(imgLoc)}</image:loc>\n`;
-      xml += `      <image:title>${escapeXml(post.title || "폰테크 상담 이미지")}</image:title>\n`;
+      xml += `      <image:title>${escapeXml(post.title || '폰테크 상담 이미지')}</image:title>\n`;
       xml += `    </image:image>\n`;
     }
     xml += `  </url>\n`;
@@ -688,8 +697,8 @@ async function updateSitemap(posts) {
 
   xml += `</urlset>`;
 
-  await fs.writeFile(SITEMAP_XML, xml, "utf8");
-  console.log("🗺 sitemap.xml 업데이트 완료");
+  await fs.writeFile(SITEMAP_XML, xml, 'utf8');
+  console.log('🗺 sitemap.xml 업데이트 완료');
 }
 
 // --------------------------------------------------
@@ -699,12 +708,12 @@ async function updateSitemap(posts) {
 async function updateHomeLatest(posts) {
   if (!(await fs.pathExists(INDEX_HTML))) return;
 
-  const html = await fs.readFile(INDEX_HTML, "utf8");
-  const START = "<!-- AUTO_LATEST_POSTS_START -->";
-  const END = "<!-- AUTO_LATEST_POSTS_END -->";
+  const html = await fs.readFile(INDEX_HTML, 'utf8');
+  const START = '<!-- AUTO_LATEST_POSTS_START -->';
+  const END = '<!-- AUTO_LATEST_POSTS_END -->';
 
   if (!html.includes(START) || !html.includes(END)) {
-    console.warn("⚠ index.html에 AUTO_LATEST_POSTS 마커 없음");
+    console.warn('⚠ index.html에 AUTO_LATEST_POSTS 마커 없음');
     return;
   }
 
@@ -717,7 +726,7 @@ async function updateHomeLatest(posts) {
   <span class="badge bg-light text-muted">${p.date}</span>
 </li>`
     )
-    .join("");
+    .join('');
 
   const block = `
 <section class="py-5 bg-white">
@@ -735,8 +744,12 @@ async function updateHomeLatest(posts) {
   const before = html.split(START)[0];
   const after = html.split(END)[1];
 
-  await fs.writeFile(INDEX_HTML, `${before}${START}${block}${END}${after}`, "utf8");
-  console.log("🏠 index.html 최신 글 업데이트 완료");
+  await fs.writeFile(
+    INDEX_HTML,
+    `${before}${START}${block}${END}${after}`,
+    'utf8'
+  );
+  console.log('🏠 index.html 최신 글 업데이트 완료');
 }
 
 // --------------------------------------------------
@@ -751,10 +764,10 @@ async function pickStaticGalleryImage() {
       await fs.ensureDir(GALLERY_DIR);
       const files = await fs.readdir(GALLERY_DIR);
       cachedGallery = files
-        .filter((f) => f.toLowerCase().endsWith(".webp"))
+        .filter((f) => f.toLowerCase().endsWith('.webp'))
         .map((f) => `/assets/gallery/${f}`);
     } catch (e) {
-      console.warn("⚠ 갤러리 폴더 읽기 실패:", e.message);
+      console.warn('⚠ 갤러리 폴더 읽기 실패:', e.message);
       cachedGallery = [];
     }
   }
@@ -770,13 +783,13 @@ async function generateSinglePost(index, postsMeta) {
   const region = pick(REGIONS);
   const keyword = pick(KEYWORDS);
   const title = randomTitle(region, keyword);
-  const dateStr = new Date().toISOString().split("T")[0];
+  const dateStr = new Date().toISOString().split('T')[0];
 
   console.log(`\n✍️ (${index + 1}/2) 글 생성: ${title}`);
 
   // 1) 글 내용 (gpt-5.1, Markdown)
   const completion = await client.responses.create({
-    model: "gpt-5.1",
+    model: 'gpt-5.1',
     input: `
 너는 "전국모바일"이라는 실제 폰테크 업체 운영자라고 가정하고,
 네이버 블로그 스타일로 "${title}" 주제를 설명하는 글을 써줘.
@@ -788,18 +801,6 @@ async function generateSinglePost(index, postsMeta) {
 - 광고 문구보다는 실제 상담 기준으로 차분하게 설명
 
 필수 구성(꼭 이 순서/소제목 구조로 작성):
-## 1. 인사와 글 목적
-- ${region} 지역 언급 포함 (최소 1회)
-- 오늘 글에서 무엇을 알려줄지 2~3문단으로 간단히 설명
-
-## 2. 폰테크란 무엇인가
-- "정식 통신사 개통(신규가입 또는 기기변경)을 통해 기기를 넘기고, 그 대가로 현금을 받는 구조" 라는 점을 설명
-- 대출/사채가 아니라 통신사 개통후 매매 구조라는 점을 강조
-
-## 3. 왜 폰테크를 이용하려 할까
-- ${keyword} 와 연결해서 사람들이 어떤 상황에서 폰테크를 찾는지 3~5가지 예시
-- 장점 위주로만 쓰지 말고, 현실적인 이유(자금이 급한 상황 등)를 함께 적기
-
 ## 4. 진행 구조 (상담부터 현금 지급까지)
 - 1) 간단 상담 및 조건 확인
 - 2) 통신사/요금제/약정 조건 설명
@@ -837,36 +838,43 @@ async function generateSinglePost(index, postsMeta) {
   });
 
   const mdText = completion.output_text;
-  const inlineDecorImg = pickInlineDecorImage();
-  const contentHTML = decorateContent(convertToHTML(mdText), {
+  // 2) 이미지 생성 (Hero, Mid, Bottom - 총 3장)
+  const images = await generateImages(keyword, region);
+  const heroInfo = await saveThumbnail(images[0], `post-${Date.now()}-hero`);
+  const midInfo = await saveThumbnail(images[1], `post-${Date.now()}-mid`);
+  console.log(`📸 이미지 생성 완료: Hero, Mid 생성됨`);
+
+  // Markdown 본문 HTML 변환
+  const { html: bodyHtml, summary: postSummary } = convertToHTML(contentBody);
+  // 4) HTML 본문 장식 - Section 5 위에 AI 이미지(midInfo) 사용
+  const decoratedHtml = decorateContent(bodyHtml, {
     region,
     keyword,
-    inlineImage: inlineDecorImg,
+    inlineImage: midInfo ? midInfo.full : null, // 2번째 AI 이미지를 "5. 장점" 위에 배치
   });
 
-  // 2) 이미지 2장 (OpenAI) - hero + middle
-  console.log("📸 이미지 생성 중…");
-  const imgs = await generateImages(keyword, region);
-  // OpenAI에서 받은 원본 PNG 경로 (hero)
-  const heroPng = imgs[0] || null;
-  const midPng = imgs[1] || null;
+  // Bottom 이미지는 3번째 생성된 이미지가 있으면 사용, 없으면 기존 로직(갤러리) fallback
+  // 하지만 generateImages(n=3)으로 늘렸으므로 images[2]가 존재할 것임.
+  let bottomInfo = null;
+  if (images[2]) {
+    bottomInfo = await saveThumbnail(images[2], `post-${Date.now()}-bottom`);
+  }
 
   // 3) 썸네일 (hero 기준)
   // 파일명이 덮어씌워지는 문제를 방지하기 위해 각 글에 고유 ID(타임스탬프)를 사용
   const uid = `${dateStr}-${Date.now()}`;
 
-  let thumbMeta = null;
   if (heroPng) {
     try {
       thumbMeta = await saveThumbnail(
         heroPng, // 로컬 PNG 기반으로 WebP/썸네일 생성
-        `${uid}-${ensureAsciiSlug(region, "region")}-${ensureAsciiSlug(
+        `${uid}-${ensureAsciiSlug(region, 'region')}-${ensureAsciiSlug(
           keyword,
-          "keyword"
+          'keyword'
         )}`
       );
     } catch (e) {
-      console.warn("⚠ 썸네일 생성 실패:", e.message);
+      console.warn('⚠ 썸네일 생성 실패:', e.message);
     }
   }
 
@@ -875,22 +883,23 @@ async function generateSinglePost(index, postsMeta) {
   const midWebp = midPng;
 
   // 썸네일/OG 모두 도메인 없이 상대 경로만 사용
-  const thumbUrlRel = thumbMeta ? thumbMeta.thumb : "/assets/img/og-banner.png";
+  const thumbUrlRel = thumbMeta ? thumbMeta.thumb : '/assets/img/og-banner.png';
 
   // 4) 하단 갤러리용 정적 이미지 1장
   const bottomImg = await pickStaticGalleryImage();
 
   // 5) 태그 / 관련 글
   const tags = Array.from(
-    new Set([keyword, region, "폰테크", "비대면개통", "미납요금대납"])
+    new Set([keyword, region, '폰테크', '비대면개통', '미납요금대납'])
   );
   const related = getRelated(postsMeta, region, keyword, 6);
 
-  const slugRegion = ensureAsciiSlug(region, "region");
-  const slugKeyword = ensureAsciiSlug(keyword, "keyword");
+  const slugRegion = ensureAsciiSlug(region, 'region');
+  const slugKeyword = ensureAsciiSlug(keyword, 'keyword');
   const fileName = `${uid}-${slugRegion}-${slugKeyword}.html`;
   const canonicalPath = `/blog/${fileName}`;
 
+  // 5) HTML 조합 - Bottom에는 3번째 AI 이미지 사용
   const finalHTML = generateHTML({
     title,
     date: dateStr,
@@ -898,17 +907,19 @@ async function generateSinglePost(index, postsMeta) {
     keyword,
     content: contentHTML,
     // 본문에서는 WebP만 사용 (SEO/용량 최적화)
-    heroImg: heroWebp,
-    midImg: midWebp,
-    bottomImg, // 정적 갤러리
+    heroImg: heroInfo.full,
+    midImg: null, // midImg는 decorateContent로 본문 중간에 넣었으므로 중복 제거
+    bottomImg: bottomInfo ? bottomInfo.full : null, // 3번째 AI 이미지
     canonicalPath,
     thumbUrl: thumbUrlRel,
     tags,
     relatedPosts: related,
+    faqData: faqData, // 동적 FAQ 전달
+    summary: postSummary, // 메타 설명을 위한 요약문 전달
   });
 
   await fs.ensureDir(BLOG_DIR);
-  await fs.writeFile(path.join(BLOG_DIR, fileName), finalHTML, "utf8");
+  await fs.writeFile(path.join(BLOG_DIR, fileName), finalHTML, 'utf8');
 
   console.log(`✅ 글 생성 완료 → ${fileName}`);
 
@@ -952,10 +963,10 @@ async function main() {
   await updateSitemap(postsMeta);
   await updateHomeLatest(postsMeta);
 
-  console.log("\n🎉 전체 2개 글 자동 생성 + 모든 페이지 업데이트 완료!\n");
+  console.log('\n🎉 전체 2개 글 자동 생성 + 모든 페이지 업데이트 완료!\n');
 }
 
 main().catch((err) => {
-  console.error("❌ 오류 발생:", err);
+  console.error('❌ 오류 발생:', err);
   process.exit(1);
 });

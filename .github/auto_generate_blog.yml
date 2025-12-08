@@ -3,11 +3,11 @@ name: Auto Generate Daily Blog
 on:
   schedule:
     # 한국 오전 11시 (11:00 KST = 02:00 UTC)
-    - cron: "0 2 * * *"
+    - cron: '0 2 * * *'
     # 한국 오후 9시 (21:00 KST = 12:00 UTC)
-    - cron: "0 12 * * *"
+    - cron: '0 12 * * *'
 
-  workflow_dispatch: {}  # 필요하면 수동 실행 가능
+  workflow_dispatch: {} # 필요하면 수동 실행 가능
 
 jobs:
   generate-blog:
@@ -26,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: '20'
 
       - name: Install dependencies
         run: |

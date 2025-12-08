@@ -1,34 +1,39 @@
 # Dependabot configuration: updates and security fixes
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/" # root package.json (if present)
+  - package-ecosystem: 'npm'
+    directory: '/' # root package.json (if present)
     schedule:
-      interval: "daily"
+      interval: 'daily'
     open-pull-requests-limit: 5
     # group all npm updates from root into one PR
     package-rules:
-      - match_package_patterns: ["*"]
-        match_update_types: ["version-update:semver-patch", "version-update:semver-minor", "version-update:semver-major"]
-        group_name: "all root npm updates"
+      - match_package_patterns: ['*']
+        match_update_types:
+          [
+            'version-update:semver-patch',
+            'version-update:semver-minor',
+            'version-update:semver-major',
+          ]
+        group_name: 'all root npm updates'
 
-  - package-ecosystem: "npm"
-    directory: "/auto-generator"
+  - package-ecosystem: 'npm'
+    directory: '/auto-generator'
     schedule:
-      interval: "daily"
+      interval: 'daily'
     open-pull-requests-limit: 5
     package-rules:
-      - match_package_patterns: ["*"]
-        group_name: "auto-generator npm updates"
+      - match_package_patterns: ['*']
+        group_name: 'auto-generator npm updates'
 
-  - package-ecosystem: "pip"
-    directory: "/tools"
+  - package-ecosystem: 'pip'
+    directory: '/tools'
     schedule:
-      interval: "daily"
+      interval: 'daily'
     open-pull-requests-limit: 5
     package-rules:
-      - match_package_patterns: ["*"]
-        group_name: "tools python updates"
+      - match_package_patterns: ['*']
+        group_name: 'tools python updates'
 
 # Notes:
 # - Dependabot will open security update PRs automatically when security patches are available.

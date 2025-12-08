@@ -1,11 +1,11 @@
-name: "CodeQL"
+name: 'CodeQL'
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ main ]
+    branches: [main]
   schedule:
     - cron: '0 3 * * *' # daily at 03:00 UTC
 
@@ -25,9 +25,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages:
-            - javascript
-            - python
+          languages: javascript
           # If you wish to specify queries, add them here:
           # queries: security-and-quality
 

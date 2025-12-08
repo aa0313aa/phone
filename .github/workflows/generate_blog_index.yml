@@ -2,7 +2,7 @@ name: Generate Blog Index
 
 on:
   workflow_run:
-    workflows: ["Auto Blog Posts"]
+    workflows: ['Auto Blog Posts']
     types:
       - completed
 

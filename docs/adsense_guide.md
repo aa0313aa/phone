@@ -6,9 +6,11 @@
 4. Replace `data-ad-slot` placeholders in HTML with your ad unit IDs.
 
 Where to insert:
-- Global script: in `index.html` head (already a placeholder meta exists). 
+
+- Global script: in `index.html` head (already a placeholder meta exists).
 - Unit slots: any `ins class="adsbygoogle"` elements; replace `data-ad-slot="REPLACE_ME"` with your numeric unit ID.
 
 Safety notes:
+
 - Make sure the domain submitted to AdSense is the punycode form.
 - Allow up to 48 hours for AdSense review and crawler recheck.

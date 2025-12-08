@@ -8,5 +8,6 @@
 4. Request indexing: open the URL inspection tool for each important URL and click "Request indexing".
 
 Notes:
+
 - Use punycode `xn--2p7b1pl7d.shop` for Adsense/Search Console to avoid verification/crawler issues.
 - DNS verification is fastest for domain properties and covers all subpaths.

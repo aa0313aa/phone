@@ -15,7 +15,7 @@ const mime = {
   '.jpeg': 'image/jpeg',
   '.svg': 'image/svg+xml',
   '.json': 'application/json; charset=utf-8',
-  '.ico': 'image/x-icon'
+  '.ico': 'image/x-icon',
 };
 
 function send404(res) {
