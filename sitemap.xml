@@ -2,57 +2,77 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://폰테크.shop/</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/index.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/services.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/information.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/about.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/contact.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/phonetech-guide.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/phonetech-tips.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/blog/index.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/blog/2025-12-09-1765239829471-region-ebb680ec-keyword-ed8fb0ed.html</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://폰테크.shop/assets/blog/2025-12-09-1765239829471-region-ebb680ec-keyword-ed8fb0ed.webp</image:loc>
+      <image:title>부산 폰테크 추천 진행 주의사항 정리</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/blog/2025-12-09-1765239758312-region-eb8ba8ec-keyword-ed8fb0ed.html</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://폰테크.shop/assets/blog/2025-12-09-1765239758312-region-eb8ba8ec-keyword-ed8fb0ed.webp</image:loc>
+      <image:title>단양 폰테크 안전 이용 최근 상담 사례</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://폰테크.shop/blog/2025-12-08-1765195919823-region-eab980ed-keyword-ed8fb0ed.html</loc>
@@ -386,247 +406,253 @@
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ed8fb0ed.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://폰테크.shop/tag/tag-eab980ed.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <loc>https://폰테크.shop/tag/tag-ebb680ec.html</loc>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ebb095ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-eab080ea.html</loc>
-    <lastmod>2025-12-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://폰테크.shop/tag/tag-ec9584ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://폰테크.shop/tag/tag-eab095eb.html</loc>
-    <lastmod>2025-12-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://폰테크.shop/tag/tag-ec868cec.html</loc>
-    <lastmod>2025-12-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://폰테크.shop/tag/tag-ec9b90ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://폰테크.shop/tag/tag-ed95b8eb.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-eb8ba8ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/tag/tag-eab980ed.html</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/tag/tag-ec9584ec.html</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/tag/tag-eab095eb.html</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/tag/tag-ec868cec.html</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/tag/tag-ec9b90ec.html</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/tag/tag-ed95b8eb.html</loc>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ebb984eb.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ebafb8eb.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ed9cb4eb.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ed839ceb.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-eab889ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ec9d98ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-eb8bb9ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ed919cec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ecb0bdec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-eab8b0ea.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-eab2bdea.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ed9994ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ec82acec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-eca084ea.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ec9881ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ecb698ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-eab491eb.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ec9588eb.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-eca095ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-eab5aceb.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ec9aa9ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ec84b1ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ec8ba0eb.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ebb681ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-eca1b0ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ec8898ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ec849cea.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-eb82a8ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ec8ba0ea.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ec9ca0ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ec9588ec.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
