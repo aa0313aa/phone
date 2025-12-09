@@ -894,7 +894,7 @@ async function generateSinglePost(index, postsMeta) {
       throw new Error('빈 응답 수신');
     }
 
-    // 이미지 생성 (Hero, Mid)
+    // 이미지 생성 (Hero, Mid, Bottom)
     const images = await generateImages(keyword, region);
 
     const heroInfo = images[0]
@@ -903,6 +903,10 @@ async function generateSinglePost(index, postsMeta) {
     const midInfo = images[1]
       ? await saveThumbnail(images[1], `post-${Date.now()}-mid`)
       : null;
+    let bottomInfo = null;
+    if (images[2]) {
+      bottomInfo = await saveThumbnail(images[2], `post-${Date.now()}-bottom`);
+    }
 
     // Markdown → HTML 변환 + 장식
     const { html: bodyHtml, summary: postSummary } = convertToHTML(mdText);
@@ -933,7 +937,7 @@ async function generateSinglePost(index, postsMeta) {
 
     const heroWebp = thumbMeta ? thumbMeta.full : heroInfo?.full || null;
     const thumbUrlRel = thumbMeta?.thumb || heroInfo?.thumb || '/assets/img/og-banner.png';
-    const bottomImg = null; // 하단 갤러리/추가 이미지는 사용하지 않음
+    const bottomImg = bottomInfo ? bottomInfo.full : await pickStaticGalleryImage();
 
     // 태그 및 관련 글
     const tags = Array.from(new Set([keyword, region, '폰테크', '박스폰', '가개통']));
@@ -946,7 +950,7 @@ async function generateSinglePost(index, postsMeta) {
       keyword,
       content: decoratedHtml,
       heroImg: heroInfo ? heroInfo.full : null,
-      midImg: null,
+      midImg: midInfo ? midInfo.full : null,
       bottomImg,
       canonicalPath,
       thumbUrl: thumbUrlRel,
