@@ -77,8 +77,8 @@
 
   <script>
   (function(){
-    // 설정: 서버 엔드포인트(POST/GET) - 배포한 Apps Script URL로 교체
-    const ENDPOINT = '';
+    // 설정: 서버 엔드포인트(POST/GET) - 로컬 Express 서버와 연동
+    const ENDPOINT = '/api/reservations';
     const WRITE_TOKEN = ''; // POST 보호 토큰 (선택)
 
     function parseDemo(){
