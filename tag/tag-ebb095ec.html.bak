@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>#박스폰 관련 글 모음 - 전국모바일</title>
+<meta name="description" content="박스폰 관련 폰테크, 비대면 개통, 미납요금대납 상담 사례 모음.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://폰테크.shop/tag/tag-ebb095ec.html">
+<style>
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR",sans-serif;
+  background:#f4f5f9;
+}
+.wrap{
+  max-width:1120px;
+  margin:0 auto;
+  padding:28px 16px 40px;
+}
+h1{
+  margin:0 0 6px;
+  font-size:1.8rem;
+}
+.desc{
+  font-size:.9rem;
+  color:#6b7280;
+  margin-bottom:18px;
+}
+.grid{
+  column-count:3;
+  column-gap:18px;
+}
+.tag-card{
+  break-inside:avoid;
+  margin-bottom:18px;
+}
+.tag-link{
+  display:block;
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  text-decoration:none;
+  color:#111827;
+  box-shadow:0 8px 22px rgba(15,23,42,.08);
+  transition:transform .16s ease, box-shadow .16s ease;
+}
+.tag-link:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 28px rgba(15,23,42,.16);
+}
+.thumb img{
+  width:100%;
+  display:block;
+}
+.body{
+  padding:14px 16px 14px;
+}
+.meta-date{
+  display:inline-block;
+  padding:3px 9px;
+  border-radius:999px;
+  background:#dbeafe;
+  color:#1e40af;
+  font-size:.78rem;
+}
+h2{
+  margin:8px 0 6px;
+  font-size:1rem;
+}
+.card-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.tag-chip{
+  padding:3px 8px;
+  border-radius:999px;
+  background:#f3f4f6;
+  font-size:.75rem;
+  color:#4b5563;
+}
+@media(max-width:900px){
+  .grid{column-count:2;}
+}
+@media(max-width:640px){
+  .grid{column-count:1;}
+  .wrap{padding:20px 12px 28px;}
+  h1{font-size:1.5rem;}
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>#박스폰</h1>
+    <p class="desc">박스폰 관련 실제 상담 내용을 모아서 정리한 페이지입니다.</p>
+    <section class="grid">
+      
+        <article class="tag-card">
+          <a href="/blog/2025-12-09-1765247290702-region-eab491ec-keyword-ed8fb0ed.html" class="tag-link">
+            <div class="thumb">
+              <img src="/assets/blog/2025-12-09-1765247290702-region-eab491ec-keyword-ed8fb0ed-thumb.webp" alt="광주 폰테크 핸드폰 개통 대출 아님 실제 상담 노트" loading="lazy">
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-09</span>
+              <h2>광주 폰테크 핸드폰 개통 대출 아님 실제 상담 노트</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#폰테크 핸드폰 개통 대출 아님</span><span class="tag-chip">#광주</span><span class="tag-chip">#폰테크</span>
+               </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-09-1765247211009-region-ecb694ec-keyword-ed8fb0ed.html" class="tag-link">
+            <div class="thumb">
+              <img src="/assets/blog/2025-12-09-1765247211009-region-ecb694ec-keyword-ed8fb0ed-thumb.webp" alt="추자 폰테크 핸드폰 개통 대출 아님 진행 주의사항 정리" loading="lazy">
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-09</span>
+              <h2>추자 폰테크 핸드폰 개통 대출 아님 진행 주의사항 정리</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#폰테크 핸드폰 개통 대출 아님</span><span class="tag-chip">#추자</span><span class="tag-chip">#폰테크</span>
+               </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-08-1765180207242-region-ec9b90ec-keyword-ec868cec.html" class="tag-link">
+            <div class="thumb">
+              <img src="/assets/blog/2025-12-08-1765180207242-region-ec9b90ec-keyword-ec868cec-thumb.webp" alt="원주 폰테크 소액폰테크 체크리스트 버전" loading="lazy">
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-08</span>
+              <h2>원주 폰테크 소액폰테크 체크리스트 버전</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#소액폰테크</span><span class="tag-chip">#원주</span><span class="tag-chip">#폰테크</span>
+               </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-08-1765180139548-region-eab980ed-keyword-ed8fb0ed.html" class="tag-link">
+            <div class="thumb">
+              <img src="/assets/blog/2025-12-08-1765180139548-region-eab980ed-keyword-ed8fb0ed-thumb.webp" alt="김포 폰테크 폰테크 신규 최근 상담 사례" loading="lazy">
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-08</span>
+              <h2>김포 폰테크 폰테크 신규 최근 상담 사례</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#폰테크 신규</span><span class="tag-chip">#김포</span><span class="tag-chip">#폰테크</span>
+               </div>
+            </div>
+          </a>
+        </article>
+    </section>
+  </div>
+</body>
+</html>

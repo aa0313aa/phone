@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>폰테크 비대면 당일현금지급 완벽 가이드 - 전국모바일</title>
+  <meta name="description" content="폰테크 비대면 당일현금지급! 휴대폰내구제·휴대폰폰테크 전문. 미납요금대납·대납개통후기 실시간 확인" />
+  <meta name="keywords" content="폰테크,비대면,폰테크비대면,당일현금지급,휴대폰내구제,휴대폰폰테크,미납요금대납,대납개통후기" />
+  <meta name="author" content="전국모바일" />
+  <meta name="google-adsense-account" content="ca-pub-8628294888817937" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://폰테크.shop/phonetech-guide.html" />
+  <meta property="og:title" content="폰테크 비대면 당일현금지급 완벽 가이드 - 전국모바일" />
+  <meta property="og:description" content="폰테크 비대면 당일현금지급! 휴대폰내구제·휴대폰폰테크 전문. 미납요금대납·대납개통후기 실시간 확인" />
+  <meta property="og:image" content="https://폰테크.shop/assets/img/og-banner.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="폰테크 비대면 당일현금지급 완벽 가이드 - 전국모바일" />
+  <meta name="twitter:description" content="폰테크 비대면 당일현금지급! 휴대폰내구제·휴대폰폰테크 전문. 미납요금대납·대납개통후기 실시간 확인" />
+  <meta name="twitter:image" content="https://폰테크.shop/assets/img/og-banner.png" />
+  <meta name="twitter:domain" content="전국모바일" />
+
+  <link rel="canonical" href="https://폰테크.shop/phonetech-guide.html" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+
+  <!-- Fonts -->
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="assets/css/styles.css" rel="stylesheet" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+        <img src="assets/img/favicon.svg" width="32" alt="Logo" />
+        전국모바일
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-3">
+          <li class="nav-item"><a class="nav-link" href="index.html">홈</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">서비스</a></li>
+          <li class="nav-item"><a class="nav-link" href="information.html">이용안내</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">회사소개</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">문의/예약</a></li>
+          <li class="nav-item"><a class="nav-link active" href="phonetech-guide.html">폰테크가이드</a></li>
+          <li class="nav-item"><a class="nav-link" href="phonetech-tips.html">안전이용팁</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog/">블로그</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-5 mt-5">
+    <section class="py-5" style="background: linear-gradient(180deg, rgba(255,107,0,0.05) 0%, transparent 100%);">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <span class="badge bg-primary bg-opacity-10 text-primary mb-3 rounded-pill px-3 py-2">Beginner Guide</span>
+            <h1 class="display-6 fw-bold mb-3 gsap-hero-text">
+              폰테크 비대면 당일현금지급<br>완벽 가이드
+            </h1>
+            <p class="lead text-muted gsap-hero-text">
+              휴대폰내구제·휴대폰폰테크를 처음 이용하는 분들을 위한<br>핵심 절차와 안전 체크포인트 정리
+            </p>
+            <div
+              class="d-inline-flex align-items-center text-muted small bg-white px-4 py-2 rounded-pill shadow-sm mt-3 gsap-hero-text">
+              <i class="bi bi-calendar3 me-2"></i>
+              <span>2025년 11월 14일</span>
+              <span class="mx-2">•</span>
+              <i class="bi bi-person me-2"></i>
+              <span>전국모바일</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <!-- Content Card -->
+            <article class="bg-white p-4 p-md-5 rounded-4 shadow-sm border border-light">
+
+              <h2 class="h4 fw-bold mb-4 d-flex align-items-center">
+                <span
+                  class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center me-3"
+                  style="width:32px; height:32px; font-size:14px;">1</span>
+                핵심 요약
+              </h2>
+              <div class="alert alert-light border-start border-4 border-primary p-4 mb-5">
+                <ul class="mb-0 fw-medium text-dark" style="line-height: 1.8;">
+                  <li>✓ 정식 통신사 절차를 통해 개통 후 기기 판매로 당일현금지급</li>
+                  <li>✓ 신용 점수와 무관하게 성인 누구나 상담 가능</li>
+                  <li>✓ 서류 간소화, 무방문·비대면 진행 지원</li>
+                  <li>✓ 선입금 요구나 신분증/유심 보관 요구 업체는 즉시 피하기</li>
+                </ul>
+              </div>
+
+              <h3 class="h5 fw-bold mt-5 mb-4 d-flex align-items-center">
+                <span
+                  class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center me-3"
+                  style="width:32px; height:32px; font-size:14px;">2</span>
+                진행 단계
+              </h3>
+              <div class="row g-3 mb-5">
+                <div class="col-md-4">
+                  <div class="p-3 bg-light rounded-3 text-center h-100">
+                    <i class="bi bi-chat-text fs-3 text-primary mb-2 d-block"></i>
+                    <strong>1. 상담/본인확인</strong>
+                    <p class="small text-muted mt-2 mb-0">카톡/전화로 조건 안내</p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="p-3 bg-light rounded-3 text-center h-100">
+                    <i class="bi bi-phone fs-3 text-primary mb-2 d-block"></i>
+                    <strong>2. 정식 개통</strong>
+                    <p class="small text-muted mt-2 mb-0">요금제·기기 확정</p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="p-3 bg-light rounded-3 text-center h-100">
+                    <i class="bi bi-cash-coin fs-3 text-primary mb-2 d-block"></i>
+                    <strong>3. 당일 지급</strong>
+                    <p class="small text-muted mt-2 mb-0">기기 매입 후 즉시 입금</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert alert-warning mt-4 mb-5 rounded-3">
+                <h4 class="alert-heading h6 mb-2 fw-bold text-danger">
+                  <i class="bi bi-shield-exclamation me-2"></i>주의하세요
+                </h4>
+                <ul class="mb-0 small text-dark">
+                  <li>선입금·보증금 요구 시 진행 중단</li>
+                  <li>유심/신분증 보관 요청은 거절</li>
+                  <li>계약서·요금 조건을 반드시 서면으로 확인</li>
+                </ul>
+              </div>
+
+              <h3 class="h5 fw-bold mb-4">실제 이용 후기</h3>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="card h-100 border-0 shadow-sm bg-light">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-start mb-2">
+                        <strong>박○○</strong>
+                        <small class="text-muted">2025.11.13</small>
+                      </div>
+                      <p class="mb-2 small text-secondary">
+                        폰테크비대면으로 집에서 편하게 진행했습니다.
+                        휴대폰폰테크 전문답게 친절하고 빨랐어요.
+                      </p>
+                      <div class="text-warning small">⭐⭐⭐⭐⭐ (5/5)</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card h-100 border-0 shadow-sm bg-light">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-start mb-2">
+                        <strong>이○○</strong>
+                        <small class="text-muted">2025.11.12</small>
+                      </div>
+                      <p class="mb-2 small text-secondary">
+                        대납개통 진행했는데 정말 당일현금지급 되더라구요. 믿을
+                        수 있는 업체입니다!
+                      </p>
+                      <div class="text-warning small">⭐⭐⭐⭐⭐ (5/5)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Bottom CTA -->
+            <div class="mt-5 text-center">
+              <h4 class="h5 fw-bold mb-3">더 자세한 내용이 궁금하신가요?</h4>
+              <div class="d-flex justify-content-center gap-2">
+                <a href="tel:010-8290-9536" class="btn btn-primary rounded-pill px-4">전화 상담하기</a>
+                <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener noreferrer"
+                  class="btn btn-outline-primary rounded-pill px-4">카톡 문의하기</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5 class="mb-3 fw-bold">전국모바일</h5>
+          <p class="small mb-2 text-white-50">폰테크비대면 당일현금지급 전문</p>
+          <p class="small text-white-50">휴대폰내구제·휴대폰폰테크·미납요금대납 안전거래</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <h6 class="mb-3 fw-bold">고객센터</h6>
+          <p class="small mb-1">📞 010-8290-9536</p>
+          <p class="small mb-1">💬 카톡ID: k090912k</p>
+          <p class="small">🕐 평일 10:00~20:00</p>
+        </div>
+      </div>
+      <hr class="my-3 border-secondary" />
+      <div class="text-center small text-white-50">
+        &copy; 2025 전국모바일. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-chat" aria-label="카카오톡 상담 바로가기">
+    <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener"
+      class="text-decoration-none text-dark d-flex align-items-center gap-2">
+      <i class="bi bi-chat-dots-fill"></i><span>카톡 상담</span>
+    </a>
+  </div>
+
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://폰테크.shop/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "폰테크가이드",
+            "item": "https://폰테크.shop/phonetech-guide.html"
+          }
+        ]
+      }
+    </script>
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "폰테크 비대면 당일현금지급 완벽 가이드",
+        "image": "https://폰테크.shop/assets/img/og-banner.png",
+        "author": {
+          "@type": "Organization",
+          "name": "전국모바일",
+          "url": "https://폰테크.shop/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "전국모바일",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://폰테크.shop/assets/img/favicon.svg"
+          }
+        },
+        "datePublished": "2025-11-14",
+        "dateModified": "2025-11-14",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://폰테크.shop/phonetech-guide.html"
+        },
+        "keywords": [
+          "폰테크비대면",
+          "당일현금지급",
+          "휴대폰내구제",
+          "휴대폰폰테크",
+          "미납요금대납",
+          "대납개통후기"
+        ],
+        "articleSection": "가이드",
+        "wordCount": "3000"
+      }
+    </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Main JS for GSAP Init -->
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

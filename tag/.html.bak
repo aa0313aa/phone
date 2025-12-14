@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>#광령 관련 글 - 전국모바일</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      body {
+        margin: 0;
+        background: #f4f5f9;
+        font-family: 'Noto Sans KR', sans-serif;
+      }
+      .wrap {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 28px 16px;
+      }
+      h1 {
+        font-size: 1.8rem;
+        margin: 12px 0 10px;
+      }
+      .grid {
+        column-count: 3;
+        column-gap: 18px;
+      }
+      .tag-card {
+        break-inside: avoid;
+        margin-bottom: 18px;
+        background: #fff;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      }
+      .tag-card img {
+        width: 100%;
+        display: block;
+      }
+      .body {
+        padding: 16px;
+      }
+      .meta-date {
+        font-size: 0.78rem;
+        padding: 3px 8px;
+        background: #dbeafe;
+        color: #1e40af;
+        border-radius: 999px;
+      }
+      .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 6px;
+      }
+      .tag-chip {
+        background: #f3f4f6;
+        padding: 3px 8px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+      }
+      @media (max-width: 900px) {
+        .grid {
+          column-count: 2;
+        }
+      }
+      @media (max-width: 600px) {
+        .grid {
+          column-count: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>#광령</h1>
+      <div class="grid">
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---5.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/img/og-banner.png"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>광령 당일현금지급 빠르게 진행하는 방법</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#광령</span
+                ><span class="tag-chip">#당일현금지급</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---5.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/img/og-banner.png"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>광령 당일현금지급 빠르게 진행하는 방법</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#광령</span
+                ><span class="tag-chip">#당일현금지급</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---5.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/img/og-banner.png"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>광령 당일현금지급 빠르게 진행하는 방법</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#광령</span
+                ><span class="tag-chip">#당일현금지급</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---5.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/img/og-banner.png"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>광령 당일현금지급 빠르게 진행하는 방법</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#광령</span
+                ><span class="tag-chip">#당일현금지급</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---4.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/img/og-banner.png"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>속초 성인핸드폰개통 당일 진행 가능할까?</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#속초</span
+                ><span class="tag-chip">#성인핸드폰개통</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---4.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/img/og-banner.png"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>속초 성인핸드폰개통 당일 진행 가능할까?</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#속초</span
+                ><span class="tag-chip">#성인핸드폰개통</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---4.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/img/og-banner.png"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>속초 성인핸드폰개통 당일 진행 가능할까?</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#속초</span
+                ><span class="tag-chip">#성인핸드폰개통</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---4.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/img/og-banner.png"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>속초 성인핸드폰개통 당일 진행 가능할까?</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#속초</span
+                ><span class="tag-chip">#성인핸드폰개통</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---3.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/blog/2025-12-01---3-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>인천 휴대폰할부지원 처음 하신다면 꼭 확인하세요</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#인천</span
+                ><span class="tag-chip">#휴대폰할부지원</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---3.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/blog/2025-12-01---3-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>인천 휴대폰할부지원 처음 하신다면 꼭 확인하세요</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#인천</span
+                ><span class="tag-chip">#휴대폰할부지원</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---3.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/blog/2025-12-01---3-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>인천 휴대폰할부지원 처음 하신다면 꼭 확인하세요</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#인천</span
+                ><span class="tag-chip">#휴대폰할부지원</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---3.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/blog/2025-12-01---3-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>인천 휴대폰할부지원 처음 하신다면 꼭 확인하세요</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#인천</span
+                ><span class="tag-chip">#휴대폰할부지원</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---2.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/blog/2025-12-01---2-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>표선 대출아님개통 빠르게 해결하는 방법</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#표선</span
+                ><span class="tag-chip">#대출아님개통</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---2.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/blog/2025-12-01---2-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>표선 대출아님개통 빠르게 해결하는 방법</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#표선</span
+                ><span class="tag-chip">#대출아님개통</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---2.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/blog/2025-12-01---2-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>표선 대출아님개통 빠르게 해결하는 방법</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#표선</span
+                ><span class="tag-chip">#대출아님개통</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---2.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/blog/2025-12-01---2-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>표선 대출아님개통 빠르게 해결하는 방법</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#표선</span
+                ><span class="tag-chip">#대출아님개통</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---1.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/blog/2025-12-01---1-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>경주 할부원금감면 대출 아님</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#경주</span
+                ><span class="tag-chip">#할부원금감면</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---1.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/blog/2025-12-01---1-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>경주 할부원금감면 대출 아님</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#경주</span
+                ><span class="tag-chip">#할부원금감면</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---1.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/blog/2025-12-01---1-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>경주 할부원금감면 대출 아님</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#경주</span
+                ><span class="tag-chip">#할부원금감면</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-12-01---1.html">
+            <div class="thumb">
+              <img
+                src="https://폰테크.shop/assets/blog/2025-12-01---1-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-12-01</span>
+              <h2>경주 할부원금감면 대출 아님</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#경주</span
+                ><span class="tag-chip">#할부원금감면</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---5.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---5-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>합천 폰테크 추천 자주 묻는 질문 TOP 10</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#폰테크 추천</span
+                ><span class="tag-chip">#합천</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---5.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---5-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>합천 폰테크 추천 자주 묻는 질문 TOP 10</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#폰테크 추천</span
+                ><span class="tag-chip">#합천</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---5.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---5-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>합천 폰테크 추천 자주 묻는 질문 TOP 10</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#폰테크 추천</span
+                ><span class="tag-chip">#합천</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---5.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---5-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>합천 폰테크 추천 자주 묻는 질문 TOP 10</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#폰테크 추천</span
+                ><span class="tag-chip">#합천</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---4.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---4-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>광주 핸드폰현금화 최신 트렌드와 팁</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#핸드폰현금화</span
+                ><span class="tag-chip">#광주</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---4.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---4-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>광주 핸드폰현금화 최신 트렌드와 팁</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#핸드폰현금화</span
+                ><span class="tag-chip">#광주</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---4.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---4-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>광주 핸드폰현금화 최신 트렌드와 팁</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#핸드폰현금화</span
+                ><span class="tag-chip">#광주</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---4.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---4-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>광주 핸드폰현금화 최신 트렌드와 팁</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#핸드폰현금화</span
+                ><span class="tag-chip">#광주</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---3.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---3-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>장성 여수폰테크 실제 상담 후기</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#여수폰테크</span
+                ><span class="tag-chip">#장성</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---3.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---3-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>장성 여수폰테크 실제 상담 후기</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#여수폰테크</span
+                ><span class="tag-chip">#장성</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---3.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---3-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>장성 여수폰테크 실제 상담 후기</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#여수폰테크</span
+                ><span class="tag-chip">#장성</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---3.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---3-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>장성 여수폰테크 실제 상담 후기</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#여수폰테크</span
+                ><span class="tag-chip">#장성</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---2.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---2-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>포항 무방문폰테크 실제 상담 기준 정리</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#무방문폰테크</span
+                ><span class="tag-chip">#포항</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---2.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---2-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>포항 무방문폰테크 실제 상담 기준 정리</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#무방문폰테크</span
+                ><span class="tag-chip">#포항</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---2.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---2-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>포항 무방문폰테크 실제 상담 기준 정리</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#무방문폰테크</span
+                ><span class="tag-chip">#포항</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---2.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---2-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>포항 무방문폰테크 실제 상담 기준 정리</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#무방문폰테크</span
+                ><span class="tag-chip">#포항</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---1.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---1-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>예산 휴대폰내구제 전문가가 알려주는 비법</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#휴대폰내구제</span
+                ><span class="tag-chip">#예산</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---1.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---1-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>예산 휴대폰내구제 전문가가 알려주는 비법</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#휴대폰내구제</span
+                ><span class="tag-chip">#예산</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---1.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---1-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>예산 휴대폰내구제 전문가가 알려주는 비법</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#휴대폰내구제</span
+                ><span class="tag-chip">#예산</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="tag-card">
+          <a href="/blog/2025-11-30---1.html">
+            <div class="thumb">
+              <img
+                src="/assets/blog/2025-11-30---1-thumb.webp"
+                loading="lazy"
+              />
+            </div>
+            <div class="body">
+              <span class="meta-date">2025-11-30</span>
+              <h2>예산 휴대폰내구제 전문가가 알려주는 비법</h2>
+              <div class="card-tags">
+                <span class="tag-chip">#휴대폰내구제</span
+                ><span class="tag-chip">#예산</span
+                ><span class="tag-chip">#폰테크</span>
+              </div>
+            </div>
+          </a>
+        </article>
+      </div>
+    </div>
+  </body>
+</html>

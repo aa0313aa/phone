@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>문의 및 예약 - 전국모바일</title>
+    <meta
+      name="description"
+      content="폰테크 즉시상담! 카톡(k090912k) 또는 전화(010-8290-9536) 24시간 무료상담. 당일처리"
+    />
+    <meta
+      name="keywords"
+      content="폰테크상담,미납요금대납,대납개통상담,비대면개통예약,무료상담"
+    />
+    <meta name="author" content="전국모바일" />
+    <meta name="google-adsense-account" content="ca-pub-8628294888817937" />
+    <meta name="robots" content="index,follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://폰테크.shop/contact.html" />
+    <meta property="og:title" content="문의 및 예약 - 전국모바일" />
+    <meta
+      property="og:description"
+      content="폰테크 즉시상담! 카톡(k090912k) 또는 전화(010-8290-9536) 24시간 무료상담. 당일처리"
+    />
+    <meta
+      property="og:image"
+      content="https://폰테크.shop/assets/img/og-banner.png"
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="문의 및 예약 - 전국모바일" />
+    <meta
+      name="twitter:description"
+      content="폰테크 즉시상담! 카톡(k090912k) 또는 전화(010-8290-9536) 24시간 무료상담. 당일처리"
+    />
+    <meta
+      name="twitter:image"
+      content="https://폰테크.shop/assets/img/og-banner.png"
+    />
+    <meta name="twitter:domain" content="전국모바일" />
+
+    <link rel="canonical" href="https://폰테크.shop/contact.html" />
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/css/styles.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-expand-lg bg-body shadow-sm sticky-top"
+      aria-label="주요 내비게이션"
+    >
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html"
+          ><img
+            src="assets/img/favicon.svg"
+            alt="전국모바일"
+            width="28"
+            height="28"
+            class="me-2"
+          />전국모바일</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#nav"
+          aria-controls="nav"
+          aria-expanded="false"
+          aria-label="내비게이션 토글"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">홈</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">서비스</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="information.html">이용안내</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">회사소개</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="contact.html">문의/예약</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="phonetech-guide.html">폰테크가이드</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="phonetech-tips.html">안전이용팁</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/">블로그</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <header class="py-5 bg-primary text-white">
+      <div class="container">
+        <h1 class="h2 fw-bold">문의 / 상담예약</h1>
+        <p class="text-white-50 mb-0">
+          필수 항목만 입력하면 빠르게 상담 도와드립니다.
+        </p>
+      </div>
+    </header>
+    <main class="py-5">
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-lg-7">
+            <form
+              class="needs-validation"
+              novalidate
+              id="contactForm"
+              method="POST"
+              action="https://script.google.com/macros/s/AKfycbzwr1Y2880sB6s5HeM4pwJ3QxAPweGgmmMymL97XaTwTIqvZeshMVhafRvcPBJA_63wwA/exec"
+            >
+              <div class="alert alert-info small" role="alert">
+                <i class="bi bi-info-circle me-1"></i> 아래 정보만으로 상담 조건
+                안내 및 혜택 비교가 가능합니다. 민감정보(주민번호 등)는 절대
+                입력하지 마세요.
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="name">이름</label
+                ><input class="form-control" id="name" name="이름" required />
+                <div class="invalid-feedback">이름을 입력해주세요.</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="phone">연락처</label
+                ><input
+                  class="form-control"
+                  id="phone"
+                  name="연락처"
+                  type="tel"
+                  pattern="^[0-9\-]{9,13}$"
+                  required
+                />
+                <div class="form-text">
+                  숫자와 '-'만 입력 (예: 010-1234-5678)
+                </div>
+                <div class="invalid-feedback">
+                  올바른 연락처를 입력해주세요.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="type">문의 유형</label
+                ><select class="form-select" id="type" name="문의유형" required>
+                  <option value="" disabled selected>선택해주세요</option>
+                  <option>비대면 개통</option>
+                  <option>매장 방문</option>
+                  <option>휴대폰 매입</option>
+                  <option>일반 상담</option>
+                </select>
+                <div class="invalid-feedback">문의 유형을 선택해주세요.</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="carrier">통신사</label
+                ><select class="form-select" id="carrier" name="통신사">
+                  <option value="" selected>선택(선택사항)</option>
+                  <option>SKT</option>
+                  <option>KT</option>
+                  <option>LGU+</option>
+                  <option>알뜰 / MVNO</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="recentActive">최근개통일</label
+                ><input
+                  class="form-control"
+                  id="recentActive"
+                  name="최근개통일"
+                  type="date"
+                  max="9999-12-31"
+                />
+                <div class="form-text">최근 회선/기기 개통일 (선택)</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="arrears">미납연체</label
+                ><select class="form-select" id="arrears" name="미납연체">
+                  <option value="" selected>선택(선택사항)</option>
+                  <option>없음</option>
+                  <option>요금 미납</option>
+                  <option>연체 우려</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="region">지역</label
+                ><input
+                  class="form-control"
+                  id="region"
+                  name="지역"
+                  placeholder="예) 서울 강남 / 부산 해운대 등"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="desired">희망진행방식</label
+                ><select class="form-select" id="desired" name="희망진행방식">
+                  <option value="" selected>선택(선택사항)</option>
+                  <option>비대면 개통</option>
+                  <option>매장 방문</option>
+                  <option>택배 / 퀵</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="message">상세내용</label
+                ><textarea
+                  class="form-control"
+                  id="message"
+                  name="상세내용"
+                  rows="5"
+                  placeholder="예) 아이폰15 기변 조건 문의"
+                  required
+                ></textarea>
+                <div class="invalid-feedback">상세내용을 입력해주세요.</div>
+              </div>
+              <div class="mb-3 form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="agree"
+                  required
+                /><label class="form-check-label" for="agree"
+                  >개인정보 수집 및 이용에 동의합니다.</label
+                >
+                <div class="invalid-feedback">동의가 필요합니다.</div>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  <i class="bi bi-send me-2"></i>상담 신청하기
+                </button>
+              </div>
+              <div id="formResult" class="mt-3 small"></div>
+            </form>
+            <!-- Google Form 자동 제출 처리용 iframe (레거시 호환) -->
+            <iframe
+              name="hidden_iframe"
+              id="hidden_iframe"
+              style="display: none"
+              onload="
+                if (submitted) {
+                  handleFormSuccess();
+                }
+              "
+            ></iframe>
+            <!-- 이메일로 예비 제출 (FormSubmit 백업 경로) -->
+            <form
+              id="hiddenEmailForm"
+              action="https://formsubmit.co/k9536k@gmail.com"
+              method="POST"
+              target="_blank"
+              class="d-none"
+            >
+              <input
+                type="hidden"
+                name="_subject"
+                value="전국모바일 상담 예약"
+              />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="이름" id="email_name" />
+              <input type="hidden" name="연락처" id="email_phone" />
+              <input type="hidden" name="유형" id="email_type" />
+              <input type="hidden" name="내용" id="email_message" />
+              <input type="hidden" name="제출시각" id="email_time" />
+              <!-- 필요 시, 제출 후 이동할 완료 페이지 주소
+  <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html" /> -->
+              <!-- 스팸 방지용 허니팟 -->
+              <input type="text" name="_honey" style="display: none" />
+            </form>
+          </div>
+          <div class="col-lg-5">
+            <div class="p-4 bg-body-tertiary border rounded-3 h-100">
+              <h2 class="h5">직접 연락</h2>
+              <p class="small mb-1">
+                <i class="bi bi-telephone me-1"></i>전화:
+                <a href="tel:010-8290-9536">010-8290-9536</a>
+              </p>
+              <p class="small mb-1">
+                <i class="bi bi-chat-dots me-1"></i>카카오톡:
+                <a
+                  href="http://pf.kakao.com/_gIKxnn/chat"
+                  target="_blank"
+                  rel="noopener"
+                  >바로가기</a
+                >
+                <span class="badge text-bg-warning text-dark ms-1"
+                  >ID: k090912k</span
+                >
+              </p>
+              <p class="small mb-3">
+                <i class="bi bi-envelope me-1"></i>이메일:
+                <a href="mailto:k9536k@gmail.com">k9536k@gmail.com</a>
+              </p>
+              <hr />
+              <h3 class="h6 text-secondary">유의 사항</h3>
+              <ul class="small mb-0">
+                <li>실제 예약 확정은 상담원의 확인 후 진행됩니다.</li>
+                <li>민감 정보(계정 비밀번호 등)는 입력하지 마세요.</li>
+                <li>매우 급한 문의는 전화 이용을 권장합니다.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="py-4 bg-dark text-light">
+      <div
+        class="container small d-flex justify-content-between flex-wrap gap-3"
+      >
+        <span>© 2025 전국모바일</span>
+        <a class="link-light text-decoration-none" href="#top" id="backToTop"
+          >맨위로</a
+        >
+      </div>
+    </footer>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://폰테크.shop/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "문의/예약",
+            "item": "https://폰테크.shop/contact.html"
+          }
+        ]
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      /* 상담/예약 UX 강화 + 예비 이메일 경로 + 예약 리스트 데모 */
+      (() => {
+        const form = document.getElementById('contactForm');
+        const result = document.getElementById('formResult');
+        const kakaoLink = 'http://pf.kakao.com/_gIKxnn/chat';
+        const emailBtn = document.getElementById('emailSubmit');
+        const emailForm = document.getElementById('hiddenEmailForm');
+        const reservationsContainerId = 'reservationsTableContainer';
+        if (!form) return;
+
+        // 폼 값 헬퍼
+        const fv = (sel) => (form.querySelector(sel)?.value || '').trim();
+
+        // 스팸 방지(허니팟) 필드 추가
+        const honeypot = document.createElement('input');
+        honeypot.type = 'text';
+        honeypot.name = 'website';
+        honeypot.autocomplete = 'off';
+        honeypot.style.position = 'absolute';
+        honeypot.style.left = '-9999px';
+        honeypot.tabIndex = -1;
+        form.appendChild(honeypot);
+
+        // 최근 제출 로컬 표시 영역
+        const recentBox = document.createElement('div');
+        recentBox.className = 'mt-4 small';
+        recentBox.innerHTML =
+          '<strong>최근 제출(로컬 저장):</strong><div id="recentSubmissions" class="mt-2 d-flex flex-column gap-1"></div>';
+        form.parentElement?.appendChild(recentBox);
+
+        function renderRecent() {
+          const listEl = document.getElementById('recentSubmissions');
+          if (!listEl) return;
+
+          const items = JSON.parse(
+            localStorage.getItem('recentReservations') || '[]'
+          );
+
+          // 텍스트 노드로만 렌더링해 XSS를 방지
+          listEl.replaceChildren();
+          for (const i of items) {
+            const row = document.createElement('div');
+            row.className = 'border rounded p-2 bg-body-tertiary';
+
+            const line1 = document.createElement('div');
+            line1.textContent = `${i.time} · ${i.name} / ${i.type}`;
+
+            const line2 = document.createElement('span');
+            line2.className = 'text-secondary';
+            line2.textContent = i.phone;
+
+            row.appendChild(line1);
+            row.appendChild(line2);
+            listEl.appendChild(row);
+          }
+        }
+        renderRecent();
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault(); // 기본 제출 막기
+
+          // 유효성 검사
+          if (!form.checkValidity()) {
+            form.classList.add('was-validated');
+            result.innerHTML =
+              '<span class="text-danger">입력값을 확인해주세요.</span>';
+            return;
+          }
+          if (honeypot.value) {
+            // 스팸 의심
+            result.innerHTML =
+              '<span class="text-warning">제출이 차단되었습니다(스팸 의심).</span>';
+            return;
+          }
+
+          // 제출 중 안내 메시지
+          result.innerHTML =
+            '<span class="text-info"><i class="bi bi-hourglass-split"></i> 상담 요청을 전송중입니다…</span>';
+
+          try {
+            // FormData로 입력값 수집
+            const formData = new FormData(form);
+
+            // Google Apps Script로 전송
+            const response = await fetch(form.action, {
+              method: 'POST',
+              body: formData,
+            });
+
+            const data = await response.json();
+
+            if (data.result === 'success') {
+              // 성공 메시지 표시
+              result.innerHTML =
+                '<div class="alert alert-success"><i class="bi bi-check-circle-fill me-2"></i><strong>상담 요청이 접수되었습니다.</strong><br>빠른 시간 내에 연락드리겠습니다.</div>';
+
+              // 로컬 저장(최근 5건)
+              const localData = {
+                name: fv('#name'),
+                phone: fv('#phone'),
+                type: fv('#type'),
+                region: fv('#region'),
+                submittedAt: new Date().toLocaleString(),
+              };
+
+              const arr = JSON.parse(
+                localStorage.getItem('recentReservations') || '[]'
+              );
+              arr.unshift({
+                time: localData.submittedAt,
+                name: localData.name,
+                phone: localData.phone,
+                type: localData.type,
+                region: localData.region,
+              });
+              localStorage.setItem(
+                'recentReservations',
+                JSON.stringify(arr.slice(0, 5))
+              );
+              renderRecent();
+
+              // 폼 초기화
+              form.reset();
+              form.classList.remove('was-validated');
+            } else {
+              result.innerHTML =
+                '<div class="alert alert-warning"><i class="bi bi-exclamation-triangle-fill me-2"></i>제출 오류가 발생했습니다. 잠시 후 다시 시도해주세요.</div>';
+            }
+          } catch (error) {
+            console.error('제출 오류:', error);
+            result.innerHTML =
+              '<div class="alert alert-danger"><i class="bi bi-x-circle-fill me-2"></i>네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.</div>';
+          }
+        });
+
+        // 이메일로 예비 전송 (FormSubmit 제출)
+        emailBtn?.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (!form.checkValidity()) {
+            form.classList.add('was-validated');
+            result.innerHTML =
+              '<span class="text-danger">입력값을 확인해주세요.</span>';
+            return;
+          }
+          if (!emailForm) return;
+
+          const action = emailForm.getAttribute('action') || '';
+          if (action.includes('YOUR_EMAIL')) {
+            result.innerHTML =
+              '<span class="text-warning">관리자 설정 필요: contact.html 상단의 이메일 주소를 실제 주소로 바꿔주세요.</span>';
+            return;
+          }
+
+          const submittedAt = new Date().toLocaleString();
+          document.getElementById('email_name').value = fv('#name');
+          document.getElementById('email_phone').value = fv('#phone');
+          document.getElementById('email_type').value = fv('#type');
+          document.getElementById('email_message').value = fv('#message');
+          document.getElementById('email_time').value = submittedAt;
+
+          emailForm.submit();
+          result.innerHTML =
+            '<span class="text-success">이메일 제출 창이 새 탭으로 열렸습니다. 완료 메시지를 확인해주세요.</span>';
+          form.reset();
+          form.classList.remove('was-validated');
+        });
+      })();
+      // --- 예약 리스트 데모 로직 ---
+      async function fetchBaseReservations() {
+        try {
+          // 만약 Google Sheets CSV가 지정되었다면 우선 사용
+          const csvUrl = document
+            .querySelector('meta[name="reservations-csv-url"]')
+            ?.content?.trim();
+          if (csvUrl) {
+            const resCsv = await fetch(csvUrl, { cache: 'no-store' });
+            if (resCsv.ok) {
+              const text = await resCsv.text();
+              const parsed = parseCsvReservations(text);
+              if (parsed.length) return parsed;
+            }
+          }
+          // 기본 로컬 데모 JSON
+          const res = await fetch('/assets/data/reservations.json', {
+            cache: 'no-store',
+          });
+          if (!res.ok) return generateDemoReservations();
+          const data = await res.json();
+          return Array.isArray(data) ? data : generateDemoReservations();
+        } catch (e) {
+          return generateDemoReservations();
+        }
+      }
+      function generateDemoReservations() {
+        // 실제처럼 보이는 데모 데이터 생성
+        const regions = [
+          '서울 강남',
+          '서울 강서',
+          '인천 부평',
+          '경기 수원',
+          '경기 분당',
+          '부산 해운대',
+          '대구 동성로',
+          '광주 충장로',
+          '대전 둔산',
+          '울산 삼산',
+        ];
+        const methods = ['비대면개통', '매장방문', '택배발송'];
+        const statuses = ['접수완료', '진행중', '완료'];
+        const names = [
+          '김○○',
+          '이○○',
+          '박○○',
+          '최○○',
+          '정○○',
+          '강○○',
+          '조○○',
+          '윤○○',
+          '장○○',
+          '임○○',
+        ];
+        const result = [];
+        const now = new Date();
+        for (let i = 0; i < 15; i++) {
+          const datetime = new Date(
+            now - Math.random() * 7 * 24 * 60 * 60 * 1000
+          );
+          result.push({
+            region: regions[Math.floor(Math.random() * regions.length)],
+            datetime: datetime.toLocaleString('ko-KR', {
+              month: 'numeric',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+            }),
+            name: names[Math.floor(Math.random() * names.length)],
+            phone: `010-****-${String(Math.floor(Math.random() * 9000) + 1000)}`,
+            method: methods[Math.floor(Math.random() * methods.length)],
+            status: statuses[Math.floor(Math.random() * statuses.length)],
+          });
+        }
+        return result.sort((a, b) => b.datetime.localeCompare(a.datetime));
+      }
+      function parseCsvReservations(csvText) {
+        // 헤더 가정: region,datetime,name,phone,method,status
+        const lines = csvText.split(/\r?\n/).filter((l) => l.trim().length > 0);
+        if (lines.length < 2) return [];
+        const header = lines[0].split(',').map((h) => h.trim().toLowerCase());
+        const idx = (h) => header.indexOf(h);
+        const out = [];
+        for (let i = 1; i < lines.length; i++) {
+          const cols = lines[i].split(',');
+          if (cols.length < 2) continue;
+          out.push({
+            region: cols[idx('region')]?.trim() || '',
+            datetime: cols[idx('datetime')]?.trim() || '',
+            name: cols[idx('name')]?.trim() || '',
+            phone: cols[idx('phone')]?.trim() || '',
+            method: cols[idx('method')]?.trim() || '',
+            status: cols[idx('status')]?.trim() || '',
+          });
+        }
+        return out;
+      }
+      function maskName(name) {
+        if (!name) return '';
+        if (name.length < 2) return name;
+        return name[0] + '*' + name.slice(2);
+      }
+      function maskPhone(phone) {
+        return phone.replace(/(\d{3})\d{2,4}(\d{4})/, '$1-****-$2');
+      }
+      function getMergedReservations(base) {
+        const local = JSON.parse(
+          localStorage.getItem('allReservationsDemo') || '[]'
+        );
+        return [...local, ...base];
+      }
+      function paginate(items, page, perPage) {
+        const total = items.length;
+        const pages = Math.ceil(total / perPage);
+        const start = (page - 1) * perPage;
+        return {
+          page,
+          pages,
+          total,
+          slice: items.slice(start, start + perPage),
+        };
+      }
+      async function renderReservations() {
+        const wrap = document.getElementById('reservationsTableContainer');
+        if (!wrap) return;
+        const searchInput = document.getElementById('reservationSearch');
+        const pageSelect = document.getElementById('reservationPage');
+        const perPage = 10;
+        const base = await fetchBaseReservations();
+        let merged = getMergedReservations(base);
+        const keyword = (searchInput?.value || '').trim();
+        if (keyword) {
+          merged = merged.filter(
+            (r) =>
+              r.name.includes(keyword) ||
+              r.region.includes(keyword) ||
+              r.method.includes(keyword)
+          );
+        }
+        const currentPage = parseInt(pageSelect?.value || '1', 10);
+        const { page, pages, slice } = paginate(merged, currentPage, perPage);
+        const tbody = document.getElementById('reservationsBody');
+        if (tbody) {
+          tbody.innerHTML = slice
+            .map((r, idx) => {
+              const rowNum = (page - 1) * perPage + idx + 1;
+              const statusClass =
+                r.status === '완료'
+                  ? 'success'
+                  : r.status === '진행중'
+                    ? 'primary'
+                    : 'warning';
+              const statusIcon =
+                r.status === '완료'
+                  ? 'check-circle-fill'
+                  : r.status === '진행중'
+                    ? 'arrow-repeat'
+                    : 'clock-fill';
+              return `<tr class="fade-in">
+        <td class="text-center text-muted fw-bold">${rowNum}</td>
+        <td class="text-nowrap"><span class="badge bg-light text-dark">${r.region || '-'}</span></td>
+        <td class="text-muted small">${r.datetime}</td>
+        <td class="fw-semibold">${maskName(r.name)}</td>
+        <td class="text-muted">${maskPhone(r.phone)}</td>
+        <td><span class="badge bg-${statusClass}"><i class="bi bi-${statusIcon} me-1"></i>${r.status}</span></td>
+      </tr>`;
+            })
+            .join('');
+        }
+        // 페이지 선택 UI 구성
+        if (pageSelect) {
+          pageSelect.innerHTML = Array.from(
+            { length: pages || 1 },
+            (_, i) =>
+              `<option value="${i + 1}" ${i + 1 === page ? 'selected' : ''}>페이지 ${i + 1}/${pages || 1}</option>`
+          ).join('');
+        }
+      }
+      document.addEventListener('DOMContentLoaded', () => {
+        // 예약 리스트 UI 삽입
+        const target = document.querySelector('#contactForm')?.parentElement;
+        if (target && !document.getElementById('reservationsTableContainer')) {
+          const box = document.createElement('div');
+          box.className = 'mt-5 p-4 bg-white border rounded-3 shadow-sm';
+          box.innerHTML = `
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="h5 mb-0 fw-bold text-primary">
+          <i class="bi bi-clock-history me-2"></i>실시간 예약 현황
+          <span class="badge bg-success ms-2 pulse-animation">LIVE</span>
+        </h2>
+        <button id="reservationRefresh" class="btn btn-sm btn-outline-primary">
+          <i class="bi bi-arrow-clockwise me-1"></i>새로고침
+        </button>
+      </div>
+      <div class="mb-3 d-flex justify-content-end">
+        <input id="reservationSearch" class="form-control form-control-sm" style="max-width:200px" placeholder="🔍 지역/이름 검색">
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0" style="font-size:0.9rem;">
+          <thead class="table-primary">
+            <tr>
+              <th class="text-center" style="width:50px"><i class="bi bi-hash"></i></th>
+              <th><i class="bi bi-geo-alt-fill me-1"></i>지역</th>
+              <th><i class="bi bi-clock-fill me-1"></i>접수시간</th>
+              <th><i class="bi bi-person-fill me-1"></i>고객명</th>
+              <th><i class="bi bi-telephone-fill me-1"></i>연락처</th>
+              <th><i class="bi bi-clipboard-check-fill me-1"></i>상태</th>
+            </tr>
+          </thead>
+          <tbody id="reservationsBody"></tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-between align-items-center mt-3">
+        <select id="reservationPage" class="form-select form-select-sm" style="width:120px"></select>
+        <small class="text-muted">
+          <i class="bi bi-shield-check me-1"></i>개인정보는 자동으로 마스킹 처리됩니다
+        </small>
+      </div>
+    `;
+          box.id = 'reservationsTableContainer';
+          target.appendChild(box);
+          const searchInput = box.querySelector('#reservationSearch');
+          const pageSelect = box.querySelector('#reservationPage');
+          const refreshBtn = box.querySelector('#reservationRefresh');
+          searchInput.addEventListener('input', () => {
+            pageSelect.value = '1';
+            renderReservations();
+          });
+          pageSelect.addEventListener('change', () => renderReservations());
+          refreshBtn.addEventListener('click', () => {
+            refreshBtn.innerHTML =
+              '<i class="bi bi-arrow-clockwise me-1 spinner-border spinner-border-sm"></i>새로고침';
+            setTimeout(() => {
+              renderReservations();
+              refreshBtn.innerHTML =
+                '<i class="bi bi-arrow-clockwise me-1"></i>새로고침';
+            }, 500);
+          });
+          // 자동 새로고침 (30초마다)
+          setInterval(() => renderReservations(), 30000);
+          renderReservations();
+        }
+
+        // 방문자 추적 기능
+        function trackVisitor() {
+          const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+          const visitKey = 'dailyVisits';
+          const visits = JSON.parse(localStorage.getItem(visitKey) || '{}');
+
+          // 오늘 날짜 카운트 증가
+          visits[today] = (visits[today] || 0) + 1;
+
+          // 30일 이전 데이터는 삭제
+          const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+          Object.keys(visits).forEach((date) => {
+            if (new Date(date) < thirtyDaysAgo) delete visits[date];
+          });
+
+          localStorage.setItem(visitKey, JSON.stringify(visits));
+        }
+
+        // 방문자 통계 확인 함수 (콘솔에서 사용)
+        window.getVisitorStats = function () {
+          const visits = JSON.parse(
+            localStorage.getItem('dailyVisits') || '{}'
+          );
+          const sorted = Object.entries(visits).sort((a, b) =>
+            b[0].localeCompare(a[0])
+          );
+          console.log('=== 일별 방문자 통계 (최근 30일) ===');
+          sorted.forEach(([date, count]) => {
+            console.log(`${date}: ${count}명`);
+          });
+          const total = sorted.reduce((sum, [_, count]) => sum + count, 0);
+          console.log(`총 방문: ${total}명`);
+          return visits;
+        };
+
+        // 페이지 로드 시 방문 기록
+        trackVisitor();
+      });
+    </script>
+    <!-- Floating Kakao chat shortcut -->
+    <div class="floating-chat" aria-label="카카오톡 상담 바로가기">
+      <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener">
+        <i class="bi bi-chat-dots-fill"></i><span>카톡 상담</span>
+      </a>
+    </div>
+  </body>
+</html>
