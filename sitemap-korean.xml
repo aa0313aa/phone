@@ -3,67 +3,67 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
-  <!-- ?덊럹?댁? (理쒓퀬 ?곗꽑?쒖쐞) -->
+  <!-- 홈페이지 (최고 우선순위) -->
   <url>
-    <loc>https://xn--2p7b1pl7d.shop/</loc>
+    <loc>https://폰테크.shop/</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://xn--2p7b1pl7d.shop/assets/img/og-banner.png</image:loc>
-      <image:title>?고뀒???뱀씪吏湲??꾧뎅紐⑤컮??- ?꾧뎅 ?대뵒?쒕굹 鍮꾨?硫?媛??/image:title>
-      <image:caption>誘몃궔?붽툑??㈑룸??⑷컻?돠룸퉬?硫닿컻?돠룹쫱?쒕ℓ???꾨Ц</image:caption>
+      <image:loc>https://폰테크.shop/assets/img/og-banner.png</image:loc>
+      <image:title>폰테크 당일지급 전국모바일 - 전국 어디서나 비대면 가능</image:title>
+      <image:caption>미납요금대납·대납개통·비대면개통·즉시매입 전문</image:caption>
     </image:image>
   </url>
 
-  <!-- ?쒕퉬???섏씠吏 (?듭떖 ?ㅼ썙?? -->
+  <!-- 서비스 페이지 (핵심 키워드) -->
   <url>
-    <loc>https://xn--2p7b1pl7d.shop/services.html</loc>
+    <loc>https://폰테크.shop/services.html</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- 臾몄쓽/?덉빟 ?섏씠吏 (?꾪솚 以묒슂) -->
+  <!-- 문의/예약 페이지 (전환 중요) -->
   <url>
-    <loc>https://xn--2p7b1pl7d.shop/contact.html</loc>
+    <loc>https://폰테크.shop/contact.html</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- ?댁슜?덈궡 ?섏씠吏 (E-E-A-T ?좊ː?? -->
+  <!-- 이용안내 페이지 (E-E-A-T 신뢰도) -->
   <url>
-    <loc>https://xn--2p7b1pl7d.shop/information.html</loc>
+    <loc>https://폰테크.shop/information.html</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- ?뚯궗?뚭컻 (?좊ː?굿룻닾紐낆꽦) -->
+  <!-- 회사소개 (신뢰성·투명성) -->
   <url>
-    <loc>https://xn--2p7b1pl7d.shop/about.html</loc>
+    <loc>https://폰테크.shop/about.html</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- ?고뀒??媛?대뱶 (?ㅼ썙??理쒖쟻?? -->
+  <!-- 폰테크 가이드 (키워드 최적화) -->
   <url>
-    <loc>https://xn--2p7b1pl7d.shop/phonetech-guide.html</loc>
+    <loc>https://폰테크.shop/phonetech-guide.html</loc>
     <lastmod>2025-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://?꾧뎅紐⑤컮??com/blog.html</loc>
+    <loc>https://전국모바일.com/blog.html</loc>
     <lastmod>2025-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://?꾧뎅紐⑤컮??com/phonetech-tips.html</loc>
+    <loc>https://전국모바일.com/phonetech-tips.html</loc>
     <lastmod>2025-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
