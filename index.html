@@ -24,6 +24,67 @@
     </div>
   </div>
 </section>
+<!-- (restored content from index.html.bak) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+<!-- 예약 시스템 JS -->
+<script>
+(function(){
+  function generateHomeReservations(){
+    const regions=['서울 강남','서울 강서','인천 부평','경기 수원','경기 분당','부산 해운대','대구 동성로','광주 충장로','대전 둔산','울산 삼산'];
+    const statuses=['접수완료','진행중','완료'];
+    const names=['김○○','이○○','박○○','최○○','정○○','강○○','조○○','윤○○','장○○','임○○'];
+    const result=[];
+    const now=new Date();
+
+    for(let i=0;i<8;i++){
+      const datetime=new Date(now - Math.random()*7*24*60*60*1000);
+      result.push({
+        region:regions[Math.floor(Math.random()*regions.length)],
+        datetime:datetime.toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}),
+        name:names[Math.floor(Math.random()*names.length)],
+        phone:`010-****-${String(Math.floor(Math.random()*9000)+1000)}`,
+        status:statuses[Math.floor(Math.random()*statuses.length)]
+      });
+    }
+    return result.sort((a,b)=>b.datetime.localeCompare(a.datetime));
+  }
+
+  function renderHomeReservations(){
+    const tbody=document.getElementById('homeReservationsBody');
+    if(!tbody) return;
+
+    const data=generateHomeReservations();
+    tbody.innerHTML=data.map((r,idx)=>{
+      const statusClass=r.status==='완료'?'success':r.status==='진행중'?'primary':'warning';
+      const statusIcon=r.status==='완료'?'check-circle-fill':r.status==='진행중'?'arrow-repeat':'clock-fill';
+
+      return `
+      <tr>
+        <td class="d-none d-md-table-cell text-center">${idx+1}</td>
+        <td>${r.region}</td>
+        <td class="d-none d-lg-table-cell">${r.datetime}</td>
+        <td>${r.name}</td>
+        <td class="d-none d-md-table-cell">${r.phone}</td>
+        <td><span class="badge bg-${statusClass}"><i class="bi bi-${statusIcon} me-1"></i>${r.status}</span></td>
+      </tr>`;
+    }).join('');
+  }
+
+  document.addEventListener('DOMContentLoaded', renderHomeReservations);
+})();
+</script>
+
+<!-- Floating Chat -->
+<div class="floating-chat">
+  <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank">
+    <i class="bi bi-chat-dots-fill"></i><span>카톡 상담</span>
+  </a>
+</div>
+
+</body>
+</html>
 
 <!-- 二쇱쓽?ы빆 -->
 <section class="py-5 bg-body-tertiary" id="caution">
