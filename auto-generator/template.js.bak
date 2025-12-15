@@ -1,26 +1,26 @@
-﻿// /auto-generator/template.js
-// 媛쒕퀎 釉붾줈洹?湲 怨좉툒 ?덉씠?꾩썐 ?쒗뵆由?
+// /auto-generator/template.js
+// 개별 블로그 글 고급 레이아웃 템플릿
 
 import slugify from 'slugify';
 
-const SITE_URL = 'https://?고뀒??shop';
+const SITE_URL = 'https://폰테크.shop';
 
 function getTagSlug(tag, fallbackPrefix = 'tag') {
   const base = (tag ?? '').toString().trim();
   if (!base) return '';
   const normalized = slugify(base, { lower: true, strict: true });
   if (normalized) return normalized;
-  // ?댁떆媛?????쒕뜡 臾몄옄??+ ??꾩뒪?ы봽濡????좊땲?ы븯寃?
+  // 해시값 대신 랜덤 문자열 + 타임스탬프로 더 유니크하게
   return `${fallbackPrefix}-${Date.now().toString(36)}`;
 }
 
-// ?쒕뜡 CTA 臾멸뎄 紐⑥쓬
+// 랜덤 CTA 문구 모음
 const CTA_VARIANTS = [
-  { text: "鍮좊Ⅸ ?곷떞???꾩슂?섏떆硫?諛붾줈 ?곕씫 二쇱꽭??", sub: "議곌굔 ?뺤씤? 臾대즺?낅땲?? 遺???놁씠 ?곕씫 二쇱꽭??", btn: "移댄넚 ?곷떞 ?닿린" },
-  { text: "沅곴툑???먯? ?꾨Ц媛?먭쾶 諛붾줈 臾쇱뼱蹂댁꽭??", sub: "移쒖젅?섍퀬 ?뺥솗?섍쾶 ?덈궡???쒕┰?덈떎.", btn: "臾대즺 ?곷떞 ?좎껌" },
-  { text: "蹂듭옟???덉감 ?놁씠 媛꾪렪?섍쾶 ?닿껐?섏꽭??", sub: "?덉쟾?섍퀬 ?좎냽??吏꾪뻾???꾩??쒕┰?덈떎.", btn: "1:1 臾몄쓽?섍린" },
-  { text: "?쇱옄 怨좊??섏? 留덉떆怨??곷떞 諛쏆븘蹂댁꽭??", sub: "理쒖쟻??議곌굔??李얠븘?쒕┰?덈떎.", btn: "?곷떞???곌껐" },
-  { text: "吏湲?諛붾줈 媛???щ?瑜??뺤씤?대낫?몄슂.", sub: "3遺꾩씠硫?異⑸텇?⑸땲??", btn: "媛???щ? 議고쉶" }
+  { text: "빠른 상담이 필요하시면 바로 연락 주세요.", sub: "조건 확인은 무료입니다. 부담 없이 연락 주세요.", btn: "카톡 상담 열기" },
+  { text: "궁금한 점은 전문가에게 바로 물어보세요.", sub: "친절하고 정확하게 안내해 드립니다.", btn: "무료 상담 신청" },
+  { text: "복잡한 절차 없이 간편하게 해결하세요.", sub: "안전하고 신속한 진행을 도와드립니다.", btn: "1:1 문의하기" },
+  { text: "혼자 고민하지 마시고 상담 받아보세요.", sub: "최적의 조건을 찾아드립니다.", btn: "상담원 연결" },
+  { text: "지금 바로 가능 여부를 확인해보세요.", sub: "3분이면 충분합니다.", btn: "가능 여부 조회" }
 ];
 
 function getRandomCTA() {
@@ -32,31 +32,31 @@ export function generateHTML({
   date,
   region,
   keyword,
-  content, // ?대? summary-box ?ы븿??HTML
+  content, // 이미 summary-box 포함된 HTML
   heroImg,
   midImg,
-  bottomImg, // /assets/gallery/*.webp 以?1??
+  bottomImg, // /assets/gallery/*.webp 중 1장
   canonicalPath,
   thumbUrl,
   tags = [],
   relatedPosts = [],
-  faqData = [], // ?숈쟻 FAQ ?곗씠??二쇱엯
-  summary = '', // 硫뷀? ?ㅻ챸???꾪븳 ?붿빟臾?
+  faqData = [], // 동적 FAQ 데이터 주입
+  summary = '', // 메타 설명을 위한 요약문
 }) {
-  const descriptionText = summary || `${region} 吏??뿉??${keyword} 吏꾪뻾??怨좊??섏떊?ㅻ㈃, ?ㅼ젣 ?곷떞 湲곗??쇰줈 ?고뀒??援ъ“쨌吏꾪뻾 ?쒖꽌쨌二쇱쓽?ы빆???뺣━???덈궡 湲?낅땲??`;
+  const descriptionText = summary || `${region} 지역에서 ${keyword} 진행을 고민하신다면, 실제 상담 기준으로 폰테크 구조·진행 순서·주의사항을 정리한 안내 글입니다.`;
 
   const heroDisplay = heroImg || '/assets/img/og-banner.png';
-  const heroAlt = `${region} ${keyword} ?고뀒???곷떞 ?대?吏`;
-  const midAlt = `${region} ${keyword} 吏꾪뻾 李멸퀬 ?대?吏`;
-  const bottomAlt = `${region} ${keyword} ?꾩옣 媛ㅻ윭由?;
+  const heroAlt = `${region} ${keyword} 폰테크 상담 이미지`;
+  const midAlt = `${region} ${keyword} 진행 참고 이미지`;
+  const bottomAlt = `${region} ${keyword} 현장 갤러리`;
   const ogImage = thumbUrl?.startsWith('http')
     ? thumbUrl
     : `${SITE_URL}${thumbUrl}`;
 
-  // ?쒕뜡 ?붿냼 ?좏깮
+  // 랜덤 요소 선택
   const cta = getRandomCTA();
 
-  // ?ъ씠?쒕컮 ?쒖꽌 ?쒕뜡??(?⑥닚?? ?쒓렇? 愿?④? ?쒖꽌 諛붽퓞)
+  // 사이드바 순서 랜덤화 (단순화: 태그와 관련글 순서 바꿈)
   const showRelatedFirst = Math.random() > 0.5;
 
   const tagChips = tags
@@ -81,20 +81,20 @@ export function generateHTML({
     })
     .join('');
 
-  // ?숈쟻 FAQ ?ъ슜 (?놁쑝硫?鍮?媛?
+  // 동적 FAQ 사용 (없으면 빈 값)
   const safeFaqData = Array.isArray(faqData) && faqData.length > 0
     ? faqData
-    : []; // ?뱀떆 ?곗씠?곌? ???섏뼱?붿쓣 ?뚮? ?鍮?
+    : []; // 혹시 데이터가 안 넘어왔을 때를 대비
 
   const faqEntries = safeFaqData.map(f => ({
-    question: f.question || `${region} ${keyword} 愿??吏덈Ц`,
-    answer: f.answer || `?곷떞???듯빐 ?뺥솗???댁슜???뺤씤?섏떆湲?諛붾엻?덈떎.`
+    question: f.question || `${region} ${keyword} 관련 질문`,
+    answer: f.answer || `상담을 통해 정확한 내용을 확인하시기 바랍니다.`
   }));
 
   const faqHtml = faqEntries.length
     ? `
       <section class="post-faq">
-        <h3>?먯＜ 臾삳뒗 吏덈Ц</h3>
+        <h3>자주 묻는 질문</h3>
         <div class="faq-items">
           ${faqEntries
       .map(
@@ -112,17 +112,17 @@ export function generateHTML({
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${region} ${keyword} ?고뀒???곷떞 - ${title}`,
+    headline: `${region} ${keyword} 폰테크 상담 - ${title}`,
     datePublished: date,
     dateModified: date,
     author: {
       '@type': 'Organization',
-      name: '?꾧뎅紐⑤컮??,
+      name: '전국모바일',
       url: SITE_URL,
     },
     publisher: {
       '@type': 'Organization',
-      name: '?꾧뎅紐⑤컮??,
+      name: '전국모바일',
       logo: {
         '@type': 'ImageObject',
         url: `${SITE_URL}/assets/img/favicon.svg`,
@@ -131,7 +131,7 @@ export function generateHTML({
     mainEntityOfPage: `${SITE_URL}${canonicalPath}`,
     image: `${SITE_URL}${heroDisplay}`,
     keywords: tags.join(', '),
-    articleSection: '?고뀒???곷떞',
+    articleSection: '폰테크 상담',
     description: descriptionText,
   };
 
@@ -142,13 +142,13 @@ export function generateHTML({
       {
         '@type': 'ListItem',
         position: 1,
-        name: '?꾧뎅紐⑤컮??,
+        name: '전국모바일',
         item: SITE_URL,
       },
       {
         '@type': 'ListItem',
         position: 2,
-        name: '釉붾줈洹?,
+        name: '블로그',
         item: `${SITE_URL}/blog/`,
       },
       {
@@ -181,19 +181,19 @@ export function generateHTML({
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>${region} ${keyword} ?고뀒???곷떞 - ${title} | ?꾧뎅紐⑤컮??/title>
+<title>${region} ${keyword} 폰테크 상담 - ${title} | 전국모바일</title>
 <meta name="description" content="${descriptionText}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="canonical" href="https://?고뀒??shop${canonicalPath}">
+<link rel="canonical" href="https://폰테크.shop${canonicalPath}">
 <meta name="robots" content="index,follow">
-<meta property="og:title" content="${region} ${keyword} ?고뀒???곷떞 - ${title}">
+<meta property="og:title" content="${region} ${keyword} 폰테크 상담 - ${title}">
 <meta property="og:description" content="${descriptionText}">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://?고뀒??shop${canonicalPath}">
-<meta property="og:site_name" content="?꾧뎅紐⑤컮??>
+<meta property="og:url" content="https://폰테크.shop${canonicalPath}">
+<meta property="og:site_name" content="전국모바일">
 <meta property="og:image" content="${ogImage}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${region} ${keyword} ?고뀒???곷떞 - ${title}">
+<meta name="twitter:title" content="${region} ${keyword} 폰테크 상담 - ${title}">
 <meta name="twitter:description" content="${descriptionText}">
 <meta name="twitter:image" content="${ogImage}">
 <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
@@ -353,7 +353,7 @@ a:hover{text-decoration:underline;}
   border-radius:14px;
   box-shadow:0 10px 26px rgba(15,23,42,.18);
 }
-/* 紐낇븿/?곸긽 怨듯넻 釉붾줉 */
+/* 명함/영상 공통 블록 */
 .biz-card{
   margin:20px 0;
   text-align:center;
@@ -375,7 +375,7 @@ a:hover{text-decoration:underline;}
   display:block;
 }
 
-/* ?ъ씠?쒕컮 */
+/* 사이드바 */
 .sidebar{
   display:flex;
   flex-direction:column;
@@ -524,7 +524,7 @@ a:hover{text-decoration:underline;}
   box-shadow:0 10px 18px rgba(15,23,42,.25);
 }
 
-/* FAQ ?뱀뀡 */
+/* FAQ 섹션 */
 .post-faq{
   margin:24px 0;
   padding:18px 20px;
@@ -552,7 +552,7 @@ a:hover{text-decoration:underline;}
   color:#374151;
 }
 
-/* ?섎떒 媛ㅻ윭由?*/
+/* 하단 갤러리 */
 .bottom-gallery{
   margin-top:24px;
   padding-top:16px;
@@ -570,7 +570,7 @@ a:hover{text-decoration:underline;}
   box-shadow:0 10px 26px rgba(15,23,42,.18);
 }
 
-/* 諛섏쓳??*/
+/* 반응형 */
 @media(max-width:900px){
   .layout{
     grid-template-columns:1fr;
@@ -594,20 +594,20 @@ ${faqJson ? `<script type="application/ld+json">${faqJson}</script>` : ''}
 <body>
   <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
     <div class="container" style="max-width:1120px;">
-      <a class="navbar-brand fw-bold" href="/"><img src="/assets/img/favicon.svg" alt="?꾧뎅紐⑤컮?? width="28" height="28" class="me-2">?꾧뎅紐⑤컮??/a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="硫붾돱 ?닿린">
+      <a class="navbar-brand fw-bold" href="/"><img src="/assets/img/favicon.svg" alt="전국모바일" width="28" height="28" class="me-2">전국모바일</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="메뉴 열기">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="nav">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="/">??/a></li>
-          <li class="nav-item"><a class="nav-link" href="/services.html">?고뀒??/a></li>
-          <li class="nav-item"><a class="nav-link" href="/information.html">?댁슜?덈궡</a></li>
-          <li class="nav-item"><a class="nav-link" href="/about.html">?뚯궗?뚭컻</a></li>
-          <li class="nav-item"><a class="nav-link" href="/contact.html">臾몄쓽/?덉빟</a></li>
-          <li class="nav-item"><a class="nav-link" href="/phonetech-guide.html">?고뀒?ш??대뱶</a></li>
-          <li class="nav-item"><a class="nav-link" href="/phonetech-tips.html">?덉쟾?댁슜??/a></li>
-          <li class="nav-item"><a class="nav-link" href="/blog/">釉붾줈洹?/a></li>
+          <li class="nav-item"><a class="nav-link" href="/">홈</a></li>
+          <li class="nav-item"><a class="nav-link" href="/services.html">폰테크</a></li>
+          <li class="nav-item"><a class="nav-link" href="/information.html">이용안내</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about.html">회사소개</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact.html">문의/예약</a></li>
+          <li class="nav-item"><a class="nav-link" href="/phonetech-guide.html">폰테크가이드</a></li>
+          <li class="nav-item"><a class="nav-link" href="/phonetech-tips.html">안전이용팁</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blog/">블로그</a></li>
         </ul>
       </div>
     </div>
@@ -619,11 +619,11 @@ ${faqJson ? `<script type="application/ld+json">${faqJson}</script>` : ''}
   crossorigin="anonymous"></script>
 
     <nav class="breadcrumb">
-      <a href="/">?꾧뎅紐⑤컮??/a> 쨌 <a href="/blog/">釉붾줈洹?/a> 쨌 <span>${region} ${keyword}</span>
+      <a href="/">전국모바일</a> · <a href="/blog/">블로그</a> · <span>${region} ${keyword}</span>
     </nav>
 
     <div class="layout">
-      <!-- 硫붿씤 湲 ?곸뿭 -->
+      <!-- 메인 글 영역 -->
       <article class="article-card">
         ${heroDisplay ? `<img src="${heroDisplay}" alt="${heroAlt}" class="hero-img">` : ''}
 
@@ -641,7 +641,7 @@ ${faqJson ? `<script type="application/ld+json">${faqJson}</script>` : ''}
           <div class="post-body">
             <div class="cta-inline" style="margin:14px 0 18px; padding:10px 12px; border-radius:10px; background:#eff6ff; border:1px solid #bfdbfe; font-size:.87rem;">
               <p style="margin:0 0 6px; font-weight:600; color:#1d4ed8;">${cta.text}</p>
-              <p style="margin:0; color:#4b5563;">?뱸 ?꾪솕: <a href="tel:010-8290-9536" style="text-decoration:none; color:#1d4ed8;">010-8290-9536</a><br>?뮠 移댄넚 ?곷떞: <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:#1d4ed8;">諛붾줈媛湲?/a></p>
+              <p style="margin:0; color:#4b5563;">📞 전화: <a href="tel:010-8290-9536" style="text-decoration:none; color:#1d4ed8;">010-8290-9536</a><br>💬 카톡 상담: <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:#1d4ed8;">바로가기</a></p>
             </div>
             ${content}
 
@@ -658,8 +658,8 @@ ${faqJson ? `<script type="application/ld+json">${faqJson}</script>` : ''}
             <div class="bottom-cta" style="margin-top:22px; padding:14px 14px 12px; border-radius:12px; background:#f9fafb; border:1px solid #e5e7eb; font-size:.9rem;">
               <p style="margin:0 0 8px; font-weight:600;">${cta.sub}</p>
               <div style="display:flex; flex-wrap:wrap; gap:8px;">
-                <a href="/information.html" style="flex:1 1 140px; text-align:center; padding:8px 10px; border-radius:999px; background:#2563eb; color:#fff; text-decoration:none; font-size:.86rem;">?댁슜 ?덈궡 蹂닿린</a>
-                <a href="/contact.html" style="flex:1 1 140px; text-align:center; padding:8px 10px; border-radius:999px; background:#10b981; color:#fff; text-decoration:none; font-size:.86rem;">?곷떞 ?덉빟?섍린</a>
+                <a href="/information.html" style="flex:1 1 140px; text-align:center; padding:8px 10px; border-radius:999px; background:#2563eb; color:#fff; text-decoration:none; font-size:.86rem;">이용 안내 보기</a>
+                <a href="/contact.html" style="flex:1 1 140px; text-align:center; padding:8px 10px; border-radius:999px; background:#10b981; color:#fff; text-decoration:none; font-size:.86rem;">상담 예약하기</a>
                 <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener noreferrer" style="flex:1 1 140px; text-align:center; padding:8px 10px; border-radius:999px; background:#f59e0b; color:#111827; text-decoration:none; font-size:.86rem;">${cta.btn}</a>
               </div>
             </div>
@@ -667,14 +667,14 @@ ${faqJson ? `<script type="application/ld+json">${faqJson}</script>` : ''}
             <div class="biz-video">
               <video controls preload="metadata">
                 <source src="/assets/img/blog/grok-video-1d0862df-4106-4d06-ba5a-aabf05d29181.mp4" type="video/mp4">
-                釉뚮씪?곗?媛 ?곸긽??吏?먰븯吏 ?딆뒿?덈떎.
+                브라우저가 영상을 지원하지 않습니다.
               </video>
             </div>
 
             ${bottomImg
       ? `
             <div class="bottom-gallery">
-              <h3>?꾩옣 媛ㅻ윭由?/h3>
+              <h3>현장 갤러리</h3>
               <img src="${bottomImg}" alt="${bottomAlt}">
             </div>`
       : ''
@@ -683,54 +683,54 @@ ${faqJson ? `<script type="application/ld+json">${faqJson}</script>` : ''}
         </div>
       </article>
 
-      <!-- ?ъ씠?쒕컮 -->
+      <!-- 사이드바 -->
       <aside class="sidebar">
         ${showRelatedFirst ? `
         <section class="side-card">
-          <h3>愿??湲</h3>
+          <h3>관련 글</h3>
           <ul class="related-list">
-            ${relatedHtml || "<li><span class='text-muted' style='font-size:.8rem;'>愿??湲???꾩쭅 留롮? ?딆뒿?덈떎.</span></li>"}
+            ${relatedHtml || "<li><span class='text-muted' style='font-size:.8rem;'>관련 글이 아직 많지 않습니다.</span></li>"}
           </ul>
         </section>
 
         <section class="side-card">
-          <h3>?쒓렇</h3>
+          <h3>태그</h3>
           <div class="side-tags">
-            ${tagChips || "<span style='font-size:.8rem;color:#9ca3af;'>?쒓렇 ?놁쓬</span>"}
+            ${tagChips || "<span style='font-size:.8rem;color:#9ca3af;'>태그 없음</span>"}
           </div>
         </section>
         ` : `
         <section class="side-card">
-          <h3>?쒓렇</h3>
+          <h3>태그</h3>
           <div class="side-tags">
-            ${tagChips || "<span style='font-size:.8rem;color:#9ca3af;'>?쒓렇 ?놁쓬</span>"}
+            ${tagChips || "<span style='font-size:.8rem;color:#9ca3af;'>태그 없음</span>"}
           </div>
         </section>
 
         <section class="side-card">
-          <h3>愿??湲</h3>
+          <h3>관련 글</h3>
           <ul class="related-list">
-            ${relatedHtml || "<li><span class='text-muted' style='font-size:.8rem;'>愿??湲???꾩쭅 留롮? ?딆뒿?덈떎.</span></li>"}
+            ${relatedHtml || "<li><span class='text-muted' style='font-size:.8rem;'>관련 글이 아직 많지 않습니다.</span></li>"}
           </ul>
         </section>
         `}
 
         <section class="side-card side-card--cta">
-          <h3>?곷떞 ?덈궡</h3>
+          <h3>상담 안내</h3>
           <div class="side-cta">
             <p class="cta-sub">${cta.text}<span class="cta-note">${cta.sub}</span></p>
             <div class="cta-panel">
               <div class="cta-line">
-                <span>?뱸</span>
+                <span>📞</span>
                 <a href="tel:010-8290-9536">010-8290-9536</a>
               </div>
               <div class="cta-line">
-                <span>?뮠</span>
-                <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener noreferrer">移댄넚: k090912k</a>
+                <span>💬</span>
+                <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener noreferrer">카톡: k090912k</a>
               </div>
             </div>
             <a class="cta-btn" href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener noreferrer">
-              移댄넚 ?곷떞 ?닿린 <i class="bi bi-arrow-up-right"></i>
+              카톡 상담 열기 <i class="bi bi-arrow-up-right"></i>
             </a>
           </div>
         </section>

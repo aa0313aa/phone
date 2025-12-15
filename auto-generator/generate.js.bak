@@ -1,18 +1,18 @@
-﻿// /auto-generator/generate.js
-// ?꾧뎅紐⑤컮????AI ?먮룞 釉붾줈洹??쇰툝由ъ떛 ??ㅽ넗 ?붿쭊
+// /auto-generator/generate.js
+// 전국모바일 — AI 자동 블로그 퍼블리싱 풀오토 엔진
 // --------------------------------------------------
-// 湲곕뒫:
-// ??gpt-5.1濡??먯뿰?ㅻ윭???멸컙 留먰닾 湲 ?앹꽦
-// ??Markdown ??HTML 蹂??
-// ??OpenAI gpt-image-1 ?대?吏 2??(Hero + 蹂몃Ц 以묎컙)
-// ???섎떒 媛ㅻ윭由щ뒗 ?뺤쟻 WebP (/assets/gallery/*.webp) ?쒕뜡 1??
-// ???몃꽕??WebP ?먮룞 ?앹꽦
-// ??posts-meta.json 硫뷀? 愿由?
-// ??Masonry??/blog/index.html ?앹꽦
-// ??/tag/?щ윭洹?html ?쒓렇 ?섏씠吏 ?앹꽦
-// ??愿??湲 ?먮룞 異붿텧
-// ??sitemap.xml ?먮룞 ?앹꽦 (?쒓렇 ?ы븿)
-// ??index.html 理쒖떊 湲 3媛??먮룞 諛섏쁺
+// 기능:
+// ✔ gpt-5.1로 자연스러운 인간 말투 글 생성
+// ✔ Markdown → HTML 변환
+// ✔ OpenAI gpt-image-1 이미지 2장 (Hero + 본문 중간)
+// ✔ 하단 갤러리는 정적 WebP (/assets/gallery/*.webp) 랜덤 1장
+// ✔ 썸네일 WebP 자동 생성
+// ✔ posts-meta.json 메타 관리
+// ✔ Masonry형 /blog/index.html 생성
+// ✔ /tag/슬러그.html 태그 페이지 생성
+// ✔ 관련 글 자동 추출
+// ✔ sitemap.xml 자동 생성 (태그 포함)
+// ✔ index.html 최신 글 3개 자동 반영
 // --------------------------------------------------
 
 import 'dotenv/config';
@@ -45,7 +45,7 @@ const INDEX_HTML = path.join(ROOT_DIR, 'index.html');
 const SITEMAP_XML = path.join(ROOT_DIR, 'sitemap.xml');
 const POSTS_META_JSON = path.join(BLOG_DIR, 'posts-meta.json');
 
-const BASE_URL = 'https://?고뀒??shop';
+const BASE_URL = 'https://폰테크.shop';
 const DEFAULT_IMAGE = '/assets/img/og-banner.png';
 const STATIC_ROUTES = [
   { path: '/', changefreq: 'daily', priority: '1.0' },
@@ -60,47 +60,47 @@ const STATIC_ROUTES = [
 ];
 
 // --------------------------------------------------
-// ?렚 AI ?멸컙??(Humanizing) ?ㅼ젙
+// 🎭 AI 인간화 (Humanizing) 설정
 // --------------------------------------------------
 
-// 1. ?붿옄 ?ㅽ???(?섎Ⅴ?뚮굹) ?쒕뜡 ?좏깮 ???먯옏? ?꾨Ц媛 ?꾩＜濡??뺤텞
+// 1. 화자 스타일 (페르소나) 랜덤 선택 — 점잖은 전문가 위주로 압축
 const PERSONAS = [
   {
-    name: '移쒖젅???곷떞?ㅼ옣',
-    tone: "怨좉컼??嫄깆젙??怨듦컧?댁＜硫?李⑤텇?섍쾶 ?ㅻ챸?섎뒗 ?ㅽ??? '~?섏뀲?섏슂?', '~?낅땲?? ?꾩＜??遺?쒕윭??寃쎌뼱泥?",
-    ending: '?곷떞???꾩슂?섏떆?ㅻ㈃ ?몄젣???명븯寃?臾몄쓣 ?먮뱶?ㅼ＜?몄슂.',
+    name: '친절한 상담실장',
+    tone: "고객의 걱정을 공감해주며 차분하게 설명하는 스타일. '~하셨나요?', '~입니다' 위주의 부드러운 경어체.",
+    ending: '상담이 필요하시다면 언제든 편하게 문을 두드려주세요.',
   },
   {
-    name: '紐낆풄???꾨Ц媛',
-    tone: '援곕뜑?붽린 ?놁씠 源붾걫?섍퀬 ?쇰━?곸씤 ?ㅽ??? ?⑺듃 ?꾩＜濡??꾨떖?섎ŉ ?좊ː媛먯쓣 二쇰뒗 ?⑦샇??寃쎌뼱泥?',
-    ending: '蹂듭옟?섍쾶 怨좊??섏? 留덉떆怨? ?꾨Ц媛? ?곸쓽?섏뿬 ?덉쟾?섍쾶 吏꾪뻾?섏꽭??',
+    name: '명쾌한 전문가',
+    tone: '군더더기 없이 깔끔하고 논리적인 스타일. 팩트 위주로 전달하며 신뢰감을 주는 단호한 경어체.',
+    ending: '복잡하게 고민하지 마시고, 전문가와 상의하여 안전하게 진행하세요.',
   },
 ];
 
-// 2. 湲 援ъ“ (?쒗뵆由? ?쒕뜡 ?좏깮 - 紐⑹감 ?쒖꽌瑜??ㅼ꽎??
+// 2. 글 구조 (템플릿) 랜덤 선택 - 목차 순서를 뒤섞음
 const TEMPLATES = [
   {
-    type: '?꾧린 以묒떖??,
+    type: '후기 중심형',
     instructions:
-      '?꾩엯遺?먯꽌 ?ㅻ뒛 寃れ? ?⑸떦?섍굅??湲곗뼲???⑤뒗 ?ㅼ젣 ?곷떞 ?먰뵾?뚮뱶濡??쒖옉. ?대줎 ?ㅻ챸? ?ㅻ줈 誘몃（怨? \'?????먮떂???덉씠 湲됲뻽?붿?\' ?ㅽ넗由ы뀛留??꾩＜濡??꾧컻.',
+      '도입부에서 오늘 겪은 황당하거나 기억에 남는 실제 상담 에피소드로 시작. 이론 설명은 뒤로 미루고, \'왜 이 손님이 돈이 급했는지\' 스토리텔링 위주로 전개.',
   },
   {
-    type: '?⑺듃 泥댄겕??,
+    type: '팩트 체크형',
     instructions:
-      '?명꽣?룹뿉 ?좊룄???고뀒???ш린 ?섎쾿?대굹 ?섎せ???뺣낫瑜?癒쇱? 吏?곹븯硫댁꽌 ?쒖옉. \'?덈? ?대젃寃??섏? 留덉꽭??'?쇨퀬 媛뺣젰?섍쾶 寃쎄퀬?섎ŉ ?좊ː???뺣낫.',
+      '인터넷에 떠도는 폰테크 사기 수법이나 잘못된 정보를 먼저 지적하면서 시작. \'절대 이렇게 하지 마세요\'라고 강력하게 경고하며 신뢰도 확보.',
   },
   {
-    type: 'Q&A ?닿껐??,
-    instructions: '?ㅻ뒛 媛??留롮씠 諛쏆? 吏덈Ц 3媛吏瑜??듬??섎뒗 ?뺤떇?쇰줈 援ъ꽦. 紐⑹감瑜?Q&A ?뺤떇?쇰줈 ?≪쓣 寃?',
+    type: 'Q&A 해결형',
+    instructions: '오늘 가장 많이 받은 질문 3가지를 답변하는 형식으로 구성. 목차를 Q&A 형식으로 잡을 것.',
   },
 ];
 
-// 3. ?멸컙?곸씤 ?〓떞 (Noise) 由ъ뒪??
+// 3. 인간적인 잡담 (Noise) 리스트
 const HUMAN_NOISE = [
-  '?붿쬁 寃쎄린媛 ?대젮?뚯꽌 洹몃윴吏 臾몄쓽二쇱떆??遺꾨뱾???ъ뿰???ㅼ쑝硫?留덉쓬??臾닿굅???뚭? 留롮뒿?덈떎.',
-  '?좎뵪媛 遺姨?蹂?뺤뒪?쎈꽕?? ?ㅻ뱾 嫄닿컯 梨숆린?쒕㈃????蹂댁떆湲?諛붾엻?덈떎.',
-  '?ㅼ쟾???곷떞?섎떎 蹂대땲 鍮꾩듂??怨좊????섏떆??遺꾨뱾??留롮븘 湲濡??뺣━?대큶?덈떎.',
-  '?명꽣?룹뿉 ?섎せ???뺣낫媛 ?덈Т 留롮븘, ?ㅻ뒛 ?쒕?濡????댁슜???뚮젮?쒕━???⑸땲??',
+  '요즘 경기가 어려워서 그런지 문의주시는 분들의 사연을 들으면 마음이 무거울 때가 많습니다.',
+  '날씨가 부쩍 변덕스럽네요. 다들 건강 챙기시면서 일 보시길 바랍니다.',
+  '오전에 상담하다 보니 비슷한 고민을 하시는 분들이 많아 글로 정리해봅니다.',
+  '인터넷에 잘못된 정보가 너무 많아, 오늘 제대로 된 내용을 알려드리려 합니다.',
 ];
 
 const INLINE_DECOR_IMAGES = [
@@ -129,7 +129,7 @@ function ensureAsciiSlug(value, fallbackPrefix) {
 }
 
 // --------------------------------------------------
-// ?좏떥
+// 유틸
 // --------------------------------------------------
 
 function pick(arr) {
@@ -141,38 +141,38 @@ function pickInlineDecorImage() {
   return pick(INLINE_DECOR_IMAGES);
 }
 
-// ?ㅼ썙?쒖뿉 "?고뀒??媛 ?대? ?ы븿??寃쎌슦 以묐났 ?쒓굅
+// 키워드에 "폰테크"가 이미 포함된 경우 중복 제거
 function normalizeKeywordForTitle(keyword) {
-  const cleaned = (keyword ?? '').replace(/?고뀒??gi, '').trim();
-  return cleaned || '?덉쟾 ?댁슜';
+  const cleaned = (keyword ?? '').replace(/폰테크/gi, '').trim();
+  return cleaned || '안전 이용';
 }
 
-// ?쒕ぉ ?⑦꽩: "吏??챸 + ?고뀒??怨좎젙) + ?ㅼ썙?? ?쒓?留??ъ슜
+// 제목 패턴: "지역명 + 폰테크(고정) + 키워드" 한글만 사용
 function randomTitle(region, keyword) {
   const kw = normalizeKeywordForTitle(keyword);
 
   const patterns = [
-    `${region} ?고뀒??${kw} ?ㅼ젣 ?곷떞 ?명듃`,
-    `${region} ?고뀒??${kw} 泥댄겕由ъ뒪??踰꾩쟾`,
-    `${region} ?고뀒??${kw} 吏꾪뻾 二쇱쓽?ы빆 ?뺣━`,
-    `${region} ?고뀒??${kw} 理쒓렐 ?곷떞 ?щ?`,
-    `${region} ?고뀒??${kw} 瑗??뚯븘?????ъ씤??,
-    `${region} ?고뀒??${kw} ?덉쟾?섍쾶 ?댁슜?섏꽭??,
-    `${region} ?고뀒??${kw} ?뺤떇 ?낆껜 吏꾪뻾`,
+    `${region} 폰테크 ${kw} 실제 상담 노트`,
+    `${region} 폰테크 ${kw} 체크리스트 버전`,
+    `${region} 폰테크 ${kw} 진행 주의사항 정리`,
+    `${region} 폰테크 ${kw} 최근 상담 사례`,
+    `${region} 폰테크 ${kw} 꼭 알아야 할 포인트`,
+    `${region} 폰테크 ${kw} 안전하게 이용하세요`,
+    `${region} 폰테크 ${kw} 정식 업체 진행`,
   ];
 
   return pick(patterns);
 }
 
 // --------------------------------------------------
-// ?대?吏 ???(濡쒖뺄 PNG ??WebP/?몃꽕??
+// 이미지 저장 (로컬 PNG → WebP/썸네일)
 // --------------------------------------------------
 
 async function saveThumbnail(localImgPath, slugBase) {
   if (!localImgPath) return null;
   await fs.ensureDir(ASSET_BLOG_DIR);
 
-  // heroImg??"/assets/img/blog/xxx.png" ?뺥깭?대?濡? 猷⑦듃 湲곗? ?ㅼ젣 寃쎈줈濡?蹂??
+  // heroImg는 "/assets/img/blog/xxx.png" 형태이므로, 루트 기준 실제 경로로 변환
   const normalized = localImgPath.replace(/^\//, '');
   const absPngPath = path.join(ROOT_DIR, normalized);
 
@@ -181,7 +181,7 @@ async function saveThumbnail(localImgPath, slugBase) {
     buf = await fs.readFile(absPngPath);
   } catch (e) {
     console.warn(
-      '??濡쒖뺄 ?대?吏 ?쎄린 ?ㅽ뙣, 湲곕낯 諛곕꼫濡??泥?',
+      '⚠ 로컬 이미지 읽기 실패, 기본 배너로 대체:',
       absPngPath,
       e.message
     );
@@ -189,7 +189,7 @@ async function saveThumbnail(localImgPath, slugBase) {
     try {
       buf = await fs.readFile(fallbackPath);
     } catch (fallbackErr) {
-      console.warn('??湲곕낯 諛곕꼫 ?쎄린 ?ㅽ뙣:', fallbackPath, fallbackErr.message);
+      console.warn('⚠ 기본 배너 읽기 실패:', fallbackPath, fallbackErr.message);
       return null;
     }
   }
@@ -213,7 +213,7 @@ async function saveThumbnail(localImgPath, slugBase) {
 }
 
 // --------------------------------------------------
-// posts-meta 濡쒕뱶 / ???
+// posts-meta 로드 / 저장
 // --------------------------------------------------
 
 async function loadPostsMeta() {
@@ -239,7 +239,7 @@ async function savePostsMeta(meta) {
 }
 
 // --------------------------------------------------
-// ?쒓렇 留?
+// 태그 맵
 // --------------------------------------------------
 
 function buildTagMap(posts) {
@@ -257,7 +257,7 @@ function buildTagMap(posts) {
 }
 
 // --------------------------------------------------
-// Masonry 釉붾줈洹??몃뜳??(/blog/index.html)
+// Masonry 블로그 인덱스 (/blog/index.html)
 // --------------------------------------------------
 
 async function updateBlogIndex(posts) {
@@ -292,9 +292,9 @@ async function updateBlogIndex(posts) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: '?고뀒???뺣낫 釉붾줈洹?,
+    name: '폰테크 정보 블로그',
     description:
-      '?꾧뎅紐⑤컮?쇱씠 ?ㅼ젣 ?곷떞???뺣━???고뀒??쨌 鍮꾨?硫닿컻??쨌 誘몃궔?붽툑????뺣낫 紐⑥쓬',
+      '전국모바일이 실제 상담을 정리한 폰테크 · 비대면개통 · 미납요금대납 정보 모음',
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: posts.slice(0, 12).map((p, idx) => ({
@@ -316,8 +316,8 @@ async function updateBlogIndex(posts) {
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>?고뀒???뺣낫 釉붾줈洹?- ?꾧뎅紐⑤컮??/title>
-<meta name="description" content="?고뀒?? 鍮꾨?硫닿컻?? 誘몃궔?붽툑??????ㅼ젣 ?곷떞 湲곕컲 ?뺣낫 ?뺣━.">
+<title>폰테크 정보 블로그 - 전국모바일</title>
+<meta name="description" content="폰테크, 비대면개통, 미납요금대납 등 실제 상담 기반 정보 정리.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="canonical" href="${BASE_URL}/blog/">
 <style>
@@ -450,10 +450,10 @@ body{
   <div class="wrap">
     <header class="header">
       <div>
-        <h1>?고뀒???뺣낫 釉붾줈洹?/h1>
-        <p>?ㅼ젣 ?곷떞 ?댁슜??諛뷀깢?쇰줈 ?고뀒?? 誘몃궔?붽툑??? 鍮꾨?硫?媛쒗넻 ?뺣낫瑜??뺣━?⑸땲??</p>
+        <h1>폰테크 정보 블로그</h1>
+        <p>실제 상담 내용을 바탕으로 폰테크, 미납요금대납, 비대면 개통 정보를 정리합니다.</p>
       </div>
-      <a href="/">???꾧뎅紐⑤컮??硫붿씤?쇰줈</a>
+      <a href="/">← 전국모바일 메인으로</a>
     </header>
     <section class="grid">
       ${cards}
@@ -464,11 +464,11 @@ body{
 
   await fs.ensureDir(BLOG_DIR);
   await fs.writeFile(path.join(BLOG_DIR, 'index.html'), html, 'utf8');
-  console.log('?뱞 /blog/index.html ?앹꽦 ?꾨즺');
+  console.log('📄 /blog/index.html 생성 완료');
 }
 
 // --------------------------------------------------
-// ?쒓렇 ?섏씠吏 (/tag/?щ윭洹?html)
+// 태그 페이지 (/tag/슬러그.html)
 // --------------------------------------------------
 
 async function generateTagPages(posts) {
@@ -510,8 +510,8 @@ async function generateTagPages(posts) {
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>#${tag} 愿??湲 紐⑥쓬 - ?꾧뎅紐⑤컮??/title>
-<meta name="description" content="${tag} 愿???고뀒?? 鍮꾨?硫?媛쒗넻, 誘몃궔?붽툑????곷떞 ?щ? 紐⑥쓬.">
+<title>#${tag} 관련 글 모음 - 전국모바일</title>
+<meta name="description" content="${tag} 관련 폰테크, 비대면 개통, 미납요금대납 상담 사례 모음.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="canonical" href="${BASE_URL}/tag/${slug}.html">
 <style>
@@ -600,7 +600,7 @@ h2{
 <body>
   <div class="wrap">
     <h1>#${tag}</h1>
-    <p class="desc">${tag} 愿???ㅼ젣 ?곷떞 ?댁슜??紐⑥븘???뺣━???섏씠吏?낅땲??</p>
+    <p class="desc">${tag} 관련 실제 상담 내용을 모아서 정리한 페이지입니다.</p>
     <section class="grid">
       ${cards}
     </section>
@@ -611,11 +611,11 @@ h2{
     await fs.writeFile(path.join(TAG_DIR, `${slug}.html`), html, 'utf8');
   }
 
-  console.log('?뤇 ?쒓렇 ?섏씠吏 ?앹꽦 ?꾨즺');
+  console.log('🏷 태그 페이지 생성 완료');
 }
 
 // --------------------------------------------------
-// Markdown ??HTML 蹂??+ ?붿빟 異붿텧
+// Markdown → HTML 변환 + 요약 추출
 // --------------------------------------------------
 
 function extractSummary(text) {
@@ -627,10 +627,10 @@ function convertToHTML(mdText) {
   const summary = extractSummary(mdText);
   const bodyHtml = marked(mdText);
 
-  // HTML ?댁슜???붿빟?곸옄瑜??ы븿
+  // HTML 내용에 요약상자를 포함
   const fullHtml = `
 <div class="summary-box">
-  <strong>??湲 ?쒕늿??蹂닿린</strong>
+  <strong>이 글 한눈에 보기</strong>
   <p>${summary}</p>
 </div>
 ${bodyHtml}
@@ -643,7 +643,7 @@ function decorateContent(html, { region, keyword, inlineImage }) {
   let output = html || '';
 
   if (inlineImage) {
-    const inlineAlt = `${region} ${keyword} 吏꾪뻾 李멸퀬 ?대?吏`;
+    const inlineAlt = `${region} ${keyword} 진행 참고 이미지`;
     const inlineBlock = `
 <div class="section-img">
   <img src="${inlineImage}" alt="${inlineAlt}">
@@ -658,7 +658,7 @@ function decorateContent(html, { region, keyword, inlineImage }) {
 }
 
 // --------------------------------------------------
-// 愿??湲 異붿텧
+// 관련 글 추출
 // --------------------------------------------------
 
 function getRelated(posts, region, keyword, limit = 6) {
@@ -674,7 +674,7 @@ function getRelated(posts, region, keyword, limit = 6) {
     if (t.includes(kl)) score += 2;
     if (p.tags?.includes(region)) score += 1;
     if (p.tags?.includes(keyword)) score += 1;
-    if (p.tags?.includes('?고뀒??)) score += 0.5;
+    if (p.tags?.includes('폰테크')) score += 0.5;
     return { ...p, score };
   });
 
@@ -690,7 +690,7 @@ function getRelated(posts, region, keyword, limit = 6) {
 }
 
 // --------------------------------------------------
-// sitemap.xml ?앹꽦 (?쒓렇 ?ы븿)
+// sitemap.xml 생성 (태그 포함)
 // --------------------------------------------------
 
 async function updateSitemap(posts) {
@@ -721,7 +721,7 @@ async function updateSitemap(posts) {
     if (imgPath) {
       xml += `    <image:image>\n`;
       xml += `      <image:loc>${escapeXml(imgLoc)}</image:loc>\n`;
-      xml += `      <image:title>${escapeXml(post.title || '?고뀒???곷떞 ?대?吏')}</image:title>\n`;
+      xml += `      <image:title>${escapeXml(post.title || '폰테크 상담 이미지')}</image:title>\n`;
       xml += `    </image:image>\n`;
     }
     xml += `  </url>\n`;
@@ -739,11 +739,11 @@ async function updateSitemap(posts) {
   xml += `</urlset>`;
 
   await fs.writeFile(SITEMAP_XML, xml, 'utf8');
-  console.log('?뿺 sitemap.xml ?낅뜲?댄듃 ?꾨즺');
+  console.log('🗺 sitemap.xml 업데이트 완료');
 }
 
 // --------------------------------------------------
-// index.html 理쒖떊 湲 3媛?諛섏쁺
+// index.html 최신 글 3개 반영
 // --------------------------------------------------
 
 async function updateHomeLatest(posts) {
@@ -754,7 +754,7 @@ async function updateHomeLatest(posts) {
   const END = '<!-- AUTO_LATEST_POSTS_END -->';
 
   if (!html.includes(START) || !html.includes(END)) {
-    console.warn('??index.html??AUTO_LATEST_POSTS 留덉빱 ?놁쓬');
+    console.warn('⚠ index.html에 AUTO_LATEST_POSTS 마커 없음');
     return;
   }
 
@@ -772,12 +772,12 @@ async function updateHomeLatest(posts) {
   const block = `
 <section class="py-5 bg-white">
   <div class="container">
-    <h2 class="h4 mb-3"><i class="bi bi-journal-text me-2"></i>理쒖떊 ?고뀒???뺣낫</h2>
+    <h2 class="h4 mb-3"><i class="bi bi-journal-text me-2"></i>최신 폰테크 정보</h2>
     <ul class="list-group">
       ${items}
     </ul>
     <div class="mt-3 text-end">
-      <a href="/blog/" class="small text-decoration-none">釉붾줈洹??꾩껜蹂닿린 <i class="bi bi-arrow-right"></i></a>
+      <a href="/blog/" class="small text-decoration-none">블로그 전체보기 <i class="bi bi-arrow-right"></i></a>
     </div>
   </div>
 </section>`;
@@ -790,11 +790,11 @@ async function updateHomeLatest(posts) {
     `${before}${START}${block}${END}${after}`,
     'utf8'
   );
-  console.log('?룧 index.html 理쒖떊 湲 ?낅뜲?댄듃 ?꾨즺');
+  console.log('🏠 index.html 최신 글 업데이트 완료');
 }
 
 // --------------------------------------------------
-// ?뺤쟻 媛ㅻ윭由??대?吏 (/assets/gallery/*.webp) 以?1???좏깮
+// 정적 갤러리 이미지 (/assets/gallery/*.webp) 중 1장 선택
 // --------------------------------------------------
 
 let cachedGallery = null;
@@ -808,7 +808,7 @@ async function pickStaticGalleryImage() {
         .filter((f) => f.toLowerCase().endsWith('.webp'))
         .map((f) => `/assets/gallery/${f}`);
     } catch (e) {
-      console.warn('??媛ㅻ윭由??대뜑 ?쎄린 ?ㅽ뙣:', e.message);
+      console.warn('⚠ 갤러리 폴더 읽기 실패:', e.message);
       cachedGallery = [];
     }
   }
@@ -817,67 +817,67 @@ async function pickStaticGalleryImage() {
 }
 
 // --------------------------------------------------
-// 媛쒕퀎 湲 ?앹꽦
+// 개별 글 생성
 // --------------------------------------------------
 
 async function generateSinglePost(index, postsMeta) {
   const region = pick(REGIONS);
   const keyword = pick(KEYWORDS);
 
-  // ?쒕ぉ ?ㅼ뼇?? 湲곗〈 randomTitle ?쒖슜
+  // 제목 다양화: 기존 randomTitle 활용
   const title = randomTitle(region, keyword);
   const dateStr = new Date().toISOString().split('T')[0];
 
-  console.log(`\n?랃툘 (${index + 1}/2) 湲 ?앹꽦 以?.. [${region} ${keyword}]`);
+  console.log(`\n✍️ (${index + 1}/2) 글 생성 중... [${region} ${keyword}]`);
 
-  // ?쒕뜡 ??援ъ“/?〓떞 ?좏깮
+  // 랜덤 톤/구조/잡담 선택
   const persona = pick(PERSONAS);
   const template = pick(TEMPLATES);
   const noise = pick(HUMAN_NOISE);
 
-  // ?꾨＼?꾪듃 ?붿??덉뼱留?媛뺥솕
+  // 프롬프트 엔지니어링 강화
   const systemPrompt = `
-?뱀떊? "?꾧뎅紐⑤컮?????좊ː?????덈뒗 ?고뀒???꾨Ц媛?낅땲??
-?꾨옒 [?섎Ⅴ?뚮굹]??留욎떠 ?ㅼ씠踰?釉붾줈洹??ъ뒪?낆쓣 ?묒꽦?섏꽭??
+당신은 "전국모바일"의 신뢰할 수 있는 폰테크 전문가입니다.
+아래 [페르소나]에 맞춰 네이버 블로그 포스팅을 작성하세요.
 
-[?섎Ⅴ?뚮굹 ?ㅼ젙]
-- ?붿옄: ${persona.name}
-- 留먰닾: ${persona.tone}
-- **?꾩닔:** 臾댁“嫄??뺤쨷??議대뙎留??⑹눥泥??댁슂泥?留??ъ슜. 諛섎쭚, 鍮꾩냽?? 怨듦꺽???쒗쁽 湲덉?.
-- **湲덉?:** "?붿쭅??源뚮넃怨?, "湲?留?????, "?λ궃?섎깘" 媛숈? ?湲됲븳 ?쒗쁽 湲덉?.
-- **湲덉?:** "?뚭컻?⑸땲??, "寃곕줎?곸쑝濡?, "醫낇빀?섎㈃" 媛숈? AI ?곹닾???묒냽???⑤컻 湲덉?.
-- 臾몃떒 湲몄씠??遺덇퇋移숉븯寃? 洹몃윭???명씉? ?먯뿰?ㅻ읇寃? ?덈Т 吏㏃? 臾몃떒留??곗냽 ?ъ슜 湲덉?.
-- 遺꾨웾: 蹂몃Ц 湲곗? 1,500~2,300??踰붿쐞濡?異⑸텇???쒖닠.
+[페르소나 설정]
+- 화자: ${persona.name}
+- 말투: ${persona.tone}
+- **필수:** 무조건 정중한 존댓말(합쇼체/해요체)만 사용. 반말, 비속어, 공격적 표현 금지.
+- **금지:** "솔직히 까놓고", "긴 말 안 함", "장난하냐" 같은 저급한 표현 금지.
+- **금지:** "소개합니다", "결론적으로", "종합하면" 같은 AI 상투적 접속사 남발 금지.
+- 문단 길이는 불규칙하게, 그러나 호흡은 자연스럽게. 너무 짧은 문단만 연속 사용 금지.
+- 분량: 본문 기준 1,500~2,300자 범위로 충분히 서술.
 
-[湲 ?묒꽦 紐⑺몴]
-- ?낆옄媛 ?쎌뿀????愿묎퀬 濡쒕큸???꾨땶 ?ㅼ젣 ?곷떞?ш? 吏꾩떖???댁븘 ??湲泥섎읆 ?먭뺨?몄빞 ??
-- ?뺣낫 ?꾨떖? 紐낅즺?섍쾶, ?ㅼ? ?먯옏怨??좊ː媛??덇쾶 ?좎?.
+[글 작성 목표]
+- 독자가 읽었을 때 광고 로봇이 아닌 실제 상담사가 진심을 담아 쓴 글처럼 느껴져야 함.
+- 정보 전달은 명료하게, 톤은 점잖고 신뢰감 있게 유지.
 
-[湲 ?묒꽦 洹쒖튃]
-1. ?뺤떇: Markdown (?뚯젣紐⑹? ## ?ъ슜)
-2. 吏?? "${region}" 3???댁긽 ?먯뿰?ㅻ읇寃??멸툒
-3. ?ㅼ썙?? "${keyword}" 4~5???먯뿰?ㅻ읇寃?遺꾩궛 ?멸툒
-4. ?곕씫泥? 010-8290-9536 (湲 ?섎떒遺 1??, 移댁뭅?ㅽ넚 ?곷떞 ?멸툒 1??
-5. ?꾩닔 ?ы븿: ?좉퇋/湲곕? ?붽툑 援ъ“(?좉퇋=?듭떊?붽툑+?좊?湲? 湲곕?=湲곗〈 ?붽툑+?좊?湲?, 媛쒗넻 ?⑤쭚湲?利됱떆 留ㅼ엯쨌?꾧툑 吏湲? ?좎떖? 怨좉컼??吏곸젒 蹂닿??댁빞 ??
-6. 媛?二쇱슂 ?뚯젣紐??덉감/二쇱쓽/?λ떒??留덈Т由?? 理쒖냼 2~3臾몃떒 ?댁긽?쇰줈 異⑸텇???????寃?
+[글 작성 규칙]
+1. 형식: Markdown (소제목은 ## 사용)
+2. 지역: "${region}" 3회 이상 자연스럽게 언급
+3. 키워드: "${keyword}" 4~5회 자연스럽게 분산 언급
+4. 연락처: 010-8290-9536 (글 하단부 1회), 카카오톡 상담 언급 1회
+5. 필수 포함: 신규/기변 요금 구조(신규=통신요금+할부금, 기변=기존 요금+할부금), 개통 단말기 즉시 매입·현금 지급, 유심은 고객이 직접 보관해야 함.
+6. 각 주요 소제목(절차/주의/장단점/마무리)은 최소 2~3문단 이상으로 충분히 풀어 쓸 것.
   `;
 
   const userPrompt = `
-二쇱젣: "${title}"
-湲??援ъ꽦 ??? ${template.type}
-?묒꽦 吏移? ${template.instructions}
+주제: "${title}"
+글의 구성 타입: ${template.type}
+작성 지침: ${template.instructions}
 
-[援ъ꽦 媛?대뱶]
-1. **?꾩엯遺**: "${noise}" ?쇰뒗 臾몄옣?쇰줈 ?먯뿰?ㅻ읇寃??쒖옉?섍퀬, ${region} 吏??쓽 ${keyword} ?섏슂媛 ?섍퀬 ?덈떎??諛곌꼍???㏓텤??二쇱꽭??
-2. **吏꾪뻾 怨쇱젙**: ?곷떞 ??議곌굔 ?뺤씤 ??吏꾪뻾 ???낃툑源뚯? 3~4?④퀎濡??ㅻ챸?섎ŉ ${region} ?ㅼ젣 ?곷떞 ?щ? ??以꾩뵫 怨곷뱾???앸룞媛??덇쾶.
-3. **?듭떖 ?ъ씤??二쇱쓽?ы빆)**: 臾댁“嫄??믪? 湲덉븸??以?ㅻ뒗 怨녹쓣 ?쇳빐???섎뒗 ?댁쑀, 鍮꾨?硫?吏꾪뻾 ???쒕쪟 ?뺤씤 以묒슂?? ?좎떖 蹂닿? 二쇱쓽 ?깆쓣 ?꾨Ц媛 ?쒖꽑?쇰줈 議곗뼵.
-4. **留덈Т由?*: ${persona.ending} ?먮굦?쇰줈 ?뺤쨷???앸㎈怨? 留덉?留됱뿉 ?먯뿰?ㅻ읇寃??곕씫泥섏? 移댁뭅?ㅽ넚 ?곷떞???덈궡.
+[구성 가이드]
+1. **도입부**: "${noise}" 라는 문장으로 자연스럽게 시작하고, ${region} 지역의 ${keyword} 수요가 늘고 있다는 배경을 덧붙여 주세요.
+2. **진행 과정**: 상담 → 조건 확인 → 진행 → 입금까지 3~4단계로 설명하며 ${region} 실제 상담 사례 한 줄씩 곁들여 생동감 있게.
+3. **핵심 포인트(주의사항)**: 무조건 높은 금액을 준다는 곳을 피해야 하는 이유, 비대면 진행 시 서류 확인 중요성, 유심 보관 주의 등을 전문가 시선으로 조언.
+4. **마무리**: ${persona.ending} 느낌으로 정중히 끝맺고, 마지막에 자연스럽게 연락처와 카카오톡 상담을 안내.
 
-???댁슜??諛뷀깢?쇰줈 ?꾨Ц?곸씠怨??좊ː媛??덈뒗 釉붾줈洹?湲???묒꽦?댁쨾.
+위 내용을 바탕으로 전문적이고 신뢰감 있는 블로그 글을 작성해줘.
 `;
 
   try {
-    // 湲 ?댁슜 ?앹꽦 (gpt-4o)
+    // 글 내용 생성 (gpt-4o)
     const completion = await client.chat.completions.create({
       model: 'gpt-4o',
       messages: [
@@ -891,10 +891,10 @@ async function generateSinglePost(index, postsMeta) {
 
     const mdText = completion?.choices?.[0]?.message?.content?.trim();
     if (!mdText) {
-      throw new Error('鍮??묐떟 ?섏떊');
+      throw new Error('빈 응답 수신');
     }
 
-    // ?대?吏 ?앹꽦 (Hero, Mid, Bottom)
+    // 이미지 생성 (Hero, Mid, Bottom)
     const images = await generateImages(keyword, region);
 
     const heroInfo = images[0]
@@ -908,7 +908,7 @@ async function generateSinglePost(index, postsMeta) {
       bottomInfo = await saveThumbnail(images[2], `post-${Date.now()}-bottom`);
     }
 
-    // Markdown ??HTML 蹂??+ ?μ떇
+    // Markdown → HTML 변환 + 장식
     const { html: bodyHtml, summary: postSummary } = convertToHTML(mdText);
     const decoratedHtml = decorateContent(bodyHtml, {
       region,
@@ -922,7 +922,7 @@ async function generateSinglePost(index, postsMeta) {
     const fileName = `${uid}-${slugRegion}-${slugKeyword}.html`;
     const canonicalPath = `/blog/${fileName}`;
 
-    // ?몃꽕???앹꽦 (Hero 湲곗?)
+    // 썸네일 생성 (Hero 기준)
     let thumbMeta = null;
     if (heroInfo) {
       try {
@@ -931,7 +931,7 @@ async function generateSinglePost(index, postsMeta) {
           `${uid}-${slugRegion}-${slugKeyword}`
         );
       } catch (e) {
-        console.warn('???몃꽕???앹꽦 ?ㅽ뙣:', e.message);
+        console.warn('⚠ 썸네일 생성 실패:', e.message);
       }
     }
 
@@ -939,8 +939,8 @@ async function generateSinglePost(index, postsMeta) {
     const thumbUrlRel = thumbMeta?.thumb || heroInfo?.thumb || '/assets/img/og-banner.png';
     const bottomImg = bottomInfo ? bottomInfo.full : await pickStaticGalleryImage();
 
-    // ?쒓렇 諛?愿??湲
-    const tags = Array.from(new Set([keyword, region, '?고뀒??, '諛뺤뒪??, '媛媛쒗넻']));
+    // 태그 및 관련 글
+    const tags = Array.from(new Set([keyword, region, '폰테크', '박스폰', '가개통']));
     const related = getRelated(postsMeta, region, keyword, 6);
 
     const finalHTML = generateHTML({
@@ -963,7 +963,7 @@ async function generateSinglePost(index, postsMeta) {
     await fs.ensureDir(BLOG_DIR);
     await fs.writeFile(path.join(BLOG_DIR, fileName), finalHTML, 'utf8');
 
-    console.log(`??湲 ?앹꽦 ?꾨즺 ??${fileName} (而⑥뀎: ${persona.name} / ${template.type})`);
+    console.log(`✅ 글 생성 완료 → ${fileName} (컨셉: ${persona.name} / ${template.type})`);
 
     postsMeta.unshift({
       fileName,
@@ -977,12 +977,12 @@ async function generateSinglePost(index, postsMeta) {
       hero: heroWebp || thumbUrlRel || DEFAULT_IMAGE,
     });
   } catch (error) {
-    console.error('??湲 ?앹꽦 以??먮윭 諛쒖깮:', error);
+    console.error('❌ 글 생성 중 에러 발생:', error);
   }
 }
 
 // --------------------------------------------------
-// 硫붿씤 ?ㅽ뻾
+// 메인 실행
 // --------------------------------------------------
 
 async function main() {
@@ -993,24 +993,24 @@ async function main() {
 
   let postsMeta = await loadPostsMeta();
 
-  // ??湲 2媛?
+  // 새 글 2개
   for (let i = 0; i < 2; i++) {
     await generateSinglePost(i, postsMeta);
   }
 
-  // 硫뷀? ???+ ?뺣젹
+  // 메타 저장 + 정렬
   postsMeta = await savePostsMeta(postsMeta);
 
-  // ?섏씠吏???낅뜲?댄듃
+  // 페이지들 업데이트
   await updateBlogIndex(postsMeta);
   await generateTagPages(postsMeta);
   await updateSitemap(postsMeta);
   await updateHomeLatest(postsMeta);
 
-  console.log('\n?럦 ?꾩껜 2媛?湲 ?먮룞 ?앹꽦 + 紐⑤뱺 ?섏씠吏 ?낅뜲?댄듃 ?꾨즺!\n');
+  console.log('\n🎉 전체 2개 글 자동 생성 + 모든 페이지 업데이트 완료!\n');
 }
 
 main().catch((err) => {
-  console.error('???ㅻ쪟 諛쒖깮:', err);
+  console.error('❌ 오류 발생:', err);
   process.exit(1);
 });

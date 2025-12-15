@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 import re
 from datetime import datetime
 
@@ -6,7 +6,7 @@ ROOT = Path(__file__).resolve().parents[1]
 POST_GLOB = ["blog-*.html", "phonetech-*.html", "phonetech-*.html"]
 
 DATE_RE_ISO = re.compile(r'"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})"')
-DATE_RE_KO = re.compile(r'>(\d{4})??s*(\d{1,2})??s*(\d{1,2})??')
+DATE_RE_KO = re.compile(r'>(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일<')
 TITLE_RE = re.compile(r'<title>(.*?)</title>', re.I|re.S)
 META_DESC_RE = re.compile(r'<meta\s+name="description"\s+content="(.*?)"', re.I|re.S)
 IMG_RE = re.compile(r'<img[^>]+src=["\']([^"\']+\.(?:png|jpg|jpeg|webp))["\']', re.I)
@@ -68,7 +68,7 @@ def find_posts(root: Path):
 
 def render_card(it):
     # format date
-    date_str = it['date'].strftime('%Y??%m??%d??) if it['date'] else ''
+    date_str = it['date'].strftime('%Y년 %m월 %d일') if it['date'] else ''
     title = it['title']
     desc = (it['desc'][:160] + '...') if it['desc'] and len(it['desc'])>160 else it['desc']
     thumb = it['thumb']
@@ -90,9 +90,9 @@ def render_card(it):
                   <div class="d-flex align-items-center text-muted small">
                     <i class="bi bi-calendar3 me-2"></i>
                     <span>{date_str}</span>
-                    <span class="mx-2">??/span>
+                    <span class="mx-2">•</span>
                     <i class="bi bi-eye me-2"></i>
-                    <span>?쎄린</span>
+                    <span>읽기</span>
                   </div>
                 </div>
               </div>
@@ -110,8 +110,8 @@ def main():
     # replace between markers in blog.html
     blog_path = ROOT / 'blog.html'
     text = blog_path.read_text(encoding='utf-8')
-    start_marker = '<!-- POSTS_START - ?먮룞 ?앹꽦??寃뚯떆臾?紐⑸줉 ?쒖옉 (do not edit) -->'
-    end_marker = '<!-- POSTS_END - ?먮룞 ?앹꽦??寃뚯떆臾?紐⑸줉 ??(do not edit) -->'
+    start_marker = '<!-- POSTS_START - 자동 생성된 게시물 목록 시작 (do not edit) -->'
+    end_marker = '<!-- POSTS_END - 자동 생성된 게시물 목록 끝 (do not edit) -->'
     if start_marker in text and end_marker in text:
         before, rest = text.split(start_marker, 1)
         _, after = rest.split(end_marker, 1)
@@ -119,7 +119,7 @@ def main():
         blog_path.write_text(new_text, encoding='utf-8')
         print('Updated blog.html with', len(posts_sorted), 'posts')
     else:
-        print('Markers not found in blog.html ??aborting')
+        print('Markers not found in blog.html — aborting')
 
 if __name__ == '__main__':
     main()
