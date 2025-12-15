@@ -36,90 +36,95 @@ def parse_post(path: Path):
     m = IMG_RE.search(text)
     thumb = m.group(1) if m else 'assets/img/og-banner.png'
     # keywords/tags
-    m = META_KEYWORDS_RE.search(text)
-    keywords = []
-    if m:
-        keywords = [k.strip() for k in m.group(1).split(',') if k.strip()]
-    return {
+    from pathlib import Path
+    import re
+    from datetime import datetime
+
+    # Generator that writes /blog/index.html (backup safe)
+    ROOT = Path(__file__).resolve().parents[1]
+
+    POST_PATTERNS = ["blog-*.html", "phonetech-*.html"]
+
+    ISO_DATE_RE = re.compile(r'"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})"')
+    FALLBACK_DATE_RE = re.compile(r'>(\d{4})[^0-9]*(\d{1,2})[^0-9]*(\d{1,2})')
+    TITLE_RE = re.compile(r'<title>(.*?)</title>', re.I | re.S)
+    DESC_RE = re.compile(r'<meta\s+name="description"\s+content="(.*?)"', re.I | re.S)
+    IMG_RE = re.compile(r'<img[^>]+src=["\']([^"\']+\.(?:png|jpg|jpeg|webp))["\']', re.I)
+
+
+    def parse_post(path: Path):
+      text = path.read_text(encoding='utf-8', errors='ignore')
+      m = ISO_DATE_RE.search(text)
+      if m:
+        try:
+          date = datetime.fromisoformat(m.group(1)).date()
+        except Exception:
+          date = None
+      else:
+        m2 = FALLBACK_DATE_RE.search(text)
+        if m2:
+          try:
+            y, mo, d = map(int, m2.groups())
+            date = datetime(y, mo, d).date()
+          except Exception:
+            date = None
+        else:
+          date = None
+
+      m = TITLE_RE.search(text)
+      title = m.group(1).strip() if m else path.stem
+
+      m = DESC_RE.search(text)
+      desc = m.group(1).strip() if m else ''
+
+      m = IMG_RE.search(text)
+      thumb = m.group(1) if m else 'assets/img/og-banner.png'
+
+      return {
         'path': path.name,
         'title': title,
         'date': date,
         'desc': desc,
         'thumb': thumb,
-        'keywords': keywords
-    }
+      }
 
 
-def find_posts(root: Path):
-    posts = []
-    for pat in ["blog-*.html", "phonetech-*.html", "phonetech-*.html"]:
-        for p in root.glob(pat):
-            if p.name == 'blog.html':
-                continue
-            posts.append(parse_post(p))
-    # also include any files that start with phonetech- or blog- but not blog.html
-    for p in root.iterdir():
-        if p.suffix == '.html' and (p.name.startswith('blog-') or p.name.startswith('phonetech-')):
-            if p.name != 'blog.html':
-                if not any(d['path']==p.name for d in posts):
-                    posts.append(parse_post(p))
-    return posts
+    def find_posts(root: Path):
+      posts = []
+      for pat in POST_PATTERNS:
+        for p in sorted(root.glob(pat)):
+          if p.name == 'blog' or p.name == 'blog.html':
+            continue
+          posts.append(parse_post(p))
+      return posts
 
 
-def render_card(it):
-    # format date
-    date_str = it['date'].strftime('%Y??%m??%d??) if it['date'] else ''
-    title = it['title']
-    desc = (it['desc'][:160] + '...') if it['desc'] and len(it['desc'])>160 else it['desc']
-    thumb = it['thumb']
-    # normalize thumb path: if relative without leading /, keep as-is
-    card = f'''          <article class="card mb-4" data-tags="{','.join([k for k in it.get('keywords',[])][:3])}">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-4">
-                  <picture>
-                    <source type="image/webp" srcset="{thumb.rsplit('.',1)[0]}.webp">
-                    <img src="{thumb}" alt="{title}" class="img-fluid rounded" style="height:200px; object-fit:cover;">
-                  </picture>
-                </div>
-                <div class="col-md-8">
-                  <h3 class="card-title h5 fw-bold">
-                    <a href="{it['path']}" class="text-decoration-none">{title}</a>
-                  </h3>
-                  <p class="card-text text-muted">{desc}</p>
-                  <div class="d-flex align-items-center text-muted small">
-                    <i class="bi bi-calendar3 me-2"></i>
-                    <span>{date_str}</span>
-                    <span class="mx-2">??/span>
-                    <i class="bi bi-eye me-2"></i>
-                    <span>?쎄린</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>\n'''
-    return card
+    def render_card(it):
+      date_str = it['date'].strftime('%Y.%m.%d') if it['date'] else ''
+      title = it['title']
+      desc = (it['desc'][:160] + '...') if it['desc'] and len(it['desc']) > 160 else it['desc']
+      thumb = it['thumb']
+      return f'''<article class="card mb-4">\n  <div class="row g-0">\n    <div class="col-md-4">\n      <img src="{thumb}" alt="{title}" class="img-fluid rounded-start" style="height:200px;object-fit:cover;">\n    </div>\n    <div class="col-md-8">\n      <div class="card-body">\n        <h5 class="card-title"><a href="{it['path']}" class="text-decoration-none">{title}</a></h5>\n        <p class="card-text text-muted">{desc}</p>\n        <p class="card-text"><small class="text-muted">{date_str}</small></p>\n      </div>\n    </div>\n  </div>\n</article>\n'''
 
 
-def main():
-    posts = find_posts(ROOT)
-    # filter posts with a path and sort by date desc; unknown date goes last
-    posts_sorted = sorted(posts, key=lambda x: (x['date'] is None, x['date'] or datetime.min.date()), reverse=True)
-    cards = ''.join(render_card(p) for p in posts_sorted)
+    def main():
+      posts = find_posts(ROOT)
+      posts_sorted = sorted(posts, key=lambda x: (x['date'] is None, x['date'] or datetime.min.date()), reverse=True)
+      cards = ''.join(render_card(p) for p in posts_sorted)
 
-    # replace between markers in blog.html
-    blog_path = ROOT / 'blog.html'
-    text = blog_path.read_text(encoding='utf-8')
-    start_marker = '<!-- POSTS_START - ?먮룞 ?앹꽦??寃뚯떆臾?紐⑸줉 ?쒖옉 (do not edit) -->'
-    end_marker = '<!-- POSTS_END - ?먮룞 ?앹꽦??寃뚯떆臾?紐⑸줉 ??(do not edit) -->'
-    if start_marker in text and end_marker in text:
-        before, rest = text.split(start_marker, 1)
-        _, after = rest.split(end_marker, 1)
-        new_text = before + start_marker + "\n" + cards + "          " + end_marker + after
-        blog_path.write_text(new_text, encoding='utf-8')
-        print('Updated blog.html with', len(posts_sorted), 'posts')
-    else:
-        print('Markers not found in blog.html ??aborting')
+      blog_dir = ROOT / 'blog'
+      blog_dir.mkdir(exist_ok=True)
+      index_path = blog_dir / 'index.html'
 
-if __name__ == '__main__':
-    main()
+      # Backup existing index.html
+      if index_path.exists():
+        index_path.with_suffix('.html.bak').write_text(index_path.read_text(encoding='utf-8', errors='ignore'), encoding='utf-8')
+
+      html = f"""<!doctype html>\n<html lang=\"ko\">\n<head>\n  <meta charset=\"utf-8\" />\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\" />\n  <title>블로그</title>\n  <link href=\"/assets/css/styles.css\" rel=\"stylesheet\" />\n</head>\n<body>\n  <div class=\"container py-4\">\n    <h1 class=\"h3\">블로그</h1>\n    <div class=\"mt-3\">\n{cards}\n    </div>\n  </div>\n</body>\n</html>"""
+
+      index_path.write_text(html, encoding='utf-8')
+      print('Updated blog/index.html with', len(posts_sorted), 'posts')
+
+
+    if __name__ == '__main__':
+      main()
