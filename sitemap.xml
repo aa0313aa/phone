@@ -55,6 +55,26 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://폰테크.shop/blog/2025-12-20-1766232616458-region-ec84b1eb-keyword-ebb984eb.html</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://폰테크.shop/assets/blog/2025-12-20-1766232616458-region-ec84b1eb-keyword-ebb984eb.webp</image:loc>
+      <image:title>성남 폰테크 비대면개통 꼭 알아야 할 포인트</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/blog/2025-12-20-1766232552198-region-eca095ec-keyword-eab8b0ea.html</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://폰테크.shop/assets/blog/2025-12-20-1766232552198-region-eca095ec-keyword-eab8b0ea.webp</image:loc>
+      <image:title>정읍 폰테크 기기변경 최근 상담 사례</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://폰테크.shop/blog/2025-12-20-1766190199232-region-ec9588eb-keyword-ed8fb0ed.html</loc>
     <lastmod>2025-12-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -585,13 +605,19 @@
     </image:image>
   </url>
   <url>
-    <loc>https://폰테크.shop/tag/tag-ed8fb0ed.html</loc>
+    <loc>https://폰테크.shop/tag/tag-ebb984eb.html</loc>
     <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://폰테크.shop/tag/tag-ec9588eb.html</loc>
+    <loc>https://폰테크.shop/tag/tag-ec84b1eb.html</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/tag/tag-ed8fb0ed.html</loc>
     <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
@@ -604,6 +630,24 @@
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-eab080ea.html</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/tag/tag-eab8b0ea.html</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/tag/tag-eca095ec.html</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/tag/tag-ec9588eb.html</loc>
     <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
@@ -688,18 +732,6 @@
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ec9691ec.html</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://폰테크.shop/tag/tag-ebb984eb.html</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://폰테크.shop/tag/tag-ec84b1eb.html</loc>
     <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
@@ -819,12 +851,6 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://폰테크.shop/tag/tag-eab8b0ea.html</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
     <loc>https://폰테크.shop/tag/tag-eab2bdea.html</loc>
     <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
@@ -850,12 +876,6 @@
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-eab491eb.html</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://폰테크.shop/tag/tag-eca095ec.html</loc>
     <lastmod>2025-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
