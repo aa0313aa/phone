@@ -55,6 +55,26 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://폰테크.shop/blog/2026-01-03-1767442284235-region-ec84b1eb-keyword-ec8ba0eb.html</loc>
+    <lastmod>2026-01-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://폰테크.shop/assets/blog/2026-01-03-1767442284235-region-ec84b1eb-keyword-ec8ba0eb.webp</image:loc>
+      <image:title>성남 폰테크 신불자 체크리스트 버전</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/blog/2026-01-03-1767442206657-region-eb8f99ec-keyword-ed8fb0ed.html</loc>
+    <lastmod>2026-01-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://폰테크.shop/assets/blog/2026-01-03-1767442206657-region-eb8f99ec-keyword-ed8fb0ed.webp</image:loc>
+      <image:title>동제주 폰테크 휴대폰내구제 정식 업체 진행</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://폰테크.shop/blog/2026-01-03-1767399850997-region-eb8c80ea-keyword-ec84b1ec.html</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -965,13 +985,13 @@
     </image:image>
   </url>
   <url>
-    <loc>https://폰테크.shop/tag/tag-ec84b1ec.html</loc>
+    <loc>https://폰테크.shop/tag/tag-ec8ba0eb.html</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://폰테크.shop/tag/tag-eb8c80ea.html</loc>
+    <loc>https://폰테크.shop/tag/tag-ec84b1eb.html</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
@@ -990,6 +1010,24 @@
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-eab080ea.html</loc>
+    <lastmod>2026-01-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/tag/tag-eb8f99ec.html</loc>
+    <lastmod>2026-01-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/tag/tag-ec84b1ec.html</loc>
+    <lastmod>2026-01-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://폰테크.shop/tag/tag-eb8c80ea.html</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
@@ -1014,12 +1052,6 @@
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ed9cb4eb.html</loc>
-    <lastmod>2026-01-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://폰테크.shop/tag/tag-ec84b1eb.html</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
@@ -1056,12 +1088,6 @@
   </url>
   <url>
     <loc>https://폰테크.shop/tag/tag-ec97acec.html</loc>
-    <lastmod>2026-01-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://폰테크.shop/tag/tag-ec8ba0eb.html</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
