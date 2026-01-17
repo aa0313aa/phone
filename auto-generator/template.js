@@ -1,4 +1,4 @@
-﻿// /auto-generator/template.js
+// /auto-generator/template.js
 // 개별 블로그 글 고급 레이아웃 템플릿
 
 import slugify from 'slugify';
@@ -641,7 +641,7 @@ ${faqJson ? `<script type="application/ld+json">${faqJson}</script>` : ''}
           <div class="post-body">
             <div class="cta-inline" style="margin:14px 0 18px; padding:10px 12px; border-radius:10px; background:#eff6ff; border:1px solid #bfdbfe; font-size:.87rem;">
               <p style="margin:0 0 6px; font-weight:600; color:#1d4ed8;">${cta.text}</p>
-              <p style="margin:0; color:#4b5563;">📞 전화: <a href="tel:010-8290-9536" style="text-decoration:none; color:#1d4ed8;">010-8290-9536</a><br>💬 카톡 상담: <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:#1d4ed8;">바로가기</a></p>
+              <p style="margin:0; color:#4b5563;">📞 전화: <a href="tel:010-4044-9536" style="text-decoration:none; color:#1d4ed8;">010-4044-9536</a><br>💬 카톡 상담: <a href="https://open.kakao.com/o/s5LjyT0h" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:#1d4ed8;">바로가기</a></p>
             </div>
             ${content}
 
@@ -660,7 +660,7 @@ ${faqJson ? `<script type="application/ld+json">${faqJson}</script>` : ''}
               <div style="display:flex; flex-wrap:wrap; gap:8px;">
                 <a href="/information.html" style="flex:1 1 140px; text-align:center; padding:8px 10px; border-radius:999px; background:#2563eb; color:#fff; text-decoration:none; font-size:.86rem;">이용 안내 보기</a>
                 <a href="/contact.html" style="flex:1 1 140px; text-align:center; padding:8px 10px; border-radius:999px; background:#10b981; color:#fff; text-decoration:none; font-size:.86rem;">상담 예약하기</a>
-                <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener noreferrer" style="flex:1 1 140px; text-align:center; padding:8px 10px; border-radius:999px; background:#f59e0b; color:#111827; text-decoration:none; font-size:.86rem;">${cta.btn}</a>
+                <a href="https://open.kakao.com/o/s5LjyT0h" target="_blank" rel="noopener noreferrer" style="flex:1 1 140px; text-align:center; padding:8px 10px; border-radius:999px; background:#f59e0b; color:#111827; text-decoration:none; font-size:.86rem;">${cta.btn}</a>
               </div>
             </div>
 
@@ -722,14 +722,14 @@ ${faqJson ? `<script type="application/ld+json">${faqJson}</script>` : ''}
             <div class="cta-panel">
               <div class="cta-line">
                 <span>📞</span>
-                <a href="tel:010-8290-9536">010-8290-9536</a>
+                <a href="tel:010-4044-9536">010-4044-9536</a>
               </div>
               <div class="cta-line">
                 <span>💬</span>
-                <a href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener noreferrer">카톡: k090912k</a>
+                <a href="https://open.kakao.com/o/s5LjyT0h" target="_blank" rel="noopener noreferrer">카톡: k090912k</a>
               </div>
             </div>
-            <a class="cta-btn" href="http://pf.kakao.com/_gIKxnn/chat" target="_blank" rel="noopener noreferrer">
+            <a class="cta-btn" href="https://open.kakao.com/o/s5LjyT0h" target="_blank" rel="noopener noreferrer">
               카톡 상담 열기 <i class="bi bi-arrow-up-right"></i>
             </a>
           </div>
