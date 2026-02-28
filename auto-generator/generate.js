@@ -26,7 +26,7 @@ import { marked } from 'marked';
 
 import { KEYWORDS } from './keywords.js';
 import { REGIONS } from './regions.js';
-import { generateImages } from '../modules/image_gen.js';
+// import { generateImages } from '../modules/image_gen.js';
 import { generateHTML } from './template.js';
 
 const client = new OpenAI({
@@ -895,7 +895,7 @@ async function generateSinglePost(index, postsMeta) {
     }
 
     // 이미지 생성 (Hero, Mid, Bottom)
-    const images = await generateImages(keyword, region);
+    const images = []; // ?대?吏 ?앹꽦 鍮꾪솢?성화
 
     const heroInfo = images[0]
       ? await saveThumbnail(images[0], `post-${Date.now()}-hero`)
